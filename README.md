@@ -1,11 +1,23 @@
 # Code Challenge
 
 ## In order to run the project:
-
+1.```
 cd CodeTest
+```
+
+2.```
 npm install
+```
+
+3.```
 react-native start
-react-native run-android (in another terminal tab)
+```
+
+4.```
+react-native run-android
+```
+(in another terminal tab)
+```
 
 ## Questions: 
 
