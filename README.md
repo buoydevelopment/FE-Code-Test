@@ -75,3 +75,30 @@ B) Explain which library was used for the routing and why. Would you use the sam
 C) Have you used any strategy to optimize the performance of the list generated for the first feature?
 
 D) Would you like to add any further comments or observations?
+
+## Instructions for running:
+```
+run npm install
+```
+after all packages have been installed run
+```
+react-native run-ios
+```
+
+## Answers:
+
+A) Describe the strategy used to consume the API endpoints and the data management.
+To consume API endpoints I use Axios which is a Javascript library used for HTTP requests that supports Promise API and automatically transform data to JSON.
+Regarding data management, I use Redux whenever I need to share data between components and I use the component’s own state if I need to handle specific data within that component.
+Using Redux gives me the possibility to store data globally and subscribe from any component in case I need a value.
+If I happen to need to pass data from a parent component to a child component just to show or consult some information, I may pass it as a prop.
+
+B) Explain which library was used for the routing and why. Would you use the same for a consumer facing app targeting thousands of users? Why?
+For routing I use React Native Router Flux, since it is very documented, customizable, has dynamic routing and provides drawer, tabs and modals.
+I would definitely use it for a facing app targeting thousands of user because it is stable, it has grown along side with react native as they where release quite close and most of all because I have worked in several projects with it and haven’t got any problem so far.
+
+C) Have you used any strategy to optimize the performance of the list generated for the first feature?
+I just used the FlatList native component from RN for this simple case.
+
+D) Would you like to add any further comments or observations?
+I only tested the app on iOS but always considering Android as well. Just in case something goes bad, let me know and I’ll run the app on an Android device and fix whatever comes up.
