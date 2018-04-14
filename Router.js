@@ -16,7 +16,6 @@ const RouterComponent = () => {
 };
 
 const appStyles = {
-  backgroundColor: '#00c0d4',
   paddingTop: Platform.OS === 'ios' ? 20 : 0
 };
 

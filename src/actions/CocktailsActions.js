@@ -22,13 +22,13 @@ export const getCocktailDetails = (cocktailId) => {
   return (dispatch) => {
     dispatch({ type: CHANGE_APP_STATE, payload: true });
     axios.get(GET_COCKTAIL_DETAILS_URL + cocktailId).then(response => {
-        const cocktail = response.data.drinks[0];
-        dispatch({ type: GET_COCKTAIL_DETAILS, payload: cocktail });
-        dispatch({ type: CHANGE_APP_STATE, payload: false });
-      }).catch((err) => {
-        dispatch({ type: CHANGE_APP_STATE, payload: false });
-        console.log('error getting cocktail details from server.', err)
-      })
+      const cocktail = response.data.drinks[0];
+      dispatch({ type: GET_COCKTAIL_DETAILS, payload: cocktail });
+      dispatch({ type: CHANGE_APP_STATE, payload: false });
+    }).catch((err) => {
+      dispatch({ type: CHANGE_APP_STATE, payload: false });
+      console.log('error getting cocktail details from server.', err)
+    })
   };
 };
 
