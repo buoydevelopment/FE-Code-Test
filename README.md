@@ -94,3 +94,7 @@ I didnt, but an infinite scroll or pagination would be great to reduce the amoun
 D) Would you like to add any further comments or observations?
 
 With more time i would implement the pagination strategy for the list of cocktails, normalize the redux stores and save the cocktails details (cache them) using an id map in order to not request the same cocktail more than once.
+
+## Instructions:
+
+download, run 'npm install', then run 'react-native run-android'
