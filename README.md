@@ -75,3 +75,22 @@ B) Explain which library was used for the routing and why. Would you use the sam
 C) Have you used any strategy to optimize the performance of the list generated for the first feature?
 
 D) Would you like to add any further comments or observations?
+
+## Answers:
+
+A) Describe the strategy used to consume the API endpoints and the data management.
+
+I used Axios library to do the requests and transform the data to json.
+For data management i used redux for cross app data and events, props to pass parameters between components.
+
+B) Explain which library was used for the routing and why. Would you use the same for a consumer facing app targeting thousands of users? Why?
+
+I used React Native Router Flex because it's very easy to use and since it's well documented too i would use it in a consumer facing app targeting thousands of users.
+
+C) Have you used any strategy to optimize the performance of the list generated for the first feature?
+
+I didnt, but an infinite scroll or pagination would be great to reduce the amount of items rendered, and make the application more performant.
+
+D) Would you like to add any further comments or observations?
+
+With more time i would implement the pagination strategy for the list of cocktails, normalize the redux stores and save the cocktails details (cache them) using an id map in order to not request the same cocktail more than once.
