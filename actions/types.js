@@ -1,0 +1,1 @@
+export const DRINKS_DATA_LOADED = 'DRINKS_DATA_LOADED';
