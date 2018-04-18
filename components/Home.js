@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { drinksDataLoaded } from '../actions';
-import { List, ListItem, SearchBar, Card, Button } from 'react-native-elements';
+import { List, ListItem, SearchBar, Card, Button, Icon } from 'react-native-elements';
 import {
   View,
   FlatList,
@@ -20,6 +20,19 @@ import HideableView from '../components/HideableView';
 import DrinkItem from '../components/DrinkItem';
 
 class Home extends Component {
+
+  static navigationOptions = ({ navigation }) => {
+    const { params = {} } = navigation.state;
+    return {
+      headerTintColor: "white",
+      headerRight: (
+        <TouchableOpacity onPress={() => {params.toogleSearch()}}>
+             <Icon name="search" size={35} color="#fff" backgroundColor="#fff" />
+        </TouchableOpacity> 
+      )
+    };
+  };
+  
   constructor() {
     super();
     this.state = {
@@ -30,10 +43,10 @@ class Home extends Component {
       error: null,
       refreshing: false
     };
-    this.toggle = this.toggle.bind(this);
   }
 
   componentDidMount() {  
+    this.props.navigation.setParams({ toogleSearch: this.toogleSearchView.bind(this) });
     this.makeRemoteRequest();       
   }
 
@@ -60,7 +73,7 @@ class Home extends Component {
       });
   };
 
-  toggle() {
+  toogleSearchView() {
       this.setState({
           visible: !this.state.visible
       });
@@ -99,7 +112,17 @@ class Home extends Component {
   );
 
   render() {
+    const { data, loading, error } = this.state;
   
+    if (loading) {
+      if (error){
+        return(
+          <View><Text>Please try again</Text></View>
+        );
+      }
+      return this.renderLoading();
+    }
+
     // Filter data for search bar
     let filteredLoads = this.props.allDrinks.filter(
       (drink) => {
@@ -109,28 +132,22 @@ class Home extends Component {
     
     return (
       <View style={{ flex: 1, backgroundColor: '#53BCD0'}}>
-      <HideableView visible={this.state.visible}>
-      <View style={{ flex: 0.05 }}>
-      
-      {/* Search Field */}
-      <SearchBar 
-      placeholder="Search by name..."
-      onChangeText={ text => this.searchChanged(text) }
-      lightTheme
-      round
-    />
-    
-    </View>
-        </HideableView>
-          <TouchableOpacity onPress={this.toggle}>
-            <Text>{this.state.visible ? 'Hide' : 'Show'}</Text>
-          </TouchableOpacity>        
-        <View style={{ flex: 0.95 }}>
+        <HideableView visible={this.state.visible}>
+          <View style={{ flex: 0.05}}>      
+            {/* Search Field */}
+            <SearchBar
+              placeholder="Search by name..."
+              onChangeText={ text => this.searchChanged(text) }
+              lightTheme
+              round
+            />    
+          </View>
+        </HideableView>    
+        <View style={{ flex: 0.95, paddingVertical: 20 ,marginVertical: 20}}>
           <ScrollView contentContainerStyle={{ paddingVertical: 20 }}>
             <FlatList
-              ref="flatList"
-              style={{ flex: 1 }}
-              data={this.state.data}
+              ref="mainList"
+              data={data}
               extraData={this.state}
               renderItem={this._renderItem}       
               keyExtractor={ item => parseInt(item.idDrink)}
