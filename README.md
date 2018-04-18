@@ -75,3 +75,29 @@ B) Explain which library was used for the routing and why. Would you use the sam
 C) Have you used any strategy to optimize the performance of the list generated for the first feature?
 
 D) Would you like to add any further comments or observations?
+
+## Instructions for running:
+```
+run npm install
+```
+after all packages have been installed run
+```
+react-native run-android
+```
+
+## Answers:
+
+A) Describe the strategy used to consume the API endpoints and the data management.
+To API consume I used a Provider which is the module in charge of abstracting the application from the data collection. To communicate with the endpoints I used Axios which is a Javascript library that facilitates the HTTP requests along with the management of promises, automatically converting the answers to the JSON format.
+For the data management I used Redux, which facilitated the data flow in the application and changes in the state of the application.
+
+B) Explain which library was used for the routing and why. Would you use the same for a consumer facing app targeting thousands of users? Why?  
+For the route I used React-Native-Router-Flux which is one of the most complete liberies I could find. It contains a lot of documentation, it has many customizable aspects such as navs, tab bars and dynamic routing among others.
+It is a library that I would use for an application with thousands of users, since it is stable, contains a very active community and is constantly updated.
+
+C) Have you used any strategy to optimize the performance of the list generated for the first feature?
+For the list I used the FlatList from the react-native library, which already has some optimizations, such as the fact that it only loads the items that are being viewed at the moment. In addition to the previous optimization another optimization like
+getItemLayout which is an optional optimization that allows us to omit the measurement of the dynamic content if the height of the a priori elements is known. getItemLayout is the most efficient and is easy to use if you have fixed height elements. The latter was not implemented because, in this case, it was very simple what had to be implemented.
+
+D) Would you like to add any further comments or observations?
+I would like to clarify that I could only test the application on Android since I did not have a phone with iOS to perform the corresponding tests. The optional point I could not do it because of hourly complications, if you are interested in how I would implement it I could gladly explain it.
