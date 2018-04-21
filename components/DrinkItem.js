@@ -9,14 +9,14 @@ export default class DrinkItem extends Component {
     }
 
     render() {
-        const { strDrink, strDrinkThumb, idDrink } = this.props.item;
+        const { strDrink, strDrinkThumb } = this.props.item;
         const {width, height} = require('Dimensions').get('window');
         return (
             <TouchableOpacity onPress={this.props.onPress}>
             <Card>
               <View style={{flex: 1, flexDirection: 'row', width: width, borderRadius: 5}}>
                 <View style={{flex: 4, flexDirection: 'column'}}>
-                  <Text style={styles.titleText}>
+                  <Text adjustsFontSizeToFit minimumFontScale={.5} style={styles.titleText}>
                      {strDrink}
                   </Text>
                 </View>
@@ -25,13 +25,12 @@ export default class DrinkItem extends Component {
                   <Image 
                     resizeMode='contain'
                     style={{
-                      flex: 1,
                       aspectRatio: 1, 
                       borderWidth: 1,
                       borderColor: '#000',
                       borderRadius: 5,
                       overflow: 'hidden',
-                      height: 120
+                      height: width/3
                     }}
                     prefetch={{ uri: strDrinkThumb }} 
                     source={{ uri: strDrinkThumb }} 
@@ -64,7 +63,7 @@ var styles = StyleSheet.create({
         alignItems: "flex-end"
     },
     titleText: {
-        fontSize: 22,
+        fontSize: 25,
         fontWeight: "bold",
         marginBottom: 10,
         textAlign:"left",

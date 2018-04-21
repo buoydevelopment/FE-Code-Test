@@ -1,7 +1,5 @@
 import React from 'react';
-import { StackNavigator, TabNavigator } from 'react-navigation';
-import { View, Image, Platform } from 'react-native';
-import { SearchBar } from 'react-native-elements'; 
+import { StackNavigator } from 'react-navigation';
 
 // Components for screens
 import Home from './components/Home';

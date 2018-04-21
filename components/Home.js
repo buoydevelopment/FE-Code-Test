@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { drinksDataLoaded } from '../actions';
-import { List, ListItem, SearchBar, Card, Button, Icon } from 'react-native-elements';
+import { makeRemoteRequest } from '../utils/Utils';
+import { SearchBar, Icon } from 'react-native-elements';
 import {
   View,
   FlatList,
@@ -9,15 +10,14 @@ import {
   ScrollView,
   ActivityIndicator,
   Text,
-  Linking,
-  Image,
-  Dimensions,
   TouchableOpacity
 } from 'react-native';
 
 import { PropTypes } from 'prop-types';
 import HideableView from '../components/HideableView';
 import DrinkItem from '../components/DrinkItem';
+
+const urlAPI = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass";
 
 class Home extends Component {
 
@@ -45,38 +45,35 @@ class Home extends Component {
     };
   }
 
-  componentDidMount() {  
-    this.props.navigation.setParams({ toogleSearch: this.toogleSearchView.bind(this) });
-    this.makeRemoteRequest();       
+  componentDidMount() {
+      this.props.navigation.setParams({ toogleSearch: this.toogleSearchView.bind(this) });
+
+     this.makeRequest(urlAPI);
   }
 
-  makeRemoteRequest = () => {
-    const url = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass";
-    this.setState({ loading: true });
+  makeRequest(url) {
+      this.setState({ loading: true });
+    makeRemoteRequest(url)
+        .then((dataResponse) => {
+            this.setState({
+                data: dataResponse.drinks,
+                error: dataResponse.error || null,
+                loading: false,
+                refreshing: false
+            });
 
-    fetch(url)
-      .then(res => res.json())
-      .then(res => {
-
-        this.setState({
-          data: res.drinks,
-          error: res.error || null,
-          loading: false,
-          refreshing: false
+            // Store loaded employee data in Redux store
+            this.props.DrinksDataLoaded(this.state.data);
+        })
+        .catch(error => {
+            this.setState({ error, loading: false });
         });
-
-        // Store loaded employee data in Redux store
-        this.props.DrinksDataLoaded(this.state.data);
-      })
-      .catch(error => {
-        this.setState({ error, loading: false });
-      });
-  };
+  }
 
   toogleSearchView() {
-      this.setState({
-          visible: !this.state.visible
-      });
+    this.setState({
+        visible: !this.state.visible
+    });
   }
 
   searchChanged(text) {
@@ -112,7 +109,7 @@ class Home extends Component {
   );
 
   render() {
-    const { data, loading, error } = this.state;
+    const { data, loading, error, searchTerm } = this.state;
   
     if (loading) {
       if (error){
@@ -123,12 +120,11 @@ class Home extends Component {
       return this.renderLoading();
     }
 
-    // Filter data for search bar
-    let filteredLoads = this.props.allDrinks.filter(
-      (drink) => {
-        return drink['name'].toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) !== -1;
-      }
-    );
+    let newData = data.filter(function(item){
+      const itemData = item.strDrink.toUpperCase()
+      const textData = searchTerm.toUpperCase()
+      return itemData.indexOf(textData) > -1
+    });
     
     return (
       <View style={{ flex: 1, backgroundColor: '#53BCD0'}}>
@@ -147,7 +143,7 @@ class Home extends Component {
           <ScrollView contentContainerStyle={{ paddingVertical: 20 }}>
             <FlatList
               ref="mainList"
-              data={data}
+              data={ newData }
               extraData={this.state}
               renderItem={this._renderItem}       
               keyExtractor={ item => parseInt(item.idDrink)}
