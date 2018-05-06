@@ -7,5 +7,7 @@ target 'FECODETEST' do
 
   # Pods for FECODETEST
 
+  pod 'react-native-fetch-blob', :path => '../node_modules/react-native-fetch-blob'
+
 end
 

@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Image,
   View,
   Text,
   ScrollView,
@@ -12,8 +11,11 @@ import {
 } from "react-native";
 import { width, height } from "react-native-dimension";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { CustomCachedImage, CachedImage } from "react-native-img-cache";
+import ImageProgress from "react-native-image-progress";
 import PropTypes from "prop-types";
 import AIcon from "react-native-vector-icons/Ionicons";
+
 // Global functions for multi-device constraints
 import {
   scale,
@@ -22,9 +24,6 @@ import {
 
 // References to styles including colors
 import { colors } from "../../config/styles";
-
-// References to images
-import images from "../../config/images";
 
 const styles = StyleSheet.create({
   container: {
@@ -43,7 +42,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     shadowOpacity: 0.5,
 	  elevation: Platform.OS === "android" ? 2 : 0,
-	  flexDirection: 'row'
+	  flexDirection: "row"
   },
   textInputStyle: {
     backgroundColor: colors.transparent,
@@ -56,21 +55,35 @@ const styles = StyleSheet.create({
 	  color: colors.white,
 	  flex: 1,
   },
+  searchIconStyle: {
+    color: colors.white,
+    fontSize: scaleByVertical(30),
+    position: "absolute",
+    right: scale(20),
+    marginTop: 0
+  },
+  itemTitleStyle: {
+    color: colors.gray,
+    fontSize: scaleByVertical(25),
+    fontWeight: "600"
+  },
+  topContainer: {
+    height: scaleByVertical(30),
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: scaleByVertical(30),
+    paddingHorizontal: scale(20)
+  }
 });
 
 const MainMenuScreen = (props) => {
   const { updateState, showCocktailItem } = props;
-  let filteredItems = props.keywordText === '' ? props.cocktails : props.cocktails.filter((item) => {
-	  return item.strDrink.indexOf(props.keywordText) !== -1 ? true : false;
-  })
+  const filteredItems = props.keywordText === "" ? props.cocktails : props.cocktails.filter(item => (item.strDrink.indexOf(props.keywordText) !== -1));
   return (<View style={styles.container}>
     <KeyboardAwareScrollView style={{ flex: 1 }}>
       <StatusBar hidden />
       <View style={{ flex: 1 }}>
-        <View style={{
-            height: scaleByVertical(30), flexDirection: "row", justifyContent: "center", marginTop: scaleByVertical(30), paddingHorizontal: scale(20)
-          }}
-        >
+        <View style={styles.topContainer}>
           <TextInput
             autoCapitalize="none"
             autoCorrect={false}
@@ -81,19 +94,28 @@ const MainMenuScreen = (props) => {
             underlineColorAndroid={colors.transparent}
             value={props.keywordText}
           />
-		  <AIcon name={"ios-search"} style={{ color: colors.white, fontSize: scaleByVertical(30), position: 'absolute', right: scale(20), marginTop: 0 }} />
+          <AIcon
+            name="ios-search"
+            style={styles.searchIconStyle}
+          />
         </View>
         <ScrollView style={{ flex: 1 }}>
           {filteredItems.map((item, index) => (
             <TouchableOpacity key={index} style={styles.itemContainer} onPress={() => { showCocktailItem(props.cocktails.indexOf(item)); }}>
               <View style={{ flex: 1 }}>
-                <Text style={{ color: colors.gray, fontSize: scaleByVertical(25), fontWeight: '600' }}>{item.strDrink}</Text>
+                <Text style={styles.itemTitleStyle}>{item.strDrink}</Text>
               </View>
-              <View style={{ width: scale(50) }}/>
+              <View style={{ width: scale(50) }} />
               <View style={{ flex: 1 }}>
-                <Image source={{ uri: item.strDrinkThumb }} style={{ flex: 1, borderRadius: scale(5) }} resizeMode="cover"/>
+                <CachedImage
+                  component={ImageProgress}
+                  resizeMode="cover"
+                  // indicator={ProgressBar}
+                  source={{ uri: item.strDrinkThumb }}
+                  style={{ flex: 1, borderRadius: scale(5) }}
+                />
               </View>
-                  </TouchableOpacity>
+            </TouchableOpacity>
             ))}
         </ScrollView>
       </View>

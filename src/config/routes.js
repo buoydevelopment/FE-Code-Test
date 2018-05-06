@@ -7,7 +7,6 @@ import MainMenuScreen from '../routes/MainMenuScreen';
 import PreviewScreen from '../routes/PreviewScreen';
 
 import { colors } from '../config/styles';
-import images from '../config/images';
 
 const headerStyle = {
   marginTop: 0,

@@ -1,6 +1,4 @@
 /* global fetch:false */
-
-import qs from "qs";
 import apiConfig from "./config";
 
 const endPoints = {

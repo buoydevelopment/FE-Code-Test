@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  Animated,
-  Easing,
   BackHandler
 } from "react-native";
 import { width, height } from 'react-native-dimension'
@@ -16,31 +14,31 @@ import MainMenuScreen from './MainMenuScreen'
 import { getLists } from '../../lib/api';
 
 class MainMenuScreenContainer extends Component {
-  static navigationOptions = { title: "Welcome", header: null };
+  static navigationOptions = { header: null };
 
   constructor(props) {
     super(props);
     this.initialState = {
-      ending: false,
       cocktails: this.props.cocktails ? this.props.cocktails : [],
       keywordText: ''
     };
     this.state = this.initialState;
-    this.progress = new Animated.Value(0);
-  }
-
-  componentWillMount() {
   }
 
   componentDidMount() {
+    // Get whole list of cocktails
     getLists()
       .then((response) => {
-        let lists = response.drinks;
-        this.props.addCocktails(lists);
-        this.setState({ cocktails: lists });
+        if (response && response.drinks) {
+          let lists = response.drinks;
+          this.props.addCocktails(lists);
+          this.setState({ cocktails: lists });
+        } else {
+          alert('Server connection failed');
+        }
       })
       .catch((err) => {
-        alert(JSON.stringify(err));
+        alert('Can not connect to server');
       });
     BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressed);
   }
@@ -64,7 +62,6 @@ class MainMenuScreenContainer extends Component {
           showCocktailItem={this.showCocktailItem.bind(this)}
           updateState={this.setState.bind(this)}
           {...this.state}
-          progress={this.progress}
         />
       </View>
     );

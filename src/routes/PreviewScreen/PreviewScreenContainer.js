@@ -1,46 +1,52 @@
 import React, { Component } from 'react'
 import {
   View,
-  Animated,
-  Easing,
   BackHandler
 } from "react-native";
 import { width, height } from 'react-native-dimension'
-
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { ActionCreators } from '../../actions'
 
 import PreviewScreen from './PreviewScreen'
+
 import { getDetails } from '../../lib/api'
 
 class PreviewScreenContainer extends Component {
-  static navigationOptions = { title: "Welcome", header: null };
+  static navigationOptions = { header: null };
 
   constructor(props) {
     super(props);
     this.initialState = {
-      currentPage: 0,
-      isLoading: false,
-      ending: false,
       cocktails: this.props.cocktails ? this.props.cocktails : [],
       currentItem: {},
       currentIndex: this.props.navigation.state.params ? this.props.navigation.state.params.index : 0,
       currentTitle: this.props.navigation.state.params ? this.props.navigation.state.params.title : '',
+      categories: []
     };
     this.state = this.initialState;
-    this.progress = new Animated.Value(0);
-    this.currentUser = null;
   }
 
   componentDidMount() {
-    getDetails(this.state.currentIndex)
+    // Get detailed data of the selected item.
+    getDetails(this.state.cocktails[this.state.currentIndex].idDrink)
       .then((response) => {
-        alert(JSON.stringify(response));
-        this.setState({ currentItem: response.drinks[0] });
+        if (response && response.drinks) {
+          let categories = [];
+          let drink = response.drinks[0];
+          for (let i = 1; i <= 15; i += 1) {
+            let categoryNum = `strIngredient${i}`;
+            if (drink[categoryNum] && drink[categoryNum] !== undefined && drink[categoryNum] !== "") {
+              categories.push(`${drink[`strMeasure${i}`]} - ${drink[categoryNum]}`)
+            }
+          }
+          this.setState({ currentItem: response.drinks[0], categories });
+        } else {
+          alert('Server connection failed');
+        }
       })
       .catch((err) => {
-        alert(JSON.stringify(err));
+        alert('Can not connect to server.');
       });
     BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressed);
   }
@@ -54,7 +60,7 @@ class PreviewScreenContainer extends Component {
   }
 
   backButtonTapped() {
-    this.props.navigation.navigate('DrawerOpen');
+    this.props.navigation.goBack();
   }
 
   render() {
@@ -64,7 +70,6 @@ class PreviewScreenContainer extends Component {
           backButtonTapped={this.backButtonTapped.bind(this)}
           updateState={this.setState.bind(this)}
           {...this.state}
-          progress={this.progress}
         />
       </View>
     );
