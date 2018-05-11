@@ -1,4 +1,34 @@
+
+
+
 # Code Challenge
+
+## Answers:
+
+**A) Describe the strategy used to consume the API endpoints and the data management.:**
+
+In this case i call the drinks API, as this API is just necessary to call once per update, then i run all results, and with each results i request the details for each drink, as there are too many drinks i also save the drinks using AsyncTask, to avoid app crashes.
+
+I every downloaded information i save it in the database, the app will auto-request the information while there is non information actually saved in the database, if you want to update it manually you just can pull to refresh from the drinks list, this way you can check drinks even while offline
+
+When you request update information it will check if the drinks already exist in the local database, if exists it will update the drink information, in case an image update, ingredients, etc
+
+**B) Explain which library was used for the routing and why. Would you use the same for a consumer facing app targeting thousands of users? Why?:**
+
+I don't understand exactly what you mean with routing, but yes, i always use the same libraries for both small or big project, i mean if is a small project it doesn't have to be an unoptimized application, i always try to work as better, optimized and fast as possible, maybe some of my techniques aren't the best ones, but i don't have all the knowledge available, i'm still learning and improving myself, i simply don't block myself if i don't know something, i just face it and learn about it.
+The Libraries i use are this ones:
+-Glide for Better Image Loading
+-Retrofit 2 for APIs
+-OrmLite as SQLite Database helper
+-RecyclerView and CardView to show elements in the list
+
+**C) Have you used any strategy to optimize the performance of the list generated for the first feature?**
+
+Nothing fancy actually, in Lists i always use RecyclerView and CardView, even if there are just 4 Items, to show each image i use Glide to improve Image loading, it might delay a little bit while updating, i mean there are more than 30 elements which separate description for each, i did think in setting a Load more section to improve the download time, but it will take me a little more
+
+**D) Would you like to add any further comments or observations?**
+
+I'm actually not a Robot, as a human i make mistakes too, but i always takes those mistakes in count to self improvement, if there is no failure, there is no improve, it was just a test but i really enjoy it, really hope to know more about you and work with you
 
 ## Instructions:
 
