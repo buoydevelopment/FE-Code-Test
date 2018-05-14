@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#00B5F2"
+    tools:context="com.codechallenge.pcharras.cocktailscatalogue.activities.MainActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvCocktails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/rlError"
+        android:background="#FFFFFF">
+
+        <ImageView
+            android:id="@+id/imgDrinkThumb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/error"
+            android:layout_centerVertical="true"
+            >
+        </ImageView>
+        <TextView
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:id="@+id/tvErrorMessage"
+            android:text="Sorry, An error ocurred."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            >
+        </TextView>
+    </RelativeLayout>
+</RelativeLayout>
