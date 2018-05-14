@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CocktailApp</string>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="action_accept">Accept</string>
+    <string name="no_cocktails">No drinks found at this moment</string>
+    <string name="and_x_more_ingredients">and N more ingredients</string>
+    <string name="how_to_prepare">•  How to prepare</string>
+    <string name="search_cocktail">Search Cocktail</string>
+</resources>
