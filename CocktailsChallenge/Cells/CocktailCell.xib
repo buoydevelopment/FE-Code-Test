@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cocktailCellId" rowHeight="276" id="2jH-ei-il2" customClass="CocktailCell" customModule="CocktailsChallenge" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2jH-ei-il2" id="yvu-YA-xqA">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="159.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cJZ-jZ-3fG" userLabel="Container" customClass="ChallengeContainerView" customModule="CocktailsChallenge" customModuleProvider="target">
+                        <rect key="frame" x="16" y="11" width="343" height="138"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wiE-9w-JDr">
+                                <rect key="frame" x="211" y="7" width="124" height="124"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="wiE-9w-JDr" secondAttribute="height" multiplier="1:1" id="6kb-j9-Plh"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUs-cj-4gR" userLabel="Cocktail Name">
+                                <rect key="frame" x="16" y="15" width="187" height="49.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gef-BQ-0yl" userLabel="Cocktail Instructions">
+                                <rect key="frame" x="16" y="64.5" width="187" height="66.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Tmr-Hy-xoT">
+                                <rect key="frame" x="99" y="87" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="QIL-5o-MaH"/>
+                                    <constraint firstAttribute="width" constant="20" id="v3X-go-e3a"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wiE-9w-JDr" firstAttribute="centerY" secondItem="cJZ-jZ-3fG" secondAttribute="centerY" id="5Zd-Bh-rnc"/>
+                            <constraint firstItem="wiE-9w-JDr" firstAttribute="height" secondItem="cJZ-jZ-3fG" secondAttribute="height" multiplier="0.9" id="694-vo-GNz"/>
+                            <constraint firstItem="eUs-cj-4gR" firstAttribute="top" secondItem="wiE-9w-JDr" secondAttribute="top" constant="8" id="7dH-z7-niT"/>
+                            <constraint firstItem="eUs-cj-4gR" firstAttribute="height" secondItem="wiE-9w-JDr" secondAttribute="height" multiplier="0.4" id="93u-JA-AnC"/>
+                            <constraint firstItem="Gef-BQ-0yl" firstAttribute="width" secondItem="eUs-cj-4gR" secondAttribute="width" id="ANs-y7-CxU"/>
+                            <constraint firstAttribute="trailing" secondItem="wiE-9w-JDr" secondAttribute="trailing" constant="8" id="GiK-HS-jni"/>
+                            <constraint firstItem="Gef-BQ-0yl" firstAttribute="leading" secondItem="eUs-cj-4gR" secondAttribute="leading" id="JRe-46-0oy"/>
+                            <constraint firstItem="Gef-BQ-0yl" firstAttribute="top" secondItem="eUs-cj-4gR" secondAttribute="bottom" id="Jei-pa-5tG"/>
+                            <constraint firstItem="wiE-9w-JDr" firstAttribute="leading" secondItem="eUs-cj-4gR" secondAttribute="trailing" constant="8" id="NTh-4h-7GT"/>
+                            <constraint firstItem="eUs-cj-4gR" firstAttribute="leading" secondItem="cJZ-jZ-3fG" secondAttribute="leading" constant="16" id="YMl-ol-fTW"/>
+                            <constraint firstItem="Gef-BQ-0yl" firstAttribute="bottom" secondItem="wiE-9w-JDr" secondAttribute="bottom" id="x74-0L-jz5"/>
+                            <constraint firstItem="Tmr-Hy-xoT" firstAttribute="centerY" secondItem="Gef-BQ-0yl" secondAttribute="centerY" id="xHB-5E-3Ii"/>
+                            <constraint firstItem="Tmr-Hy-xoT" firstAttribute="centerX" secondItem="Gef-BQ-0yl" secondAttribute="centerX" id="yVr-Xp-0kW"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="cJZ-jZ-3fG" secondAttribute="trailing" constant="16" id="9jk-vq-vNa"/>
+                    <constraint firstItem="cJZ-jZ-3fG" firstAttribute="top" secondItem="yvu-YA-xqA" secondAttribute="top" constant="11" id="Lel-Gp-2PL"/>
+                    <constraint firstAttribute="bottom" secondItem="cJZ-jZ-3fG" secondAttribute="bottom" constant="10.5" id="VCb-Y3-rxQ"/>
+                    <constraint firstItem="cJZ-jZ-3fG" firstAttribute="leading" secondItem="yvu-YA-xqA" secondAttribute="leading" constant="16" id="jPT-qk-sik"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="activityIndicator" destination="Tmr-Hy-xoT" id="gok-mw-zcR"/>
+                <outlet property="containerView" destination="cJZ-jZ-3fG" id="HFo-CN-ZYW"/>
+                <outlet property="imageCocktail" destination="wiE-9w-JDr" id="7bc-as-iZp"/>
+                <outlet property="labelCocktailTitle" destination="eUs-cj-4gR" id="CmE-Zf-2vb"/>
+                <outlet property="labelInstructions" destination="Gef-BQ-0yl" id="vg6-dg-XfP"/>
+            </connections>
+            <point key="canvasLocation" x="55.5" y="394"/>
+        </tableViewCell>
+    </objects>
+</document>

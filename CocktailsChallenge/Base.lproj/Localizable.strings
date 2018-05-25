@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  CocktailsChallenge
+
+  Created by Martin Gonzalez vega on 23/5/18.
+  Copyright © 2018 tincho. All rights reserved.
+*/
+
+//CocktailListViewController
+CocktailListTitle = "Random Drinks";
+SearchCocktail = "Search Cocktail";
+
+//CocktailCell
+IngredientsAndMore = "and %@ ingredients more";
+
+//CocktailDetailViewController
+HowToPrepare = "How to prepare";
