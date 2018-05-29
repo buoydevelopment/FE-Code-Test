@@ -1,13 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
 
-const styles = {
-  fontFamily: "sans-serif",
-  backgroundColor: "#34a6e1",
-  padding: "10px 10%",
-  height: "100%"
-};
-
 const filterGlass = query => {
   return fetch(
     `https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=${query}`
@@ -65,11 +58,12 @@ class App extends React.Component {
     const { search } = this.state;
 
     return (
-      <div className="row">
-        <div id="app" style={styles} className="col-8">
+      <div id="app" className="row">
+        <div className="col-xs-12">
           <input
             type="text"
-            style={{ width: "100%" }}
+            id="search"
+            placeHolder="Search cocktails"
             onChange={this.handleSearch}
             value={search}
           />
@@ -113,26 +107,28 @@ class DrinkCard extends React.Component {
 }
 
 const CardCollapsed = ({ onClick, idDrink, strDrink, strDrinkThumb }) => (
-  <div className="row card collapsed" onClick={onClick}>
-    <div className="description col-md-9">
-      <h2>{strDrink}</h2>
+  <div className="container card collapsed" onClick={onClick}>
+    <div className="row">
+      <div className="description col-xs-9 col-sm-9">
+        <h2>{strDrink}</h2>
+      </div>
+      <img className="col-xs-3 col-sm-3" src={strDrinkThumb} alt={idDrink} />
     </div>
-    <img className="col-md-3" src={strDrinkThumb} alt={idDrink} />
   </div>
 );
 
 const CardExpanded = props => (
   <div className="row card collapsed" onClick={props.onClick}>
-    <div className="col-md-12">
+    <div className="col-xs-12">
       <div className="row">
         <img
-          className="col-md-12"
+          className="col-xs-12"
           src={props.strDrinkThumb}
           alt={props.idDrink}
         />
       </div>
       <div className="row">
-        <div className="description col-md-12">
+        <div className="description col-xs-12">
           <h2>{props.strDrink}</h2>
 
           <ul>{ingredients(props.info)}</ul>
