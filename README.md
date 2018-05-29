@@ -70,8 +70,30 @@ Implement a filter by name functionality on the first screen that automatically 
 
 A) Describe the strategy used to consume the API endpoints and the data management.
 
+```
+The strategy was pretty simple, I used 'fetch' to do queries to the API.
+I kept it short and easy to understand. In a real situation, I would probably create a library to query the API, with all the possible filters.
+```
+
 B) Explain which library was used for the routing and why. Would you use the same for a consumer facing app targeting thousands of users? Why?
+```
+No library was used for routing, it wasn't needed.
+```
 
 C) Have you used any strategy to optimize the performance of the list generated for the first feature?
+```
+No, but I would like to add pagination in the future. The API documentation doesn't show any pagination option.
+```
 
 D) Would you like to add any further comments or observations?
+```
+I did it in one file to make it easy to follow; I would separate components in different files in a real app.
+
+I tried to keep it slim, without extra libs. I had doubts to add bootstrap, but I decided to add it after considering a more responsive design.
+```
+
+# How to run it:
+
+* 1. `cd code`
+* 2. `npm install`
+* 3. `npm run start`
