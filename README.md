@@ -1,77 +1,53 @@
-# Code Challenge
+## Seabstian Muñiz Front End Code Challenge
 
-## Instructions:
+	Hi! I hope is not too late to submit my solution.
+	I had some troubles with the API, It was throwing me 500 status when requesting from the browser.
+	I also tried to make the call from other apps(that I developed previously but was the same 500 status). So i decided to wait a day for the fix.
+	Finally on saturday night I realize the API was sending everything right.
 
-Please clone the repository, complete the exercise, and submit a PR for us to review! If you have any questions, you can reach out directly here or leave comments on your pull request which we will respond to. Remember, all instructions for running the application (including installing relevant libraries, etc.) should be included in the README. Thank you and looking forward to seeing your great work!
-
-## Overview:
-
-Implement a simple mobile cocktails catalogue (master / detail). The catalogue consists of a table view list of cocktails with their name, toppings and photo. Once the user taps on a specific row it will push a new screen with that drink’s details: Name, Photo, Ingredients and Preparation.
-
-## Features:
-
-**1. Cocktails list:**
-
-For each row of the list it will display the Cocktail name and photo (See wireframe 1).
-The API endpoint that should be consumed for this purpose is: 
-
-http://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass
-
-This returns a JSON list of cocktails, and the information needed in order to populate each row of the list.
-
-```
-{
- 	strDrink,           → Cocktail name
-     	strDrinkThumb,  → Photo URL
-      	idDrink       → Cocktail ID
-}
-```
-
-Wireframe 1:
-
-![screen shot 2018-02-02 at 12 53 57](https://user-images.githubusercontent.com/263229/35742087-40b1ce26-0818-11e8-91d7-5c2ea0d4a6aa.png)
-
-
-
-
-**2. Cocktail detail:**
-
-Once the user taps on a row from the list mentioned in the previous feature it will push a new screen with the selected cocktail’s details, where it will show it’s name, photo, ingredients and instructions (See wireframe 2)
-
-The endpoint to be used for this is the following:
- 
-http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink} → Cocktail ID
-I.g.: http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=16108
-
-The endpoint returns a JSON with the cocktails info, the needed properties are:
-```
-{
-	strInstructions,  → instructions
-	strDrink,         → cocktail name
-	strDrinkThumb,    → photo URL
-	strIngredient1,   → ingredient 1
-	...
-	strIngredientN    → ingredient N
-}
-```
-
-Wireframe 2
-
-![screen shot 2018-02-02 at 12 53 37](https://user-images.githubusercontent.com/263229/35742155-63205b1c-0818-11e8-8b4b-608a46eaa718.png)
-	
-  
-  
-  
-**3. Bonus Points: (Optional)**
-
-Implement a filter by name functionality on the first screen that automatically filters the results while typing, only showing the rows that satisfy the criteria entered by the user.
 
 ## Questions:
 
 A) Describe the strategy used to consume the API endpoints and the data management.
 
+	-I have a service module where i make all http calls, I expose an object that provides methods to get the resources.
+		All the methods return promises, so I can chain '.then()' when calling it from my component.
+		I have 3 containers App, MainView and DetailView.
+		I'm making the call for the whole drinks list inside App container in it's 'componentDidMount' method and storing the drinks list inside App state and passing it to MainView.
+		In the case of the drinks details call I'm making the call from Detail container inside the 'componentDidMount' lifecycle method, grabbing the id parameter from the route.
+		I used native fetch API to make the http calls, if you need to support IE lower tan 11 you will need to install whatwg-fetch
+		Sometimes I like to use Axios library for this purpose.
+
+
 B) Explain which library was used for the routing and why. Would you use the same for a consumer facing app targeting thousands of users? Why?
+
+	- I'm using 'react-router-dom', I would say is almost the de-facto library to do routing in react. This is its version 4, is stable, flexible, It give you the posibility of render and compose routes dynamically. I would use it in a big app because i think is the best solution out there and they also provide support for react native with the same API, just diferent packages.
+	I think routing is an essential part of any app(even this), because routing give you the ability to jump into a specific state on the app.
+
 
 C) Have you used any strategy to optimize the performance of the list generated for the first feature?
 
+	I have not, I'm using an spinner to show something to the use meanwhile.
+
+
 D) Would you like to add any further comments or observations?
+
+	Yes, please.
+	I'm using create-react-app as a CLI to create the boilerplate for this app.
+	The app has a containers folder, these are components are resposible for fetching data and can be used like a parent to component to render a route.
+	It has a component folder where we can find reusable components like:
+	- 'Card' used in both views(main and Detail).
+	- LoaderHOC is a High Order Component as it name describe, It takes a component as an argument and look for data the component needs, if it's doesn't have it, will display a 		  Spiner componnet.
+	- Spinner, well it's a spinner, I have used it inside LoaderHOC and also inside DetailView alone to demonstrate that can be used anywhere.
+	- SearchHeader contains the search functionality
+
+	I didn't want to add any dependencies aside of react-router-dom and CRA dependencies. So I decided to use Unicodes for the icons.
+	I didn't used any specific method to style the app becasue it was just a test, but when starting a real project I would always decide first which approach we are going to use(styled-components, CSS-Modules, SASS, LESS, Style-Loader).
+
+	I have spent around 6 hours(probably a little more) doing it, I always like to start developing a project as a prototype, So if my client like the concept I can Iterate over it quicklier.
+
+	
+	I haven't added the ingredients as shown in the first wireframe, because API endpoint wsn't providing me with that data, but i I think I Could have used HTML5 visibility API to fetch for only those who where at sight at that moment.
+	That's all.
+
+	Looking forward to hearing from you!
