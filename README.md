@@ -5,6 +5,10 @@
 	I also tried to make the call from other apps(that I developed previously but was the same 500 status). So i decided to wait a day for the fix.
 	Finally on saturday night I realize the API was sending everything right.
 
+## To run the project.
+	1 - Make sure you're on '/test-app' directory and execute 'npm install'.
+	2 - After install has been completed, execute 'npm start'.
+	
 
 ## Questions:
 
