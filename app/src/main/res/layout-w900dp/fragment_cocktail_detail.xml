@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="cocktailDetailViewModel"
+            type="com.kimboo.mvvmkotlin.ui.cocktaildetail.CocktailDetailViewModel"/>
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            app:showSnackbar="@{cocktailDetailViewModel.snackBarMessage}"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+
+            <ImageView
+                android:id="@+id/userDetailImageView"
+                android:transitionName="@{cocktailDetailViewModel.cocktailDetail.id}"
+                android:layout_width="wrap_content"
+                android:layout_height="240dp"
+                android:scaleType="centerCrop" />
+
+            <com.kimboo.mvvmkotlin.ui.views.CompatTintTextView
+                app:tintColor="@color/colorAccent"
+                tools:text="Some cocktail"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:text="How to prepare a @{cocktailDetailViewModel.cocktailDetail.name}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:padding="8dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:showIn="@layout/fragment_cocktail_detail">
+
+                <com.kimboo.mvvmkotlin.ui.views.CompatTintTextView
+                    app:tintColor="@color/colorAccent"
+                    tools:text="Some cocktail"
+                    style="@style/TextAppearance.AppCompat.Headline"
+                    android:text="@{@string/how_to_prepare+cocktailDetailViewModel.cocktailDetail.name}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.kimboo.mvvmkotlin.ui.views.CompatTintTextView
+                    android:layout_marginTop="8dp"
+                    app:tintColor="@color/colorAccent"
+                    tools:text="Ingredients"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:text="@string/ingredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.kimboo.mvvmkotlin.ui.views.CompatTintTextView
+                    app:tintColor="@color/colorAccent"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:text="@{cocktailDetailViewModel.cocktailDetail.getIngredientList()}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.kimboo.mvvmkotlin.ui.views.CompatTintTextView
+                    android:layout_marginTop="8dp"
+                    app:tintColor="@color/colorAccent"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:text="Instructions:"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.kimboo.mvvmkotlin.ui.views.CompatTintTextView
+                    android:layout_marginTop="8dp"
+                    app:tintColor="@color/colorAccent"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:text="@{cocktailDetailViewModel.cocktailDetail.instructions}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.kimboo.mvvmkotlin.ui.views.CompatTintTextView
+                    android:layout_marginTop="8dp"
+                    app:tintColor="@color/colorAccent"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:text="@{@string/detail_alcoholic+cocktailDetailViewModel.cocktailDetail.alcoholic}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.kimboo.mvvmkotlin.ui.views.CompatTintTextView
+                    android:layout_marginTop="8dp"
+                    app:tintColor="@color/colorAccent"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:text="@{@string/detail_glass+cocktailDetailViewModel.cocktailDetail.glass}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.kimboo.mvvmkotlin.ui.views.CompatTintTextView
+                    android:layout_marginTop="8dp"
+                    app:tintColor="@color/colorAccent"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:text="@{@string/detail_category+cocktailDetailViewModel.cocktailDetail.category}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>
