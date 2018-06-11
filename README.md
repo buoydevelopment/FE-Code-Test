@@ -12,11 +12,17 @@ I was going to use the Paging Library to perform some sort of pagination in the 
 
 Smartphone:
 
+![Alt Text](https://github.com/4gus71n/FE-Code-Test/blob/master/cocktails%20(1).gif)
+
 Tablet:
+
+![Alt Text](https://github.com/4gus71n/FE-Code-Test/blob/master/masterdetail.png)
 
 # Things that I could improve
 
 The only challenge that I had about the master/detail implementation was that in the cocktail detail screen I'm showing a parallax animation, this is pretty hard to replicate in the master/detail view, because each fragment has it's own toolbar and It's going to look pretty bad. The quick workaround for this was creating a different layout for the master/detail view from the cocktail detail screen, in which I removed the parallax effect.
+
+I could have added some code to switch from a 2 span column grid into a 1 span column grid in the master/detail. 
 
 The API sucks! Haha, I got stuck trying to figure out why the endpoints weren't working for the filter search. Problem is that the API ignores everything after the first GET parameter. For example the response for `filter.php?g=Cocktail_glass&a=Alcoholic` is exactly the same than `filter.php?g=Cocktail_glass&a=Non_Alcoholic` while the response for `filter.php?a=Alcoholic&g=Cocktail_glass` is totally different. It took a while until I figured out this. So I've might written some messy code for the Retrofit interface in the API calls.
 
