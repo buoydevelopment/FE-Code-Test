@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">MVVMKotlin</string>
+    <string name="app_description">This App demonstrates how we can communicate the different layers of an MVVM architecture through Room/Flowables. Notice that the main list is working with the Android Jetpack\'s Pagination library fetching the data from the DB. If we edit any field of the records, that information is gonna be automatically broadcasted back to the UI through Room, hence no need of EventBus or hooking from the onSaveInstanceState() methods or anything like that.</string>
+    <string name="edit_user_profile_title_error">Title cannot be empty nor blank</string>
+    <string name="edit_user_profile_name_error">Name cannot be empty nor blank</string>
+    <string name="edit_user_profile_last_name_error">Lastname cannot be empty nor blank</string>
+    <string name="str_all_selected">No filter selected</string>
+    <string name="alcoholic">Alcoholic</string>
+    <string name="non_alcoholic">Non alcoholic</string>
+    <string name="cocktail_glass">Cocktail Glass</string>
+    <string name="champagne_flute">Champagne Flute</string>
+    <string name="ordinary_drink">Ordinary Drink</string>
+    <string name="cocktail_drink">Cocktail Drink</string>
+    <string name="both">Both</string>
+    <string name="would_like_alcohol">What kind of drinks would you like?</string>
+    <string name="what_type_of_glass">What type of glass do you have?</string>
+    <string name="what_category">What type of drink would you like?</string>
+    <string name="how_to_prepare">How to prepare:&#032;</string>
+    <string name="ingredients">Ingredients:&#032;</string>
+    <string name="detail_alcoholic">Alcoholic:&#160;</string>
+    <string name="detail_glass">Glass type:&#160;</string>
+    <string name="detail_category">Category:&#160;</string>
+</resources>

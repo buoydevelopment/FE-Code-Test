@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cocktailListToolbarContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/cocktailListToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:background="?attr/colorPrimary"
+        tools:showIn="@layout/activity_master_detail" />
+
+    <com.miguelcatalan.materialsearchview.MaterialSearchView
+        android:id="@+id/cocktailListSearchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</FrameLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="cocktailItemViewModel"
+            type="com.kimboo.mvvmkotlin.ui.cocktaillist.adapter.CocktailItemViewModel"/>
+    </data>
+
+    <FrameLayout
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:onClick="@{cocktailItemViewModel::onWholeLayoutClicked}"
+            android:layout_margin="4dp"
+            app:cardElevation="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/userProfileListImageView"
+                    android:transitionName="@{cocktailItemViewModel.cocktailItem.id}"
+                    app:imageUrl="@{cocktailItemViewModel.cocktailItem.thumbnailUrl}"
+                    android:scaleType="centerCrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp" />
+
+                <TextView
+                    android:background="@color/colorBlackOverlay"
+                    android:textColor="@color/colorWhite"
+                    android:padding="8dp"
+                    style="@style/TextAppearance.AppCompat.Medium.Inverse"
+                    tools:text="Title title Title title Title title Title title Title title Title title"
+                    android:layout_alignParentBottom="true"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_alignParentLeft="true"
+                    android:text='@{cocktailItemViewModel.cocktailItem.name}'
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+    </FrameLayout>
+
+</layout>

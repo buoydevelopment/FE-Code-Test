@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="cocktailListViewModel"
+            type="com.kimboo.mvvmkotlin.ui.cocktaillist.CocktailListViewModel"/>
+    </data>
+
+    <LinearLayout
+        app:showSnackbar="@{cocktailListViewModel.snackBarMessage}"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.sothree.slidinguppanel.SlidingUpPanelLayout
+            android:gravity="top"
+            app:umanoPanelHeight="48dp"
+            app:umanoShadowHeight="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/fragmentMainSwipeRefreshLayout"
+            app:refreshing="@{cocktailListViewModel.isLoading}"
+            app:onRefreshListener="@{() -> cocktailListViewModel.fetchCocktails()}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:padding="4dp"
+                    android:id="@+id/cocktailListRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/would_like_alcohol"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <RadioGroup
+                        android:layout_marginBottom="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:checked="@{cocktailListViewModel.filterType.equals(`Alcoholic`)}"
+                            android:onCheckedChanged="@{(v, isChecked) -> cocktailListViewModel.onAlcoholChecked(isChecked)}"
+                            android:text="@string/alcoholic"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:checked="@{cocktailListViewModel.filterType.equals(`Non_Alcoholic`)}"
+                            android:onCheckedChanged="@{(v, isChecked) -> cocktailListViewModel.onNonAlcoholChecked(isChecked)}"
+                            android:text="@string/non_alcoholic"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:checked="@{cocktailListViewModel.filterType.equals(`Cocktail_glass`)}"
+                            android:onCheckedChanged="@{(v, isChecked) -> cocktailListViewModel.onCocktailGlassChecked(isChecked)}"
+                            android:text="@string/cocktail_glass"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:checked="@{cocktailListViewModel.filterType.equals(`Champagne_flute`)}"
+                            android:onCheckedChanged="@{(v, isChecked) -> cocktailListViewModel.onChampagneFluteChecked(isChecked)}"
+                            android:text="@string/champagne_flute"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:checked="@{cocktailListViewModel.filterType.equals(`Ordinary_Drink`)}"
+                            android:onCheckedChanged="@{(v, isChecked) -> cocktailListViewModel.onOrdinaryDrinkChecked(isChecked)}"
+                            android:text="@string/ordinary_drink"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:checked="@{cocktailListViewModel.filterType.equals(`Cocktail`)}"
+                            android:onCheckedChanged="@{(v, isChecked) -> cocktailListViewModel.onCocktailDrinkChecked(isChecked)}"
+                            android:text="@string/cocktail_drink"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+                    <com.kimboo.mvvmkotlin.ui.views.CompatTintTextView
+                        app:tintColor="@color/colorPrimary"
+                        android:drawableLeft="@drawable/ic_filter_list_black_24dp"
+                        android:gravity="center_vertical|left"
+                        android:layout_gravity="center_vertical|left"
+                        android:text="Filter Options"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+
+    </LinearLayout>
+</layout>
