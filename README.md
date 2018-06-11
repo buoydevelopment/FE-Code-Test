@@ -1,3 +1,33 @@
+# Results!
+
+# Architecture
+
+I used an MVVM architecture, since this is a code challenge I wanted to use the latest techonologies for the project. I based the App's architecture in a project that I already had in my repo (https://github.com/4gus71n/MVVMKotlin/) you can read more about the architecture there. 
+
+But basically, this is just a MVVM architecture, using the SSOT (Single Source of Truth) patter for the Repositories, this means that the UI is listening to the DB changes, through the ViewModel and the only thing that the Repository does is query the server-side endpoints and then update the DB.
+
+I was going to use the Paging Library to perform some sort of pagination in the App, but (a) the endoints for the cocktail database doesn't support pagination and (b) we are actually using two totally different endpoints to fetch the search queries and the filtered search queries. This two things made very difficult to implement a pagination in the DB level. If you want to see a proper implementation of the Pagination Library, you can check the MVVMKotlin project in my repo. There's some other cool stuff that I implemented in that project regarding DB updates and reflecting those changes, automatically, in the UI.
+
+# Preview
+
+Smartphone:
+
+Tablet:
+
+# Things that I could improve
+
+The only challenge that I had about the master/detail implementation was that in the cocktail detail screen I'm showing a parallax animation, this is pretty hard to replicate in the master/detail view, because each fragment has it's own toolbar and It's going to look pretty bad. The quick workaround for this was creating a different layout for the master/detail view from the cocktail detail screen, in which I removed the parallax effect.
+
+The API sucks! Haha, I got stuck trying to figure out why the endpoints weren't working for the filter search. Problem is that the API ignores everything after the first GET parameter. For example the response for `filter.php?g=Cocktail_glass&a=Alcoholic` is exactly the same than `filter.php?g=Cocktail_glass&a=Non_Alcoholic` while the response for `filter.php?a=Alcoholic&g=Cocktail_glass` is totally different. It took a while until I figured out this. So I've might written some messy code for the Retrofit interface in the API calls.
+
+The MaterialSearch library that I used to implement the search feature is really bad, the library's API is pretty bad and It doesn't have a clear field button for the search.
+
+# Challenge
+
+The most "complicated" algorithm is the one that I used to implement the search feature in the `CocktailListViewModel`. Basically we have a stream field called `cocktailList` this stream produces the cocktails list that we are going to show in the RecyclerView. But we need to switch between two different streams, the cocktails list from the filtered search and the cocktail lists from the query search. To do this, we do a switchMap based on the current query. We have another stream called `cocktailListSearchQuery` which pushes `SearchCriteria` objects. This object has two fields `query` that contains the string from the query search and `filterType` that contains the filter value. If the `query` field is empty that means that the search is being done with a `filterType`, hence we switch from streams to the filtered results. If the `query` field is not empty, that means that we want to search something using the other endpoint, and we switch to the proper stream. `switchMap` switches a stream based on other stream push. In this case we are listening for the `cocktailListSearchQuery` and then switching to the proper stream. Notice that I'm using the word "stream" to refer to LiveData/rx.Observables/Flowables. The values of `cocktailListSearchQuery` are pushed from the UI through Databinding using adapters in the RadioButtons.
+
+Fill free to report any issue leaving your comments there about the code!
+
 # Code Challenge
 
 ## Instructions:
