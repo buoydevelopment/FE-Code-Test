@@ -4,9 +4,9 @@
 
 I used an MVVM architecture, since this is a code challenge I wanted to use the latest techonologies for the project. I based the App's architecture in a project that I already had in my repo (https://github.com/4gus71n/MVVMKotlin/) you can read more about the architecture there. 
 
-But basically, this is just a MVVM architecture, using the SSOT (Single Source of Truth) patter for the Repositories, this means that the UI is listening to the DB changes, through the ViewModel and the only thing that the Repository does is query the server-side endpoints and then update the DB.
+But basically, this is just a MVVM architecture, using the SSOT (Single Source of Truth) pattern for the Repositories, this means that the UI is listening to the DB changes, through the ViewModel and the only thing that the Repository does is query the server-side endpoints and then update the DB.
 
-I was going to use the Paging Library to perform some sort of pagination in the App, but (a) the endoints for the cocktail database doesn't support pagination and (b) we are actually using two totally different endpoints to fetch the search queries and the filtered search queries. This two things made very difficult to implement a pagination in the DB level. If you want to see a proper implementation of the Pagination Library, you can check the MVVMKotlin project in my repo. There's some other cool stuff that I implemented in that project regarding DB updates and reflecting those changes, automatically, in the UI.
+I was going to use the Paging Library to perform some sort of pagination in the App, but (a) the endoints for the cocktail database doesn't support pagination and (b) we are actually using two totally different endpoints to fetch the search queries and the filtered search queries. This two things made very difficult to implement a pagination at the DB level. If you want to see a proper implementation of the Pagination Library, you can check the MVVMKotlin project in my repo. There's some other cool stuff that I implemented in that project regarding DB updates and reflecting those changes, automatically, in the UI.
 
 # Preview
 
