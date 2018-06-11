@@ -1,0 +1,77 @@
+PODS:
+  - Alamofire (4.7.2)
+  - CodableAlamofire (1.1.0):
+    - Alamofire (~> 4.0)
+  - Dip (6.1)
+  - Dip-UI (2.0):
+    - Dip (~> 6.0)
+  - EasyRealm (2.0.1):
+    - RealmSwift (~> 2.4)
+  - Kingfisher (4.7.0)
+  - PinLayout (1.7.3)
+  - PromiseKit (6.2.6):
+    - PromiseKit/CorePromise (= 6.2.6)
+    - PromiseKit/Foundation (= 6.2.6)
+    - PromiseKit/UIKit (= 6.2.6)
+  - PromiseKit/CorePromise (6.2.6)
+  - PromiseKit/Foundation (6.2.6):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.2.6):
+    - PromiseKit/CorePromise
+  - ReachabilitySwift (4.1.0)
+  - Realm (2.10.2):
+    - Realm/Headers (= 2.10.2)
+  - Realm/Headers (2.10.2)
+  - RealmSwift (2.10.2):
+    - Realm (= 2.10.2)
+  - SwiftyJSON (4.1.0)
+  - Swinject (2.4.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - CodableAlamofire
+  - Dip
+  - Dip-UI
+  - EasyRealm (~> 2.0.0)
+  - Kingfisher
+  - PinLayout
+  - PromiseKit (~> 6.0)
+  - ReachabilitySwift
+  - RealmSwift
+  - SwiftyJSON (~> 4.0)
+  - Swinject
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - CodableAlamofire
+    - Dip
+    - Dip-UI
+    - EasyRealm
+    - Kingfisher
+    - PinLayout
+    - PromiseKit
+    - ReachabilitySwift
+    - Realm
+    - RealmSwift
+    - SwiftyJSON
+    - Swinject
+
+SPEC CHECKSUMS:
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  CodableAlamofire: e2d2edcec7cf413f7862c30c8fa98eded27a83f9
+  Dip: e6af9f4e7644e1a142995c1ab0bffa61351a849d
+  Dip-UI: 80616044fdf76a86f6504d33d5f0b20c82df71e3
+  EasyRealm: 5998f77cf6bcf93187eb07c9a4a3e63ba6b04065
+  Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
+  PinLayout: 0c2e68dba036a291ca9278aa8b799f58506f2a6d
+  PromiseKit: 8245cb2e3a8fe00453e580bd4aafb57e1671f501
+  ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
+  Realm: 0ef72b837fb67e9f4b098bac771ddd72c7fdbb69
+  RealmSwift: 07a9ae0505091eda6b2ee7c190c3786d6e90a7b0
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  Swinject: a1364b0f66c2736bb03c1c7cab54809e16df25da
+
+PODFILE CHECKSUM: a2404d70d59ab6ec623f6796da87bfc77fb411d4
+
+COCOAPODS: 1.5.2
