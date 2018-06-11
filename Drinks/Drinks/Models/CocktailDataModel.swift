@@ -37,6 +37,10 @@ class CocktailDataModel: NSObject {
     return dic["strGlass"]?.stringValue ?? ""
   }
   
+  var imagePath: String {
+    return dic["strDrinkThumb"]?.stringValue ?? ""
+  }
+  
   var ingredients: [String:String] {
     let ingredientsPrefix = "strIngredient"
     let measurePrefix = "strMeasure"
@@ -60,7 +64,7 @@ class CocktailDataModel: NSObject {
   }
   
   var cocktailDetails: CocktailDetails {
-    return CocktailDetails(id: drinkId, name: self.drinkName, instructions: self.instructions, ingredients: self.ingredients, glass: self.glass)
+    return CocktailDetails(id: drinkId, name: self.drinkName, instructions: self.instructions, ingredients: self.ingredients, glass: self.glass, imagePath: self.imagePath)
   }
   
 }

@@ -23,10 +23,11 @@ class CocktailsTableViewController: UITableViewController {
   
   func setup() {
     view.backgroundColor = AppColor.MainGreen
+    
     navigationController?.navigationBar.isTranslucent = false
     navigationController?.navigationBar.tintColor = UIColor.white
     navigationController?.navigationBar.barTintColor = AppColor.MainGreen
-    navigationController?.navigationBar.shadowImage = UIImage() //remove pesky 1 pixel line
+    navigationController?.navigationBar.shadowImage = UIImage()
     
     viewModel.fetchCocktails()
     tableView.register(UINib(nibName: "DrinksTableViewCell", bundle: nil), forCellReuseIdentifier: "drinksCell")

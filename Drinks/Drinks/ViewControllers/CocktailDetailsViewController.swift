@@ -27,9 +27,16 @@ class CocktailDetailsViewController: UIViewController {
     super.viewDidLoad()
     self.title = cocktailDetails.name
     view.backgroundColor = AppColor.MainGreen
-    //nameLabel.text = cocktailDetails.name
     instructionsLabel.text = cocktailDetails.instructions
-    print(cocktailDetails.ingredients)
+    cocktailDetails.ingredients.forEach { (key, value) in
+      let lbl = UILabel()
+      lbl.text = "\(key) - \(value)"
+      contentView.addSubview(lbl)
+      ingredientsStack.addArrangedSubview(lbl)
+    }
+    if let url = URL(string: cocktailDetails.imagePath) {
+      drinkImage.kf.setImage(with: url)
+    }
   }
   
   override func didReceiveMemoryWarning() {

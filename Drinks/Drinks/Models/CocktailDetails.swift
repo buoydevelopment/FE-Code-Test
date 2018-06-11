@@ -17,6 +17,7 @@ struct CocktailDetails {
   var instructions: String
   var ingredients: [String: String]
   var glass: String
+  var imagePath: String
 }
 
 final public class CocktailDetailsObject: Object {
@@ -24,6 +25,7 @@ final public class CocktailDetailsObject: Object {
   @objc dynamic var name = ""
   @objc dynamic var instructions = ""
   @objc dynamic var glass = ""
+  @objc dynamic var imagePath = ""
   @objc dynamic var ingredientsData: NSData?
   var ingredients: [String: String] {
     get {
@@ -63,6 +65,7 @@ extension CocktailDetails: Persistable {
     instructions = managedObject.instructions
     glass = managedObject.glass
     ingredients = managedObject.ingredients
+    imagePath = managedObject.imagePath
   }
   
   public func managedObject() -> CocktailDetailsObject {

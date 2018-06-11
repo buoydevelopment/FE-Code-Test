@@ -87,7 +87,8 @@ class CocktailsViewModel {
   private func loadCocktail(byId id: Int) -> CocktailDetails? {
     do {
       let object = try CocktailDetailsObject.er.fromRealm(with: id)
-      return CocktailDetails(id: String(object.id), name: object.name, instructions: object.instructions, ingredients: object.ingredients, glass: object.glass)
+      return CocktailDetails(id: String(object.id), name: object.name, instructions: object.instructions, ingredients: object.ingredients, glass: object.glass, imagePath: object.imagePath)
+      
     } catch {
       print("no cocktail in cache")
       return nil
