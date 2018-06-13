@@ -2,7 +2,7 @@ import React from 'react';
 import './card.css';
 
 
-const card = (props) => {
+const Card = (props) => {
   const {title, thumb} = props;
   var thumbStyle = {
     background: `#ffffff url(${thumb})`,
@@ -17,4 +17,4 @@ const card = (props) => {
     <div className='thumb' style={thumbStyle}></div>
   </div>)
 }
-export default card;
+export default Card;
