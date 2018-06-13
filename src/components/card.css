@@ -6,15 +6,16 @@
   padding: 15px;
   height: 165px;
   margin: 10px 10px 0 10px;
+  cursor: pointer;
+  color: #5C5C5C;
 }
 
 .description{
-  color: #5C5C5C;
   position: relative;
   margin-right: 165px;
 }
 
-h1 {
+h2 {
   margin: 0 0 10px 0px;
   font-size: 1.6em;
 }

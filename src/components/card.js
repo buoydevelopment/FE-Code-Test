@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './card.css';
 import { withRouter } from 'react-router';
 
@@ -16,9 +18,17 @@ const Card = (props) => {
   
   return (<div className='card' onClick={redirect}>
     <div className='description'>
-      <h1>{title}</h1>
+      <h2>{title}</h2>
     </div>
     <div className='thumb' style={thumbStyle}></div>
   </div>)
 }
+
+Card.propTypes = {
+  title: PropTypes.string.isRequired,
+  thumb: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  history: PropTypes.object.isRequired,
+}
+
 export default withRouter(Card);
