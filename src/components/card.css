@@ -1,0 +1,30 @@
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 5px;
+  background-color: #fff;
+  position: relative;
+  padding: 15px;
+  height: 165px;
+  margin: 10px 10px 0 10px;
+}
+
+.description{
+  color: #5C5C5C;
+  position: relative;
+  margin-right: 165px;
+}
+
+h1 {
+  margin: 0 0 10px 0px;
+  font-size: 1.6em;
+}
+
+.thumb {
+  position: absolute;
+  height: 165px;
+  width: 33%;
+  max-width: 165px;
+  top: 15px;
+  right: 15px;
+  border-radius: 5px;
+}
