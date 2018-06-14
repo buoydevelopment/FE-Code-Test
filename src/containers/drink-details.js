@@ -42,15 +42,25 @@ class DrinkList extends Component {
 
   componentWillMount(){
     const id = this.props.match.params.id;
-    fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
-      .then(response => response.json())
-      .then(({drinks}) => {
-        this.setState({
-          drinkDetails: normalizeDrinkDetails(drinks),
-          isLoading: false
-        })
+    let drinkDetails = JSON.parse(sessionStorage.getItem(`drink${id}`));
+    if (drinkDetails) {
+      this.setState({
+        drinkDetails,
+        isLoading: false
       })
-      .catch(e => console.error('Error fetching drink details: ', e));
+    } else {
+      fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+        .then(response => response.json())
+        .then(({drinks}) => {
+          const drink = normalizeDrinkDetails(drinks);
+          sessionStorage.setItem(`drink${id}`, JSON.stringify(drink))
+          this.setState({
+            drinkDetails: drink,
+            isLoading: false
+          })
+        })
+        .catch(e => console.error('Error fetching drink details: ', e));
+    }
   }
 
   render(){

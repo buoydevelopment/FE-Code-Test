@@ -11,16 +11,25 @@ class DrinkList extends Component {
     };
   }
 
-  componentWillMount(){
-    fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass')
-      .then(response => response.json())
-      .then(({drinks}) => {
-        this.setState({
-          drinkList: drinks,
-          isLoading: false
-        })
+  componentDidMount(){
+    let drinks = JSON.parse(sessionStorage.getItem('drinkList'));
+    if (drinks) {
+      this.setState({
+        drinkList: drinks,
+        isLoading: false
       })
-      .catch(e => console.error('Error fetching drinks list: ', e))
+    } else {
+      fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass')
+        .then(response => response.json())
+        .then(({drinks}) => {
+          sessionStorage.setItem('drinkList', JSON.stringify(drinks))
+          this.setState({
+            drinkList: drinks,
+            isLoading: false
+          })
+        })
+        .catch(e => console.error('Error fetching drinks list: ', e))
+    }
   }
 
   render(){
