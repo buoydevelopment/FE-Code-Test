@@ -1,32 +1,32 @@
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  border-radius: 5px;
   background-color: #fff;
-  position: relative;
-  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  color: #5C5C5C;
+  cursor: pointer;
   height: 165px;
   margin: 10px 10px 0 10px;
-  cursor: pointer;
-  color: #5C5C5C;
+  padding: 15px;
+  position: relative;
 }
 
 .description{
-  position: relative;
   margin-right: 165px;
+  position: relative;
 }
 
 h2 {
-  margin: 0 0 10px 0px;
   font-size: 1.6em;
   font-weight: normal;
+  margin: 0 0 10px 0px;
 }
 
 .thumb {
-  position: absolute;
-  height: 165px;
-  width: 33%;
-  max-width: 165px;
-  top: 15px;
-  right: 15px;
   border-radius: 5px;
+  height: 165px;
+  max-width: 165px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 33%;
 }

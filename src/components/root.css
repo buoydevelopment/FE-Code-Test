@@ -4,20 +4,40 @@ body{
 
 .root {
   text-align: center;
+
 }
 
-.root-header {
-  background-color: #222;
-  height: 60px;
-  padding: 20px;
+.rootHeader {
+  padding: 10px 10px 0 10px;
+}
+
+.titleWrapper{
+  align-content: center;
+  display: flex;
+  justify-content: center;
+}
+
+.titleWrapper img {
+  height: 2em;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.rootTitle {
   color: white;
+  font-size: 1em;
+  font-weight: normal;
+  margin-left: auto;
+  margin-right: -1em;
 }
 
-.root-title {
-  font-size: 1.5em;
-}
-
-.root-intro {
+.rootIntro {
   font-size: large;
 }
 
+.inputFilter{
+  border-radius: 5px;
+  flex-grow: 1;
+  margin: 5px 0;
+  padding: 5px;
+}

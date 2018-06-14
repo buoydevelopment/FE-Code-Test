@@ -7,12 +7,12 @@ import './drink-details.css';
 const DrinkDetails = (props) => {
   const { name } = props;
   return <div>
-    <div className="drink-details-header">
+    <header className="drink-details-header">
       <Link to="/">
         <img src={process.env.PUBLIC_URL+'/icons/left-arrow.svg'} alt="back"/>
       </Link>
       <h1>{name}</h1>
-    </div>
+    </header>
     <CardDetails {...props}/>
   </div>
 }
