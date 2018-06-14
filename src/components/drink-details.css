@@ -1,0 +1,20 @@
+.drink-details-header{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 10px 10px 0 10px;
+}
+.drink-details-header a {
+  margin-right: auto;
+}
+
+.drink-details-header img{
+  height: 2em;
+}
+.drink-details-header h1 {
+  font-size: 1em;
+  color: white;
+  font-weight: normal;
+  margin-right: auto;
+  margin-left: -1em;
+}

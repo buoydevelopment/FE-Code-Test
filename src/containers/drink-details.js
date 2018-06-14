@@ -6,6 +6,7 @@ const normalizeDrinkDetails = (drinks) => {
   const details = drinks[0];
 
   //Each ingredient and measure is a key in the object
+  // I will transform them to arrays
   const MAX_INGREDIENTS_AMOUNT = 15;
   const ingredients = [];
   const measures = [];
