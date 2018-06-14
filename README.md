@@ -121,3 +121,4 @@ If this SPA was intended to be used by thousands of users, I think the best appr
 C- To improve the app performance, I store the API response in the session to avoid having to call the API several times, as the data (I suspect) is static.
 
 D- I took the liberty of changing a little bit the styles and I apologies in advance about them. My experience with CSS is not the best.
+I did not implement any test either.

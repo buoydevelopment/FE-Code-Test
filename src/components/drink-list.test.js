@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Root from './root';
+import DrinkList from './drink-list';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Root />, div);
+  ReactDOM.render(<DrinkList />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
