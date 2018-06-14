@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import DrinkDetailsComponent from '../components/drink-details';
+import Loader from '../components/loader';
 
 const normalizeDrinkDetails = (drinks) => {
   // The API responds with an array with one element
@@ -40,7 +41,7 @@ class DrinkList extends Component {
     };
   }
 
-  componentWillMount(){
+  componentDidMount(){
     const id = this.props.match.params.id;
     let drinkDetails = JSON.parse(sessionStorage.getItem(`drink${id}`));
     if (drinkDetails) {
@@ -65,7 +66,7 @@ class DrinkList extends Component {
 
   render(){
     const {drinkDetails, isLoading} = this.state;
-    return isLoading ? <div>Loading...</div> : <DrinkDetailsComponent {...drinkDetails} />
+    return isLoading ? <Loader />: <DrinkDetailsComponent {...drinkDetails} />
   }
 }
 
