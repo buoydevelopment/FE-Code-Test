@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import DrinkListComponent from '../components/drink-list'
+import {DRINKS_LIST_ENDPOINT} from '../utils/constants';
 
 class DrinkList extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class DrinkList extends Component {
         isLoading: false
       })
     } else {
-      fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass')
+      fetch(DRINKS_LIST_ENDPOINT)
         .then(response => response.json())
         .then(({drinks}) => {
           sessionStorage.setItem('drinkList', JSON.stringify(drinks))

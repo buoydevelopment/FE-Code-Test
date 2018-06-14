@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import DrinkDetailsComponent from '../components/drink-details';
 import Loader from '../components/loader';
+import {DRINKS_DETAILS_ENDPOINT} from '../utils/constants';
 
 const normalizeDrinkDetails = (drinks) => {
   // The API responds with an array with one element
@@ -50,7 +51,7 @@ class DrinkList extends Component {
         isLoading: false
       })
     } else {
-      fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+      fetch(`${DRINKS_DETAILS_ENDPOINT}${id}`)
         .then(response => response.json())
         .then(({drinks}) => {
           const drink = normalizeDrinkDetails(drinks);
