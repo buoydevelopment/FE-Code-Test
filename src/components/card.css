@@ -1,0 +1,32 @@
+.card {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  color: #5C5C5C;
+  cursor: pointer;
+  height: 165px;
+  margin: 10px 10px 0 10px;
+  padding: 15px;
+  position: relative;
+}
+
+.description{
+  margin-right: 165px;
+  position: relative;
+}
+
+h2 {
+  font-size: 1.6em;
+  font-weight: normal;
+  margin: 0 0 10px 0px;
+}
+
+.thumb {
+  border-radius: 5px;
+  height: 165px;
+  max-width: 165px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 33%;
+}

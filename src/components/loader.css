@@ -1,0 +1,11 @@
+.loader{
+  position: fixed;
+  z-index: 999;
+  height: 4em;
+  width: 4em;
+  margin: 50% auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
