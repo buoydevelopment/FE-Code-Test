@@ -8,11 +8,11 @@ class Page extends Component {
 
 	render() {
 		return(
-			<div class="page-container">
-				<div class="row">
+			<div className="page-container">
+				<div className="table-responsive">
 					<h1 className="page-heading">{this.props.test}</h1>
-					<table class="table">
-						<thead class="thead-dark">
+					<table className="table">
+						<thead className="thead-dark">
 							<tr>
 								<th scope="col">"name": "template"</th>
 								<th scope="col">"version": "0.1.0"</th>
@@ -21,8 +21,8 @@ class Page extends Component {
 						</thead>
 						<tbody>
 							<tr>
-								<td class="table-primary">"dependencies":</td>
-								<td class="table-secondary">"scripts":</td>
+								<td className="table-primary">"dependencies":</td>
+								<td className="table-secondary">"scripts":</td>
 							</tr>
 							<tr>
 								<td>"ajv": "^6.5.2"</td>
