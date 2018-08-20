@@ -6,7 +6,7 @@ const initState = {
 
 export default function cocktailReducer(state = initState, action) {
   switch (action.type) {
-  case actions.LIST_SUCCESS:
+  case actions.COCKTAIL_LIST_SUCCESS:
     return { cocktailList: action.payload };
   default:
     return state;  

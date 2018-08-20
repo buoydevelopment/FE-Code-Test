@@ -1,10 +1,24 @@
-import { all, takeEvery, fork } from 'redux-saga/effects';
-import { goBack } from 'react-router-redux';
+import { all, takeEvery, put, fork } from 'redux-saga/effects';
+import axios from 'axios';
 import actions from './actions';
 
+const getDrinks = async () => {
+  try {
+    return await axios.get('http://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass')
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export function* listRequest() {
-  yield takeEvery('COCKTAIL_LIST_REQUEST', function*({ payload }) {
-    console.log('list requested');
+  yield takeEvery('COCKTAIL_LIST_REQUEST', function* () {
+    const cocktailData = yield getDrinks();
+    if (cocktailData) {
+      yield put({
+        type: actions.COCKTAIL_LIST_SUCCESS,
+        payload: cocktailData.data.drinks
+      });
+    }
   });
 }
 

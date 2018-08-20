@@ -10,15 +10,12 @@ class CocktailList extends Component {
    search: ''
  }
 
- constructor(props) {
-   super(props);
- }
-
  componentWillMount() {
    const { getList } = this.props;
    getList();
  }
  render() {
+   console.log('Cocktail Data', this.props.cocktailList);
    return (
      <div>CocktailList Page</div>
    );
