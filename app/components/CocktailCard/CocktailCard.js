@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './style.scss';
 
-const ListItem = (props) => (
+const CocktailCard = (props) => (
   <Link className="router-link" to={`/${props.item.idDrink}`}>
-    <div className="list-item-wrapper">
-      <div className="list-item">
-        <div className="list-item__drink-detail">
+    <div className="cocktail-card-wrapper">
+      <div className="cocktail-card">
+        <div className="cocktail-card__drink-detail">
           <h3>{props.item.idDrink}</h3>
           <p>{props.item.strDrink}</p>
         </div>
-        <div className="list-item__thumbnail">
+        <div className="cocktail-card__thumbnail">
           <img src={props.item.strDrinkThumb} />
         </div>
       </div>
@@ -19,8 +19,8 @@ const ListItem = (props) => (
   </Link>
 );
 
-ListItem.propTypes = {
+CocktailCard.propTypes = {
   item: PropTypes.any
 };
 
-export default ListItem;
+export default CocktailCard;

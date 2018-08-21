@@ -3,8 +3,8 @@ import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
 
 import CocktailList from 'containers/CocktailList';
-import CocktailDetail from 'containers/CocktailDetail/Loadable';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import CocktailDetail from 'containers/CocktailDetail';
+import NotFoundPage from 'containers/NotFoundPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import './style.scss';
@@ -17,6 +17,7 @@ const App = () => (
     >
       <meta name="description" content="Cocktail App v1.0" />
     </Helmet>
+
     <Header />
     <Switch>
       <Route exact path="/" component={CocktailList} />
@@ -24,6 +25,7 @@ const App = () => (
       <Route path="" component={NotFoundPage} />
     </Switch>
     <Footer />
+
   </div>
 );
 

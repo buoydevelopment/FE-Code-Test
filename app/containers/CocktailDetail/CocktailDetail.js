@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+
+import CocktailCardExt from '../../components/CocktailCardExt';
 import LoadingIndicator from '../../components/LoadingIndicator';
 import './style.scss';
 
@@ -10,49 +12,21 @@ export default class CocktailDetail extends React.PureComponent { // eslint-disa
     this.props.loadCocktailDetail(this.props.match.params.id);
   }
 
-  renderIngredients(cocktail) {
-    if (!cocktail) {
-      return null;
-    }
-
-    return [...Array(15).keys()].map(
-      (index, key) => (
-        cocktail[`strMeasure${index + 1}`] &&
-        cocktail[`strMeasure${index + 1}`].trim() != '' &&
-        <li key={key}>{cocktail[`strMeasure${index + 1}`]} - {cocktail[`strIngredient${index + 1}`]}</li>
-      )
-    );
-  }
-
   render() {
     const { loading, error, cocktail } = this.props;
 
     return (
-      <article>
+      <section>
         <Helmet>
           <title>Cocktail Detail</title>
           <meta name="description" content="" />
         </Helmet>
-        <div>
+        <nav>
           <Link to="/">Back</Link>
-        </div>
+        </nav>
         { loading && <LoadingIndicator /> }
-        { cocktail &&
-          <div className="cocktail-detail">
-            <h3>{cocktail.strDrink}</h3>
-            <div className="cocktail-detail__body">
-              <div className="cocktail-detail__thumbnail">
-                <img src={cocktail.strDrinkThumb} />
-              </div>
-              <ul className="cocktail-detail__ingredient-list">{ this.renderIngredients(cocktail) }</ul>
-              <p><strong>How to prepare:</strong></p>
-              <p>
-                {cocktail.strInstructions}
-              </p>
-            </div>
-          </div>
-        }
-      </article>
+        { cocktail && <CocktailCardExt item={cocktail} /> }
+      </section>
     );
   }
 }

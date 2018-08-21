@@ -1,17 +1,17 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import ListItem from '../index';
+import CocktailCard from '../index';
 
-describe('<ListItem />', () => {
+describe('<CocktailCard />', () => {
   it('should have a className', () => {
-    const renderedComponent = mount(<ListItem className="test" />);
+    const renderedComponent = mount(<CocktailCard className="test" />);
     expect(renderedComponent.find('li').prop('className')).toBeDefined();
   });
 
   it('should render the content passed to it', () => {
     const content = <div>Hello world!</div>;
-    const renderedComponent = mount(<ListItem item={content} />);
+    const renderedComponent = mount(<CocktailCard item={content} />);
     expect(renderedComponent.contains(content)).toBe(true);
   });
 });

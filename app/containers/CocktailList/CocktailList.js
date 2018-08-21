@@ -1,9 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import PropTypes from 'prop-types';
+import React from 'react';
+
 import List from '../../components/List';
-import ListItem from '../../components/ListItem';
+import CocktailCard from '../../components/CocktailCard';
 import LoadingIndicator from '../../components/LoadingIndicator';
+
 import './style.scss';
 
 export default class CocktailList extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -17,7 +19,7 @@ export default class CocktailList extends React.PureComponent { // eslint-disabl
     const { loading, error, cocktailList } = this.props;
 
     return (
-      <article>
+      <section>
         <Helmet>
           <title>Cocktail List</title>
           <meta name="description" content="" />
@@ -28,10 +30,10 @@ export default class CocktailList extends React.PureComponent { // eslint-disabl
           }
           {
             cocktailList && 
-            <List items={cocktailList} component={ListItem} />
+            <List items={cocktailList} component={CocktailCard} />
           }
         </div>
-      </article>
+      </section>
     );
   }
 }
