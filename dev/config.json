@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "api": "http://www.thecocktaildb.com/api/json/v1"
+  }
+}
