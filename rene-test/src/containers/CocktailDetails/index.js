@@ -12,10 +12,43 @@ const colStyle = {
 
 const { getDetails } = cocktailActions;
 
+const isNullOrEmpty = value =>  value === '' || value === '↵' || value === null;
+
 class CocktailDetails extends Component {
   componentWillMount() {
     const { getDetails, match } = this.props;
     getDetails(match.params.id);
+  }
+
+  renderIngredients(cocktailSingle) {
+    const strIngredients = [];
+    for (let i=1; i<16; i++) {
+      if (!isNullOrEmpty(cocktailSingle[`strIngredient${i}`])) 
+        strIngredients.push(cocktailSingle[`strIngredient${i}`]);
+    }
+    return (
+      <ul>
+        {
+          strIngredients.map(ingredient => <li>{ingredient}</li>)
+        }
+      </ul>
+    );
+  }
+
+  renderMeasures(cocktailSingle) {
+    const strMeasures = [];
+    for (let i=1; i<16; i++) {
+      if (!isNullOrEmpty(cocktailSingle[`strMeasure${i}`])) {
+        strMeasures.push(cocktailSingle[`strMeasure${i}`]);
+      }
+    }
+    return (
+      <ul>
+        {
+          strMeasures.map(measure => <li>{measure}</li>)
+        }
+      </ul>
+    );
   }
 
   render() {
@@ -23,18 +56,20 @@ class CocktailDetails extends Component {
     const strDrinkThumb = cocktailSingle ? cocktailSingle.strDrinkThumb : '';
     const strDrink = cocktailSingle ? cocktailSingle.strDrink : '';
     const strInstructions = cocktailSingle ? cocktailSingle.strInstructions : '';
+    const strIngredients = cocktailSingle ? this.renderIngredients(cocktailSingle) : '';
+    const strMeasures = cocktailSingle ? this.renderMeasures(cocktailSingle) : '';
 
     return (
       <Col lg={12} xs={24} style={colStyle}>
+        <h2>{strDrink}</h2>
         <Card
           hoverable
           cover={<img alt="strDrinkThumb" src={strDrinkThumb} />}
           actions={[<Link to='/cocktails'><Icon type="arrow-left" /></Link>]}
         >
-          <Meta
-            title={strDrink}
-            description={strInstructions}
-          />
+          <Meta title="Ingredients" description={strIngredients} />
+          <Meta title="Measures" description={strMeasures} />
+          <Meta title="How to prepare" description={strInstructions} />
         </Card>
       </Col>
     );
