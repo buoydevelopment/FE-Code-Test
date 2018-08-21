@@ -10,17 +10,43 @@ const getDrinks = async () => {
   }
 };
 
+const getSingleDrink = async (id) => {
+  try {
+    return await axios.get('http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='+id);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export function* listRequest() {
   yield takeEvery('COCKTAIL_LIST_REQUEST', function* () {
     const cocktailData = yield getDrinks();
     if (cocktailData) {
-      console.log('Successfully fetched cocktail list');
+      console.log('Successfully fetched cocktail list.');
       yield put({
         type: actions.COCKTAIL_LIST_SUCCESS,
         payload: cocktailData.data.drinks
       });
     } else {
-      console.log('Filed to fetch cocktail list');
+      console.log('Filed to fetch cocktail list.');
+      yield put({
+        type: actions.COCKTAIL_LIST_ERROR,
+      });
+    }
+  });
+}
+
+export function* detailsRequest() {
+  yield takeEvery('COCKTAIL_DETAILS_REQUEST', function* ({ payload }) {
+    const cocktailSingle = yield getSingleDrink(payload);
+    if (cocktailSingle) {
+      console.log('Successfully fetched cocktail details. id:', payload);
+      yield put({
+        type: actions.COCKTAIL_DETAILS_SUCCESS,
+        payload: cocktailSingle.data.drinks[0]
+      });
+    } else {
+      console.log('Filed to fetch cocktail details.');
       yield put({
         type: actions.COCKTAIL_LIST_ERROR,
       });
@@ -30,6 +56,7 @@ export function* listRequest() {
 
 export default function* rootSaga() {
   yield all([
-    fork(listRequest)
+    fork(listRequest),
+    fork(detailsRequest),
   ]);
 }

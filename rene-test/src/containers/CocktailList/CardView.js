@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Col, Card } from 'antd';
 
 const { Meta } = Card;
@@ -14,7 +15,7 @@ const CardView = props => (
       cover={<img alt="strDrinkThumb" src={props.data.strDrinkThumb} />}
     >
       <Meta
-        title={props.data.strDrink}
+        title={<Link to={`/cocktails/${props.data.idDrink}`}>{props.data.strDrink}</Link>}
       />
     </Card>
   </Col>
