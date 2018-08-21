@@ -1,6 +1,5 @@
 import React from 'react';
-import { Switch, Route, DefaultRoute } from 'react-router-dom';
-import App from './App';
+import { Switch, Route } from 'react-router-dom';
 import CocktailList from './containers/CocktailList';
 import CocktailDetails from './containers/CocktailDetails';
 
