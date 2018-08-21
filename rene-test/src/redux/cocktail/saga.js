@@ -14,7 +14,7 @@ export function* listRequest() {
   yield takeEvery('COCKTAIL_LIST_REQUEST', function* () {
     const cocktailData = yield getDrinks();
     if (cocktailData) {
-      console.log('Successful fetched cocktail list');
+      console.log('Successfully fetched cocktail list');
       yield put({
         type: actions.COCKTAIL_LIST_SUCCESS,
         payload: cocktailData.data.drinks
