@@ -2,13 +2,33 @@ const initialState = {};
 const AppReducers = (state = initialState, action) => {
   switch (action.type) {
 //home
-    case 'SET_TEST':            
+    case 'GET_RECIPE_LIST':
       return (
         Object.assign(
-            {}, 
-            state, 
+            {},
+            state,
             {
-              test: action.data
+              recipe_list: action.data
+            }
+        )
+      );
+    case 'GET_RECIPE':
+      return (
+        Object.assign(
+            {},
+            state,
+            {
+              recipe: action.data
+            }
+        )
+      );
+    case 'LOAD_DATA_FAILURE':
+      return (
+        Object.assign(
+            {},
+            state,
+            {
+              data_failure: action.data
             }
         )
       );

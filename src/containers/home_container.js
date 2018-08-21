@@ -1,19 +1,24 @@
-// import { bindActionCreators } from 'redux'; 
+// import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { set_test as setTest } from '../actions'; 
+import { get_recipe_list as getRecipeList,
+         get_recipe as getRecipe } from '../actions';
 
 import Home from '../views/pages/Home';
  
 const mapStateToProps = state => {
   return {
-    test: state.test || []
+    recipe_list: state.recipe_list || [],
+    recipe: state.recipe || {}
   }
 }
  
 const mapDispatchToProps = dispatch => {
   return {
-    set_test: (test) => {
-      dispatch(setTest(test))
+    get_recipe_list: () => {
+      dispatch(getRecipeList())
+    },
+    get_recipe: (id) => {
+      dispatch(getRecipe(id))
     },
   }
 }
