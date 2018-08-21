@@ -18,7 +18,7 @@ const renderIngredients = (item) => {
 }
 
 const CocktailCardExt = (props) => (
-  <div className="cocktail-detail">
+  <div className="cocktail-detail-wrapper">
     <h3>{props.item.strDrink}</h3>
     <div className="cocktail-detail__body">
       <div className="cocktail-detail__thumbnail">
