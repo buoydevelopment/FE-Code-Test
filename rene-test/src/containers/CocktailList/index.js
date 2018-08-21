@@ -26,7 +26,7 @@ class CocktailList extends Component {
     return (
       <section>
         <SearchBox 
-          paceHdoler="Input a keyword to search" 
+          placeHolder="Input a keyword to search" 
           onSearch={search => this.setState({ search })} 
         />
         <ListView list={cocktailList} />
