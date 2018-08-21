@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Input, Icon } from 'antd';
 
-const Search = Input.Search;
 const searchBoxStyle = {
   marginTop: 20
 };

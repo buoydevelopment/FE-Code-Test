@@ -29,7 +29,7 @@ class CocktailDetails extends Component {
     return (
       <ul>
         {
-          strIngredients.map(ingredient => <li>{ingredient}</li>)
+          strIngredients.map((ingredient, key) => <li key={key}>{ingredient}</li>)
         }
       </ul>
     );
@@ -45,7 +45,7 @@ class CocktailDetails extends Component {
     return (
       <ul>
         {
-          strMeasures.map(measure => <li>{measure}</li>)
+          strMeasures.map((measure, key) => <li key={key}>{measure}</li>)
         }
       </ul>
     );
@@ -53,11 +53,13 @@ class CocktailDetails extends Component {
 
   render() {
     const { cocktailSingle } = this.props;
-    const strDrinkThumb = cocktailSingle ? cocktailSingle.strDrinkThumb : '';
-    const strDrink = cocktailSingle ? cocktailSingle.strDrink : '';
-    const strInstructions = cocktailSingle ? cocktailSingle.strInstructions : '';
-    const strIngredients = cocktailSingle ? this.renderIngredients(cocktailSingle) : '';
-    const strMeasures = cocktailSingle ? this.renderMeasures(cocktailSingle) : '';
+    const { strDrinkThumb, strDrink, strInstructions } = cocktailSingle || {};
+
+    if (!strDrink)
+      return <p>No details</p>;
+
+    const strIngredients = this.renderIngredients(cocktailSingle);
+    const strMeasures = this.renderMeasures(cocktailSingle);
 
     return (
       <Col lg={12} xs={24} style={colStyle}>

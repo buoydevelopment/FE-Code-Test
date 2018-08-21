@@ -40,10 +40,11 @@ export function* detailsRequest() {
   yield takeEvery('COCKTAIL_DETAILS_REQUEST', function* ({ payload }) {
     const cocktailSingle = yield getSingleDrink(payload);
     if (cocktailSingle) {
+      const drinks = cocktailSingle.data.drinks || [];
       console.log('Successfully fetched cocktail details. id:', payload);
       yield put({
         type: actions.COCKTAIL_DETAILS_SUCCESS,
-        payload: cocktailSingle.data.drinks[0]
+        payload: drinks[0]
       });
     } else {
       console.log('Filed to fetch cocktail details.');
