@@ -1,23 +1,24 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-import { LOAD_COCKTAILS } from './constants';
-import { cocktailsLoaded, cocktailsError } from './actions';
+import { LOAD_COCKTAIL_LIST } from './constants';
+import { cocktailListLoaded, cocktailListError } from './actions';
 
 import request from 'utils/request';
 
-export function* getCocktails() {
+export function* getCocktailList() {
   const requestURL = `http://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass`;
 
   try {
-    const cocktails = yield call(request, requestURL);
-    yield put(cocktailsLoaded(cocktails));
+    const cocktailList = yield call(request, requestURL);
+
+    yield put(cocktailListLoaded(cocktailList));
   } catch (err) {
-    yield put(cocktailsError(err));
+    yield put(cocktailListError(err));
   }
 }
 
 /**
  * Root saga manages watcher lifecycle
  */
-export default function* triggerGetCocktails() {
-  yield takeLatest(LOAD_COCKTAILS, getCocktails);
+export default function* triggerGetCocktailList() {
+  yield takeLatest(LOAD_COCKTAIL_LIST, getCocktailList);
 }

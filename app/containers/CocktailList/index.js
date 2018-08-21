@@ -4,21 +4,21 @@ import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import {
-  makeSelectCocktails,
+  makeSelectCocktailList,
   makeSelectLoading,
   makeSelectError,
 } from './selectors';
-import { loadCocktails } from './actions';
+import { loadCocktailList } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import CocktailList from './CocktailList';
 
 const mapDispatchToProps = (dispatch) => ({
-  loadCocktails: (evt) => dispatch(loadCocktails()),
+  loadCocktailList: (evt) => dispatch(loadCocktailList()),
 });
 
 const mapStateToProps = createStructuredSelector({
-  cocktails: makeSelectCocktails(),
+  cocktailList: makeSelectCocktailList(),
   loading: makeSelectLoading(),
   error: makeSelectError()
 });

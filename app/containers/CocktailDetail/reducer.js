@@ -1,9 +1,9 @@
 import { fromJS } from 'immutable';
 
 import {
-  LOAD_COCKTAIL,
-  LOAD_COCKTAIL_SUCCESS,
-  LOAD_COCKTAIL_ERROR,
+  LOAD_COCKTAIL_DETAIL,
+  LOAD_COCKTAIL_DETAIL_SUCCESS,
+  LOAD_COCKTAIL_DETAIL_ERROR,
 } from './constants';
 
 // The initial state of the App
@@ -15,16 +15,16 @@ const initialState = fromJS({
 
 function cocktailDetailReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_COCKTAIL:
+    case LOAD_COCKTAIL_DETAIL:
       return state
         .set('loading', true)
         .set('error', false)
         .set('cocktail', false);
-    case LOAD_COCKTAIL_SUCCESS:
+    case LOAD_COCKTAIL_DETAIL_SUCCESS:
       return state
         .set('cocktail', action.cocktail.drinks[0])
         .set('loading', false);
-    case LOAD_COCKTAIL_ERROR:
+    case LOAD_COCKTAIL_DETAIL_ERROR:
       return state
         .set('error', action.error)
         .set('loading', false);

@@ -1,32 +1,32 @@
 import {
-  LOAD_COCKTAILS,
-  LOAD_COCKTAILS_SUCCESS,
-  LOAD_COCKTAILS_ERROR,
+  LOAD_COCKTAIL_LIST,
+  LOAD_COCKTAIL_LIST_SUCCESS,
+  LOAD_COCKTAIL_LIST_ERROR,
 } from './constants';
 
 /**
  * Load the cocktails, this action starts the request saga
  *
- * @return {object} An action object with a type of LOAD_COCKTAILS
+ * @return {object} An action object with a type of LOAD_COCKTAIL_LIST
  */
-export function loadCocktails() {
+export function loadCocktailList() {
   return {
-    type: LOAD_COCKTAILS,
+    type: LOAD_COCKTAIL_LIST,
   };
 }
 
 /**
  * Dispatched when the cocktails are loaded by the request saga
  *
- * @param  {array} cocktails The repository data
+ * @param  {array} cocktailList The repository data
  * @param  {string} username The current username
  *
- * @return {object}      An action object with a type of LOAD_COCKTAILS_SUCCESS passing the cocktails
+ * @return {object}      An action object with a type of LOAD_COCKTAIL_LIST_SUCCESS passing the cocktails
  */
-export function cocktailsLoaded(cocktails) {
+export function cocktailListLoaded(cocktailList) {
   return {
-    type: LOAD_COCKTAILS_SUCCESS,
-    cocktails,
+    type: LOAD_COCKTAIL_LIST_SUCCESS,
+    cocktailList,
   };
 }
 
@@ -35,11 +35,11 @@ export function cocktailsLoaded(cocktails) {
  *
  * @param  {object} error The error
  *
- * @return {object}       An action object with a type of LOAD_COCKTAILS_ERROR passing the error
+ * @return {object}       An action object with a type of LOAD_COCKTAIL_LIST_ERROR passing the error
  */
-export function cocktailsError(error) {
+export function cocktailListError(error) {
   return {
-    type: LOAD_COCKTAILS_ERROR,
+    type: LOAD_COCKTAIL_LIST_ERROR,
     error,
   };
 }

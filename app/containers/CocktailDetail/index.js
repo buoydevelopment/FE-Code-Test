@@ -8,13 +8,13 @@ import {
   makeSelectLoading,
   makeSelectError,
 } from './selectors';
-import { loadCocktail } from './actions';
+import { loadCocktailDetail } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import CocktailDetail from './CocktailDetail';
 
 const mapDispatchToProps = (dispatch) => ({
-  loadCocktailDetail: (id) => dispatch(loadCocktail(id)),
+  loadCocktailDetail: (id) => dispatch(loadCocktailDetail(id)),
 });
 
 const mapStateToProps = createStructuredSelector({

@@ -1,30 +1,30 @@
 import { fromJS } from 'immutable';
 
 import {
-  LOAD_COCKTAILS,
-  LOAD_COCKTAILS_SUCCESS,
-  LOAD_COCKTAILS_ERROR,
+  LOAD_COCKTAIL_LIST,
+  LOAD_COCKTAIL_LIST_SUCCESS,
+  LOAD_COCKTAIL_LIST_ERROR,
 } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
   loading: false,
   error: false,
-  cocktails: false,
+  cocktailList: false,
 });
 
 function cocktailListReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_COCKTAILS:
+    case LOAD_COCKTAIL_LIST:
       return state
         .set('loading', true)
         .set('error', false)
-        .set('cocktails', false);
-    case LOAD_COCKTAILS_SUCCESS:
+        .set('cocktailList', false);
+    case LOAD_COCKTAIL_LIST_SUCCESS:
       return state
-        .set('cocktails', action.cocktails.drinks)
+        .set('cocktailList', action.cocktailList.drinks)
         .set('loading', false);
-    case LOAD_COCKTAILS_ERROR:
+    case LOAD_COCKTAIL_LIST_ERROR:
       return state
         .set('error', action.error)
         .set('loading', false);

@@ -3,17 +3,18 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import List from '../../components/List';
 import ListItem from '../../components/ListItem';
+import LoadingIndicator from '../../components/LoadingIndicator';
 import './style.scss';
 
 export default class CocktailList extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
-    if (!this.props.cocktails) {
-      this.props.loadCocktails();
+    if (!this.props.cocktailList) {
+      this.props.loadCocktailList();
     }
   }
 
   render() {
-    const { loading, error, cocktails } = this.props;
+    const { loading, error, cocktailList } = this.props;
 
     return (
       <article>
@@ -22,8 +23,12 @@ export default class CocktailList extends React.PureComponent { // eslint-disabl
           <meta name="description" content="" />
         </Helmet>
         <div className="cocktail-list">
-          { cocktails && 
-            <List items={cocktails} component={ListItem} />
+          {
+            loading && <LoadingIndicator />
+          }
+          {
+            cocktailList && 
+            <List items={cocktailList} component={ListItem} />
           }
         </div>
       </article>
@@ -37,9 +42,9 @@ CocktailList.propTypes = {
     PropTypes.object,
     PropTypes.bool,
   ]),
-  cocktails: PropTypes.oneOfType([
+  cocktailList: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.bool,
   ]),
-  loadCocktails: PropTypes.func,
+  loadCocktailList: PropTypes.func,
 };

@@ -6,9 +6,9 @@ import { createSelector } from 'reselect';
 
 const selectCocktailList = (state) => state.get('cocktailList');
 
-const makeSelectCocktails = () => createSelector(
+const makeSelectCocktailList = () => createSelector(
   selectCocktailList,
-  (cocktailListState) => cocktailListState.get('cocktails')
+  (cocktailListState) => cocktailListState.get('cocktailList')
 );
 
 const makeSelectLoading = () => createSelector(
@@ -22,7 +22,7 @@ const makeSelectError = () => createSelector(
 );
 
 export {
-  makeSelectCocktails,
+  makeSelectCocktailList,
   makeSelectLoading,
   makeSelectError,
 };

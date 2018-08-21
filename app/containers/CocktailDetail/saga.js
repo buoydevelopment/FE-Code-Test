@@ -1,6 +1,6 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-import { LOAD_COCKTAIL } from './constants';
-import { cocktailLoaded, cocktailError } from './actions';
+import { LOAD_COCKTAIL_DETAIL } from './constants';
+import { cocktailDetailLoaded, cocktailDetailError } from './actions';
 
 import request from 'utils/request';
 
@@ -9,9 +9,10 @@ export function* getCocktailDetail(action) {
 
   try {
     const cocktailDetail = yield call(request, requestURL);
-    yield put(cocktailLoaded(cocktailDetail));
+
+    yield put(cocktailDetailLoaded(cocktailDetail));
   } catch (err) {
-    yield put(cocktailError(err));
+    yield put(cocktailDetailError(err));
   }
 }
 
@@ -19,5 +20,5 @@ export function* getCocktailDetail(action) {
  * Root saga manages watcher lifecycle
  */
 export default function* triggerGetCocktailDetail() {
-  yield takeLatest(LOAD_COCKTAIL, getCocktailDetail);
+  yield takeLatest(LOAD_COCKTAIL_DETAIL, getCocktailDetail);
 }

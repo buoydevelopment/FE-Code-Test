@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
 
-import CocktailList from 'containers/CocktailList/Loadable';
+import CocktailList from 'containers/CocktailList';
 import CocktailDetail from 'containers/CocktailDetail/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
