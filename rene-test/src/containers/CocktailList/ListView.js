@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Row } from 'antd';
-import 'antd/dist/antd.css';
 import CardView from './CardView';
 
 const ListView = props => (
