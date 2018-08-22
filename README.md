@@ -95,3 +95,4 @@ Since today is my birthday I can't invest the necessary time to write all the te
  * add tests everywhere
  * do the step 3.
  * handle when the query fails.
+ * add placeholders
