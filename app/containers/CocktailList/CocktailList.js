@@ -9,10 +9,28 @@ import LoadingIndicator from '../../components/LoadingIndicator';
 import './style.scss';
 
 export default class CocktailList extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  constructor() {
+    super();
+
+    this.state = {
+      searchTerm: '',
+    };
+
+    this.handleSearchFilter = this.handleSearchFilter.bind(this);
+  }
+
   componentDidMount() {
     if (!this.props.cocktailList) {
       this.props.loadCocktailList();
     }
+  }
+
+  handleSearchFilter(ev) {
+    this.setState({
+      searchTerm: ev.target.value,
+    });
+
+    console.log(this.state.searchTerm);
   }
 
   render() {
@@ -25,12 +43,22 @@ export default class CocktailList extends React.PureComponent { // eslint-disabl
           <meta name="description" content="" />
         </Helmet>
         <div className="cocktail-list">
+          <div className="search-filter">
+            <label htmlFor="searchTerm"> Filter: </label>
+            <input
+              id="searchTerm"
+              type="text"
+              placeholder=""
+              value={this.state.searchTerm}
+              onChange={this.handleSearchFilter}
+            />
+          </div>
           {
             loading && <LoadingIndicator />
           }
           {
             cocktailList && 
-            <List items={cocktailList} component={CocktailCard} />
+            <List items={cocktailList} component={CocktailCard} filter={this.state.searchTerm} />
           }
         </div>
       </section>
