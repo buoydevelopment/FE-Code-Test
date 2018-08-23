@@ -86,7 +86,7 @@ I'm not sure I understand the question correctly but since app routing works on 
 
 C) Have you used any strategy to optimize the performance of the list generated for the first feature?
 
-No, I didn't but we're using a virtualization library in my current project to pervent the issues caused with long list with loading images.
+No, I didn't but we're using a virtualization library in my current project to pervent the issues caused by long list with loading images.
 react-virtualized is the library.
 
 D) Would you like to add any further comments or observations?
