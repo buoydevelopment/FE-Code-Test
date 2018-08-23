@@ -67,3 +67,7 @@ input::-webkit-input-placeholder {
     color: transparent;
 }
 
+.img-responsive {
+  width: 100%;
+  height: auto;
+}
