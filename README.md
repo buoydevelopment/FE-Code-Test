@@ -96,3 +96,22 @@ Since today is my birthday I can't invest the necessary time to write all the te
  * do the step 3.
  * handle when the query fails.
  * add placeholders
+
+# Why I choose not to use redux
+
+There are some reasons for that:
+1) The new context API is newer, so if I use something that is new I can show to you that I'm always trying to improve my skills. 
+2) This is a small project, so in the first place doesn't need redux at all, since I only use context API in 2 two files to "share" props.
+3) You can see, my implementation is optimized (immutable + react-virtualized) and it has nothing to do with redux.
+4) I only use the new context API to centralize my code workflow.
+5) follow what @dan_abramov say:
+`redux has useful application like`
+* Persist state to a local storage and then boot up from it, out of the box.
+* Pre-fill state on the server, send it to the client in HTML, and boot up from it, out of the box.
+* Serialize user actions and attach them, together with a state snapshot, to automated bug reports, so that the product developers can replay them to reproduce the errors.
+* Pass action objects over the network to implement collaborative environments without dramatic changes to how the code is written.
+* Maintain an undo history or implement optimistic mutations without dramatic changes to how the code is written.
+* Travel between the state history in development, and re-evaluate the current state from the action history when the code changes, a la TDD.
+* Provide full inspection and control capabilities to the development tooling so that product developers can build custom tools for their apps.
+* Provide alternative UIs while reusing most of the business logic.
+* With these many application its far too soon to say that Redux will be replaced by the new Context API
