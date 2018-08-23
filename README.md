@@ -13,7 +13,11 @@ Implement a simple mobile cocktails catalogue (master / detail). The catalogue c
 **1. Cocktails list:**
 
 For each row of the list it will display the Cocktail name and photo (See wireframe 1).
+<<<<<<< HEAD
 The API endpoint that should be consumed for this purpose is:
+=======
+The API endpoint that should be consumed for this purpose is: 
+>>>>>>> e5e00185b6229283f6e7114647ad04b169babbaa
 
 http://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass
 
@@ -39,7 +43,11 @@ Wireframe 1:
 Once the user taps on a row from the list mentioned in the previous feature it will push a new screen with the selected cocktail’s details, where it will show it’s name, photo, ingredients and instructions (See wireframe 2)
 
 The endpoint to be used for this is the following:
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> e5e00185b6229283f6e7114647ad04b169babbaa
 http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink} → Cocktail ID
 I.g.: http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=16108
 
@@ -58,8 +66,15 @@ The endpoint returns a JSON with the cocktails info, the needed properties are:
 Wireframe 2
 
 ![screen shot 2018-02-02 at 12 53 37](https://user-images.githubusercontent.com/263229/35742155-63205b1c-0818-11e8-8b4b-608a46eaa718.png)
+<<<<<<< HEAD
 
 
+=======
+	
+  
+  
+  
+>>>>>>> e5e00185b6229283f6e7114647ad04b169babbaa
 **3. Bonus Points: (Optional)**
 
 Implement a filter by name functionality on the first screen that automatically filters the results while typing, only showing the rows that satisfy the criteria entered by the user.
@@ -67,6 +82,7 @@ Implement a filter by name functionality on the first screen that automatically 
 ## Questions:
 
 A) Describe the strategy used to consume the API endpoints and the data management.
+<<<<<<< HEAD
 Used `react-redux` to consume the API endpoints, all actions are in `actions/index.js`and reducers are in `reducers/index.js`
 
 B) Explain which library was used for the routing and why. Would you use the same for a consumer facing app targeting thousands of users? Why?
@@ -133,3 +149,11 @@ seems to be worst, it brings an array of drinks with only one row, when must ret
 ```
 
 Nevertheless, I did what I could in this short period
+=======
+
+B) Explain which library was used for the routing and why. Would you use the same for a consumer facing app targeting thousands of users? Why?
+
+C) Have you used any strategy to optimize the performance of the list generated for the first feature?
+
+D) Would you like to add any further comments or observations?
+>>>>>>> e5e00185b6229283f6e7114647ad04b169babbaa
