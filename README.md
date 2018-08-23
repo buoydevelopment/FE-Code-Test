@@ -101,4 +101,4 @@ And that should launch the app in localhost:3000
 I included material-ui and bootstrap to apply styles since those two libraries are the ones I'm currently working with on a daily basis.
 I've also found a component that easily allowed me to filter the list of drinks: react-text-filter
 
-I was entertaining to make this demo! Regards.
+It was entertaining to make this demo work! Regards.
