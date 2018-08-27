@@ -69,9 +69,14 @@ Implement a filter by name functionality on the first screen that automatically 
 ## Questions:
 
 A) Describe the strategy used to consume the API endpoints and the data management.
+	For react we have different options for the strategy to use in data management, but the choosen one was React's Context Api because it leverages the features needed for this requeriment, it's able to persist data in the react application once, when application loads through Context Provider, and this data can be easily used in any component through Context consumer without the headache of top-down data passing from parents to child components.
 
 B) Explain which library was used for the routing and why. Would you use the same for a consumer facing app targeting thousands of users? Why?
+	For routing I'm using react-router as it's the standard library in react. It has a simple API with powerful features like lazy code loading, dynamic route matching, and location transition handling built right in. Make the URL your first thought, not an after-thought. I would use it for an app targeting thousands of users as this routing happens client side, it wouldn't make any difference in routing if it's 10 or 10K users.
+
 
 C) Have you used any strategy to optimize the performance of the list generated for the first feature?
+	To list generation optimization the chosen strategy is react-virtualized, which are React components designed for efficiently rendering large lists.  In react virtualized only the visible rows are rendered.
 
 D) Would you like to add any further comments or observations?
+	An implementation of Fuse.js has been done for filtering cocktails as part of the bonus points. Fuse.js is a Lightweight fuzzy-search library with zero dependencies
