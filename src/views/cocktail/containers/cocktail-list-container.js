@@ -13,7 +13,7 @@ class CocktailListContainer extends React.Component {
     super(props, context);
 
     this.state = {
-      filter: null
+      filter: ''
     };
   }
 
