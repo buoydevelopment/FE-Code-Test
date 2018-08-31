@@ -35,7 +35,7 @@ class CocktailListContainer extends React.Component {
 
     return (
       <div>
-        <Filter onFilter={filter => this.onFilter(filter.target.value)}/>
+        <Filter onFilter={this.onFilter}/>
         <CocktailList cocktails={filteredDrinks}/>
       </div>
     );
