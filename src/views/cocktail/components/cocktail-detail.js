@@ -23,26 +23,31 @@ const styles = {
 
 class CocktailDetail extends React.PureComponent {
   render() {
-    const { classes } = this.props;
+    const { classes, cocktail } = this.props;
+    const {
+      name, thumbUrl, ingredients, instructions
+    } = cocktail;
     return (
       <Card className={classes.card}>
         <Typography gutterBottom variant="headline" component="h2" align="center">
-          {this.props.cocktail.name}
+          {name}
         </Typography>
-        {this.props.cocktail.thumbUrl &&
+        {thumbUrl &&
         <CardMedia
           className={classes.media}
-          image={this.props.cocktail.thumbUrl}
-          title={this.props.cocktail.name}
+          image={thumbUrl}
+          title={name}
         />}
         <CardContent>
           <ul className={classes.ingredients}>
-            {this.props.cocktail.ingredients.map(i =>
+            {ingredients.map(i =>
               <li key={i.id}>{i.measure} - {i.ingredient}</li>)}
           </ul>
-          &bull;How to prepare
+          <Typography variant="caption">
+            &bull; How to prepare
+          </Typography>
           <Typography component="p">
-            {this.props.cocktail.instructions}
+            {instructions}
           </Typography>
         </CardContent>
       </Card>

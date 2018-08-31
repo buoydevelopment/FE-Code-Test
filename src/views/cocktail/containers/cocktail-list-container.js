@@ -47,7 +47,7 @@ CocktailListContainer.propTypes = {
   getCocktails: PropTypes.func.isRequired
 };
 
-const mapStateToProps = function(state, props) {
+const mapStateToProps = function(state) {
   return {
     cocktails: state.cocktails.data.drinks || []
   };
