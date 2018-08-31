@@ -18,10 +18,7 @@ const initialState = {
 
 const filterPropsByPrefix = (obj, prefix) => Object.entries(obj)
   .filter(entry => entry[0].startsWith(prefix) && entry[1] && entry[1].trim().length)
-  .reduce((item, key) => {
-    item[key[0].replace(prefix, '')] = obj[key[0]];
-    return item;
-  }, {});
+  .reduce((acc, entry) => Object.assign({}, acc, { [entry[0].replace(prefix, '')]: obj[entry[0]] }), {});
 
 const getMeasures = cocktail => filterPropsByPrefix(cocktail, 'strMeasure');
 
