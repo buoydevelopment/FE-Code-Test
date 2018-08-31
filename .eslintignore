@@ -1,0 +1,3 @@
+src/register-service-worker.js
+deploy/deploy.js
+/build/*
