@@ -16,7 +16,7 @@ const styles = theme => ({
     width: '100%'
   },
   content: {
-    flex: '1 0 auto',
+    flex: '1 0 auto'
   },
   cover: {
     width: 151,

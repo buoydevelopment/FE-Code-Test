@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import './header.css';
 import { Link } from 'react-router-dom';
 import Icon from '@material-ui/core/Icon';
 import RoutingPaths from 'navigation/routing-paths';
+import './header.css';
 
 const Header = () =>
   <header className="header">
@@ -12,7 +13,6 @@ const Header = () =>
       </Icon>
     </Link>
   </header>;
-
 
 export default Header;
 

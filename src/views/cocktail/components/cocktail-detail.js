@@ -37,7 +37,8 @@ class CocktailDetail extends React.PureComponent {
         />}
         <CardContent>
           <ul className={classes.ingredients}>
-            {this.props.cocktail.ingredients.map(i => <li key={i.id}>{i.measure} - {i.ingredient}</li>)}
+            {this.props.cocktail.ingredients.map(i =>
+              <li key={i.id}>{i.measure} - {i.ingredient}</li>)}
           </ul>
           &bull;How to prepare
           <Typography component="p">
@@ -50,7 +51,8 @@ class CocktailDetail extends React.PureComponent {
 }
 
 CocktailDetail.propTypes = {
-  cocktail: PropTypes.object.isRequired
+  cocktail: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default compose(withStyles(styles, { withTheme: true }))(CocktailDetail);

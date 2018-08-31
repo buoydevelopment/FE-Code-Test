@@ -9,15 +9,6 @@ import CocktailList from 'views/cocktail/components/cocktail-list';
 import Filter from 'views/filter/component/filter';
 
 class CocktailListContainer extends React.Component {
-
-  drinkFilter = filter => cocktail => {
-    return cocktail.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
-  };
-
-  onFilter = (filter) => {
-    this.setState({ filter: filter });
-  };
-
   constructor(props, context) {
     super(props, context);
 
@@ -26,9 +17,16 @@ class CocktailListContainer extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getCocktails();
   }
+
+  onFilter = (filter) => {
+    this.setState({ filter });
+  };
+
+  drinkFilter = filter =>
+    cocktail => cocktail.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
 
   render() {
     const filteredDrinks = this.state.filter ?
@@ -37,7 +35,7 @@ class CocktailListContainer extends React.Component {
 
     return (
       <div>
-        <Filter onFilter={(filter) => this.onFilter(filter.target.value)}/>
+        <Filter onFilter={filter => this.onFilter(filter.target.value)}/>
         <CocktailList cocktails={filteredDrinks}/>
       </div>
     );

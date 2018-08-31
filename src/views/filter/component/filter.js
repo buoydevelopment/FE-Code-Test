@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Filter extends React.PureComponent {
-
   render() {
     return <header className="header">
       <TextFilter onFilter={this.props.onFilter}/>

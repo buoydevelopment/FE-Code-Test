@@ -3,6 +3,7 @@ import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/
 import compose from 'recompose/compose';
 import Home from 'views/home/component/home';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const theme = createMuiTheme({
   palette: {
@@ -33,6 +34,10 @@ class App extends React.PureComponent {
     </MuiThemeProvider>;
   }
 }
+
+App.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default compose(
   withStyles(styles, { withTheme: true }),

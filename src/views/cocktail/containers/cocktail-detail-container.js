@@ -5,11 +5,11 @@ import { bindActionCreators } from 'redux';
 import compose from 'recompose/compose';
 import connect from 'react-redux/es/connect/connect';
 import { getCocktail } from 'redux/state/cocktails/actions';
-import CocktailDetail from '../components/cocktail-detail';
+import CocktailDetail from 'views/cocktail/components/cocktail-detail';
 import Header from 'views/header/component/header';
 
 class CocktailDetailContainer extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.getCocktail(this.props.cocktailId);
   }
 
@@ -31,7 +31,8 @@ CocktailDetailContainer.propTypes = {
 
 const mapStateToProps = function(state, props) {
   return {
-    cocktail: state.cocktails.data.drinks.find(c => c.id === props.match.params.id) || { ingredients: [] },
+    cocktail: state.cocktails.data.drinks.find(c =>
+      c.id === props.match.params.id) || { ingredients: [] },
     cocktailId: props.match.params.id
   };
 };

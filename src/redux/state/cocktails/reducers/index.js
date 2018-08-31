@@ -16,29 +16,22 @@ const initialState = {
   isLoaded: false
 };
 
-const filterPropsByPrefix = (obj, prefix) => {
-  return Object.entries(obj)
-    .filter(entry => entry[0].startsWith(prefix) && entry[1] && entry[1].trim().length)
-    .reduce((item, key) => {
-      item[key[0].replace(prefix, '')] = obj[key[0]];
-      return item;
-    }, {});
-};
+const filterPropsByPrefix = (obj, prefix) => Object.entries(obj)
+  .filter(entry => entry[0].startsWith(prefix) && entry[1] && entry[1].trim().length)
+  .reduce((item, key) => {
+    item[key[0].replace(prefix, '')] = obj[key[0]];
+    return item;
+  }, {});
 
-const getMeasures = (cocktail) => {
-  return filterPropsByPrefix(cocktail, 'strMeasure');
-};
+const getMeasures = cocktail => filterPropsByPrefix(cocktail, 'strMeasure');
 
-const getIngredients = (cocktail) => {
-  return filterPropsByPrefix(cocktail, 'strIngredient');
-};
+const getIngredients = cocktail => filterPropsByPrefix(cocktail, 'strIngredient');
 
 const getIngredientsList = (cocktail) => {
   const measures = getMeasures(cocktail);
   const ingredients = getIngredients(cocktail);
-  return Object.keys(measures).map((key) => {
-    return { measure: measures[key], ingredient: ingredients[key], id: key };
-  });
+  return Object.keys(measures).map(key =>
+    ({ measure: measures[key], ingredient: ingredients[key], id: key }));
 };
 
 export default (state = initialState, action) => {
@@ -55,7 +48,12 @@ export default (state = initialState, action) => {
         ...state,
         data: {
           drinks: action.response.drinks.map(drink => (
-            { id: drink.idDrink, name: drink.strDrink, thumbUrl: drink.strDrinkThumb, ingredients: [] }
+            {
+              id: drink.idDrink,
+              name: drink.strDrink,
+              thumbUrl: drink.strDrinkThumb,
+              ingredients: []
+            }
           ))
         },
         error: '',
@@ -76,19 +74,16 @@ export default (state = initialState, action) => {
         isLoading: true,
         isLoaded: false
       };
-
-    case FETCH_COCKTAIL_SUCCESS:
-
+    case FETCH_COCKTAIL_SUCCESS: {
       const newDrink = action.response.drinks[0];
       const ingredients = getIngredientsList(newDrink);
+      const drinks = [];
 
-      let drinks = [];
-
-      state.data.drinks.forEach(function(drink) {
+      state.data.drinks.forEach((drink) => {
         if (drink.id === newDrink.idDrink) {
           drinks.push({
             ...drink,
-            ingredients: ingredients,
+            ingredients,
             instructions: newDrink.strInstructions
           });
         } else {
@@ -97,26 +92,25 @@ export default (state = initialState, action) => {
       });
 
       if (!drinks.find(d => d.id === newDrink.idDrink)) {
-        drinks.push(
-          {
-            id: newDrink.idDrink,
-            name: newDrink.strDrink,
-            thumbUrl: newDrink.strDrinkThumb,
-            ingredients: ingredients,
-            instructions: newDrink.strInstructions
-          }
-        );
+        drinks.push({
+          id: newDrink.idDrink,
+          name: newDrink.strDrink,
+          thumbUrl: newDrink.strDrinkThumb,
+          ingredients,
+          instructions: newDrink.strInstructions
+        });
       }
 
       return {
         ...state,
         data: {
-          drinks: drinks
+          drinks
         },
         error: '',
         isLoading: false,
         isLoaded: true
       };
+    }
     case FETCH_COCKTAIL_FAILURE:
       return {
         ...state,
