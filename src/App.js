@@ -1,4 +1,14 @@
 import React, { Component } from 'react';
+import {
+  Section,
+  Container,
+  Box,
+  Tile,
+  Title,
+  Columns,
+  Column,
+  Input
+} from 'bloomer';
 import logo from './logo.svg';
 import './App.css';
 import Catalogue from './components/catalogue';
@@ -29,10 +39,34 @@ class App extends Component {
   renderDrinks() {
     const { loadingDrinks } = this.props;
 
+    // TODO: Split this render method into components.
     return (
-      <section>
-          {(loadingDrinks) ? 'Loading...' : this.renderCatalogue()}
-      </section>
+      <Section>
+        <Container>
+        <Columns isCentered>
+            <Column isSize='1/3'>
+              <Tile isParent>
+                <Tile isChild render={(props) => (
+                  <Box {...props}>
+                    <Title>Search</Title>
+                    <Input type="text" placeholder='Drink Name' onChange={this.onInputChange} />
+                  </Box>
+                )} />
+              </Tile>
+            </Column>
+            <Column>
+              <Tile isParent>
+                <Tile isChild render={(props) => (
+                  <Box {...props}>
+                    <Title>Drinks</Title>
+                    {(loadingDrinks) ? 'Loading...' : this.renderCatalogue()}
+                  </Box>
+                )} />
+              </Tile>
+            </Column>
+          </Columns>
+        </Container>
+      </Section>
     );
   }
 
@@ -41,7 +75,6 @@ class App extends Component {
 
     return (
       <section>
-        <input type="text" onChange={this.onInputChange} />
         <Catalogue drinks={filteredDrinks || drinks} />
       </section>
     );

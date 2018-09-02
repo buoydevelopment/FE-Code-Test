@@ -13,4 +13,15 @@ const filterByName = (collection, drinkName) => {
         : null;
 };
 
-export default { filterByName };
+const getIngredients = (data) => {
+    return (data)
+        ? _filter(
+            data,
+            (value, key) => {
+                return (_startsWith(key, 'strIngredient') && value) ? true : false;
+            }
+        )
+        : null;
+};
+
+export default { filterByName, getIngredients };

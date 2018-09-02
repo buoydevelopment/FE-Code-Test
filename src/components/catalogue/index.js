@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import {
+  Image,
+  Title,
+  Card,
+  CardContent,
+  Content,
+  Media,
+  MediaLeft,
+  MediaContent
+} from 'bloomer';
 
 class Catalogue extends Component {
   render() {
@@ -7,13 +17,27 @@ class Catalogue extends Component {
 
     if (!drinks) return null;
 
-    return drinks.map((d, index) => {
-      return (
-        <div key={index}>
-          <Link to={`/${d.idDrink}`}>{`${d.idDrink}`}</Link>
-        </div>
-      );
-    });
+    return drinks.map(this.renderCard);
+  }
+
+  renderCard = (d, index) => {
+    return (
+      <Card key={index}>
+        <CardContent>
+            <Media>
+                <MediaLeft>
+                    <Image isSize='96x96' src={d.strDrinkThumb} />
+                </MediaLeft>
+                <MediaContent>
+                    <Title isSize={4}><Link to={`/${d.idDrink}`}>{d.strDrink}</Link></Title>
+                </MediaContent>
+            </Media>
+            <Content>
+                <small>{`#${d.idDrink}`}</small>
+            </Content>
+        </CardContent>
+      </Card>
+    );
   }
 }
 
