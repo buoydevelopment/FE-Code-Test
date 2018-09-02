@@ -7,6 +7,8 @@ export const FILTER_SUCCESS = 'FILTER_SUCCESS';
 export const LOOKUP = 'LOOKUP';
 export const LOOKUP_LOADING = 'LOOKUP_LOADING';
 export const LOOKUP_SUCCESS = 'LOOKUP_SUCCESS';
+export const FILTER_DRINK_BY_NAME = 'FILTER_DRINK_BY_NAME';
+export const SERVICE_ERROR = 'SERVICE_ERROR';
 
 // Action creators.
 export function filterLoadingAction(loading) {
@@ -54,11 +56,12 @@ export function filterAction(g) {
       .catch(error => {
         console.log('Oops, there was an error:', error);
         dispatch(filterLoadingAction(false));
+        dispatch(serviceErrorAction());
       });
   }
 };
 
-export function lookupAction(drinkId) {
+export const lookupAction = (drinkId) => {
   return (dispatch) => {
     dispatch(lookupLoadingAction(true));
 
@@ -75,6 +78,21 @@ export function lookupAction(drinkId) {
       .catch(error => {
         console.log('Oops, there was an error:', error);
         dispatch(lookupLoadingAction(false));
+        dispatch(serviceErrorAction());
       });
   }
 };
+
+export function filterDrinkByName(drinkName) {
+  return {
+    type: FILTER_DRINK_BY_NAME,
+    drinkName,
+  };
+}
+
+// TODO: Discriminate between types of errors.
+export function serviceErrorAction() {
+  return {
+    type: SERVICE_ERROR,
+  };
+}
