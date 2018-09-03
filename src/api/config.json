@@ -1,0 +1,11 @@
+{
+    "dev": {
+        "baseURL": "https://www.thecocktaildb.com/api/json/v1/1/",
+        "endpoints": {
+            "filter": "filter.php",
+            "lookup": "lookup.php"
+        }
+    },
+    "test": {},
+    "prod": {}
+}

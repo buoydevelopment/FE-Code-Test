@@ -66,12 +66,50 @@ Wireframe 2
 
 Implement a filter by name functionality on the first screen that automatically filters the results while typing, only showing the rows that satisfy the criteria entered by the user.
 
+
+# DEMO
+
+Click [here](https://react-drinks.herokuapp.com/) to see a demo.
+
+## Install & Run
+
+Clone this repo and execute the following commands:
+
+```
+yarn install
+npm start
+```
+
+## Unit Tests
+
+```
+yarn test
+```
+
 ## Questions:
 
 A) Describe the strategy used to consume the API endpoints and the data management.
 
+The application is structured by layers. The layer that communicates with the back-end is represented by the API folder, which is an implementation of the Fetch API. (Here you could use axios or superagent, depending on what you want to achieve, for this exercise it seemed good to use fetch). I included a configuration file (api/config.json) which defines the URLs for different environments. At this moment, you have only defined values for "dev" environment.
+
+I implemented redux for the application data management. As an improvement point, we can provide a better design, separating the actions in different files favoring scalability. In addition, local storage could be used to cache the data and thus avoid redundant calls to the API. I used the middleware "thunk" to allow the asynchronous dispatch and handle the interaction with the API more efficiently.
+
 B) Explain which library was used for the routing and why. Would you use the same for a consumer facing app targeting thousands of users? Why?
+
+I used react-router 4 for routing. Using React-router, you can dynamically load the routes as the application is rendering. This feature allows greater performance if the number of users grows, since the instantiation of the components to each route is not performed at the time of initializing the app.
 
 C) Have you used any strategy to optimize the performance of the list generated for the first feature?
 
+I didn't use any particular approach. I tried to make the components as "light" as possible for fast rendering. In addition, each component has the lowest possible amount of data processing, using in some cases pure components. As an opportunity to improve, I could implement lazy loading on the images and paginate the results.
+
 D) Would you like to add any further comments or observations?
+
+There are some pending tasks, I could implement them with a little more time:
+
+TODO list:
+
+- Unit test: using Jest and Sinon.
+- There is a small bug: the input value is not stored when browsing in drink detail page.
+- Use local storage.
+- Improve the UX / UI: I focused on the functionality and there are some user experience problems and styles to improve.
+- Use PropTypes.
