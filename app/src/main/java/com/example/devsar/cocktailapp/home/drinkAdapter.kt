@@ -10,8 +10,9 @@ import com.example.devsar.cocktailapp.R
 import com.example.devsar.cocktailapp.home.DrinkAdapter.ViewHolder
 import com.example.devsar.cocktailapp.home.model.Drink
 import kotlinx.android.synthetic.main.element_drink_list_info.view.*
+import views.CocktailView
 
-class DrinkAdapter: RecyclerView.Adapter<ViewHolder>() {
+class DrinkAdapter(val listener: CocktailView): RecyclerView.Adapter<ViewHolder>() {
 
     val TAG = "DrinkAdapter"
     var drinkList = mutableListOf<Drink>()
@@ -39,6 +40,9 @@ class DrinkAdapter: RecyclerView.Adapter<ViewHolder>() {
                     .applyDefaultRequestOptions(RequestOptions.errorOf(R.drawable.test_drink_image))
                     .load(drink.strDrinkThumb)
                     .into(itemView.drinkImage)
+            itemView.setOnClickListener {
+                listener.showMoreInfo(drinkList[adapterPosition])
+            }
         }
     }
 
