@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <TextView
+        android:id="@+id/drinkName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        tools:text="Greates mojito rocks"/>
+
+    <TextView
+        android:id="@+id/firstIngredient"
+        android:layout_below="@+id/drinkName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="\u2022  first bullet"/>
+
+
+    <TextView
+        android:id="@+id/secondIngredient"
+        android:layout_below="@+id/firstIngredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="\u2022  second bullet"/>
+
+    <TextView
+        android:id="@+id/moreIngredients"
+        android:layout_below="@+id/secondIngredient"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="and 4 more ingredients"/>
+
+
+
+
+</RelativeLayout>
