@@ -19,13 +19,12 @@ class HomePresenter(private var presentation: CocktailView?) {
     fun loadDrinks(){
         presentation?.startLoading()
         RetrofitSingleton.service.getDrinks()
-                .doAfterTerminate {
-                    presentation?.endLoading(false)
-                }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map { it.drinks }
-                .subscribe ({
+                .doAfterTerminate {
+                    presentation?.endLoading()
+                }.subscribe ({
                     drinks ->
                     presentation?.updateDrinks(drinks)
                 },

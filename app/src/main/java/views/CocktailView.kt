@@ -11,7 +11,7 @@ interface CocktailView {
     fun showMoreInfo(drink:Drink)
     fun newItem(drink: Drink)
     fun showConnectionError()
-    fun endLoading(haveElementsToShow: Boolean)
+    fun endLoading()
     fun startLoading()
     fun updateDrinks(drinks: MutableList<Drink>?)
 }

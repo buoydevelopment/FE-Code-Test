@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import android.widget.Toast
 import com.example.devsar.cocktailapp.R
 import com.example.devsar.cocktailapp.home.model.Drink
@@ -63,12 +64,12 @@ class MainActivity : AppCompatActivity(), CocktailView {
         //TODO add connection error
     }
 
-    override fun endLoading(haveElementsToShow: Boolean) {
-        //TODO hide progress
+    override fun endLoading() {
+        homeProgressbar.visibility = View.GONE
     }
 
     override fun startLoading() {
-        //TODO show progress
+        homeProgressbar.visibility = View.VISIBLE
     }
 
     override fun updateDrinks(drinks: MutableList<Drink>?) {
