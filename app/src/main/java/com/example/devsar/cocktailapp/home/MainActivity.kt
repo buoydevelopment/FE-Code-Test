@@ -1,33 +1,79 @@
 package com.example.devsar.cocktailapp.home
 
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.widget.Toast
 import com.example.devsar.cocktailapp.R
 import com.example.devsar.cocktailapp.home.model.Drink
 import kotlinx.android.synthetic.main.activity_main.*
+import views.CocktailView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), CocktailView {
 
+    private lateinit var presenter: HomePresenter
+    private val TAG:String = "MainActivity"
     private lateinit var viewAdapter: DrinkAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initRecycler()
+        presenter = HomePresenter(this)
+        presenter.loadDrinks()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onDestroy()
     }
 
     private fun initRecycler(){
         recyclerMain.run {
             viewAdapter = DrinkAdapter()
-            val drinks = mutableListOf<Drink>()
-            drinks.add(Drink(16108.toDouble(),"9 1/2 Weeks","https://www.thecocktaildb.com/images/media/drink/xvwusr1472669302.jpg"))
-            drinks.add(Drink(11002.toDouble(), "A. J.", "https://www.thecocktaildb.com/images/media/drink/uryyrr1472811418.jpg"))
-            drinks.add(Drink(17222.toDouble(), "A1", "https://www.thecocktaildb.com/images/media/drink/2x8thr1504816928.jpg"))
-            viewAdapter.drinkList = drinks
             adapter = viewAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
+
             hasFixedSize()
+        }
+    }
+
+    override fun showError(error: String) {
+        Toast.makeText(this,error,Toast.LENGTH_LONG).show()
+    }
+
+    override fun showError(error: String, throwable: Throwable) {
+        Toast.makeText(this,error,Toast.LENGTH_LONG).show()
+    }
+
+    override fun getContext(): Context {
+        return this
+    }
+
+    override fun showMoreInfo(drink: Drink) {
+      //TODO show ingredients
+    }
+
+    override fun newItem(drink: Drink) {
+       //TODO new item
+    }
+
+    override fun showConnectionError() {
+        //TODO add connection error
+    }
+
+    override fun endLoading(haveElementsToShow: Boolean) {
+        //TODO hide progress
+    }
+
+    override fun startLoading() {
+        //TODO show progress
+    }
+
+    override fun updateDrinks(drinks: MutableList<Drink>?) {
+        drinks?.let {
+            viewAdapter.loadDrinks(it)
         }
     }
 

@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.devsar.cocktailapp.home.model.Drink
 
 interface CocktailView {
+
     fun showError(error: String)
     fun showError(error: String, throwable: Throwable)
     fun getContext(): Context
@@ -12,4 +13,5 @@ interface CocktailView {
     fun showConnectionError()
     fun endLoading(haveElementsToShow: Boolean)
     fun startLoading()
+    fun updateDrinks(drinks: MutableList<Drink>?)
 }

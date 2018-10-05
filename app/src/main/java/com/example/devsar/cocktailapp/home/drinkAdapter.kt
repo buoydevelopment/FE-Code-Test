@@ -27,6 +27,11 @@ class DrinkAdapter: RecyclerView.Adapter<ViewHolder>() {
 
     override fun getItemCount() = drinkList.size
 
+    fun loadDrinks(drinkList:MutableList<Drink>){
+        this.drinkList = drinkList
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindItem(drink: Drink) {
             itemView.drinkName.text = drink.strDrink
