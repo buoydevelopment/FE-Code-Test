@@ -48,5 +48,4 @@
         android:contentDescription="@string/drink_image" />
     </RelativeLayout>
 
-
 </android.support.constraint.ConstraintLayout>

@@ -1,7 +1,5 @@
 package network
 
-
-
 import com.example.devsar.cocktailapp.BuildConfig
 import network.api.CocktailInterfaceApi
 import okhttp3.OkHttpClient
