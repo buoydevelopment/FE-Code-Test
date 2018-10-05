@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.CardView
+        android:id="@+id/detailCard"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="16dp">
+
+            <ImageView
+                android:id="@+id/detailImage"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                tools:src="@android:drawable/btn_star"/>
+
+            <TextView
+                android:id="@+id/detailIngredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Absolut Citron \nOrange Curacao \nStrawberry liqueur"/>
+
+            <TextView
+                android:id="@+id/detailHowToPrepareTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="14dp"
+                android:textStyle="bold"
+                android:text=" • How to prepare"/>
+
+            <TextView
+                android:id="@+id/detailInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Combine all ingredients in glass mixer. Chill and strain into Cocktail glass. Garnish with sliced strawberry."/>
+
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</FrameLayout>
