@@ -1,3 +1,5 @@
 package network.api
 
-data class DrinkDetailResult(val drinks: DrinkDetailResult)
+import com.example.devsar.cocktailapp.home.model.DrinkDetail
+
+data class DrinkDetailResult(val drinks: MutableList<DrinkDetail>)
