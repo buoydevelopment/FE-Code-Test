@@ -49,6 +49,10 @@ class DetailCocktailActivity : AppCompatActivity(), CocktailDetailsPresentation 
         Toast.makeText(this,error,Toast.LENGTH_LONG).show()
     }
 
+    override fun showConnectionError() {
+        Toast.makeText(this,"Connection errors, please try again letter",Toast.LENGTH_LONG).show()
+    }
+
     override fun startLoading() {
         detailProgressbar.visibility = View.VISIBLE
     }

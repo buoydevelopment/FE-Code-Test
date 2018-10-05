@@ -11,9 +11,8 @@ import com.example.devsar.cocktailapp.R
 import com.example.devsar.cocktailapp.home.model.Drink
 import detailCocktail.DetailCocktailActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import views.CocktailView
 
-class MainActivity : AppCompatActivity(), CocktailView {
+class MainActivity : AppCompatActivity(), HomePresentation, OnDrinkClickListener {
 
     private lateinit var presenter: HomePresenter
     private val TAG:String = "MainActivity"
@@ -58,7 +57,7 @@ class MainActivity : AppCompatActivity(), CocktailView {
         return this
     }
 
-    override fun showMoreInfo(drink: Drink) {
+    override fun onDrinkClicked(drink: Drink) {
         intent = Intent(this, DetailCocktailActivity::class.java)
         intent.putExtra(DETAIL_DRINK, drink.idDrink )
         startActivity(intent)

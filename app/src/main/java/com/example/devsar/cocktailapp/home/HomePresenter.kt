@@ -5,10 +5,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import network.RetrofitSingleton
-import views.CocktailView
 
-
-class HomePresenter(private var presentation: CocktailView?) {
+class HomePresenter(private var presentation: HomePresentation?) {
 
     private val TAG:String = "HomePresenter"
     private val compositeDisposable = CompositeDisposable()
