@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorBackGround"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -26,31 +27,6 @@
         app:autoSizeStepGranularity="1sp"
         tools:text="Greates mojito rocks"/>
 
-    <TextView
-        android:id="@+id/firstIngredient"
-        android:layout_below="@+id/drinkName"
-        android:layout_alignStart="@+id/drinkName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="\u2022  first bullet"/>
-
-
-    <TextView
-        android:id="@+id/secondIngredient"
-        android:layout_below="@+id/firstIngredient"
-        android:layout_alignStart="@+id/firstIngredient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="\u2022  second bullet"/>
-
-    <TextView
-        android:id="@+id/moreIngredients"
-        android:layout_below="@+id/secondIngredient"
-        android:layout_alignStart="@id/secondIngredient"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="and 4 more ingredients"/>
    </RelativeLayout>
 
     <RelativeLayout
