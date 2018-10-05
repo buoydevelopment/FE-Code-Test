@@ -2,6 +2,7 @@ package views
 
 import android.content.Context
 import com.example.devsar.cocktailapp.home.model.Drink
+import network.api.DrinkDetailResult
 
 interface CocktailView {
 
