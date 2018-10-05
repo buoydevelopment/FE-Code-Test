@@ -11,9 +11,7 @@
         android:id="@+id/recyclerMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="never"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:overScrollMode="never"/>
 
     <ProgressBar
         android:id="@+id/homeProgressbar"
