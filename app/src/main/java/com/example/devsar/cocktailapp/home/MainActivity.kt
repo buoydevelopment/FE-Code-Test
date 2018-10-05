@@ -1,6 +1,7 @@
 package com.example.devsar.cocktailapp.home
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -8,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import com.example.devsar.cocktailapp.R
 import com.example.devsar.cocktailapp.home.model.Drink
+import detailCocktail.DetailCocktailActivityetailCocktail
 import kotlinx.android.synthetic.main.activity_main.*
 import views.CocktailView
 
@@ -16,6 +18,10 @@ class MainActivity : AppCompatActivity(), CocktailView {
     private lateinit var presenter: HomePresenter
     private val TAG:String = "MainActivity"
     private lateinit var viewAdapter: DrinkAdapter
+
+    companion object {
+        const val DETAIL_DRINK = "drinkId"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +38,7 @@ class MainActivity : AppCompatActivity(), CocktailView {
 
     private fun initRecycler(){
         recyclerMain.run {
-            viewAdapter = DrinkAdapter()
+            viewAdapter = DrinkAdapter(this@MainActivity)
             adapter = viewAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
 
@@ -53,7 +59,9 @@ class MainActivity : AppCompatActivity(), CocktailView {
     }
 
     override fun showMoreInfo(drink: Drink) {
-      //TODO show ingredients
+        intent = Intent(this, DetailCocktailActivityetailCocktail::class.java)
+        intent.putExtra(DETAIL_DRINK, drink.idDrink )
+        startActivity(intent)
     }
 
     override fun newItem(drink: Drink) {
