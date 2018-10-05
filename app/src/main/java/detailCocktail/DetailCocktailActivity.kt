@@ -3,13 +3,14 @@ package detailCocktail
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.devsar.cocktailapp.R
 import com.example.devsar.cocktailapp.home.MainActivity.Companion.DETAIL_DRINK
 import com.example.devsar.cocktailapp.home.model.DrinkDetail
 import kotlinx.android.synthetic.main.activity_detail_drink.*
-import kotlinx.android.synthetic.main.element_drink_list_info.view.*
 
 class DetailCocktailActivity : AppCompatActivity(), CocktailDetailsPresentation {
 
@@ -27,12 +28,21 @@ class DetailCocktailActivity : AppCompatActivity(), CocktailDetailsPresentation 
 
     override fun showDetail(drink: DrinkDetail) {
 
-
         Glide.with(this)
                 .applyDefaultRequestOptions(RequestOptions.errorOf(R.drawable.test_drink_image))
                 .load(drink.strDrinkThumb)
                 .into(detailImage)
         //drinkImageDetail
+        var ingredientText = ""
+        drink.ingredients?.forEach {
+            ingredient -> ingredient?.let {
+                if(it.isNotEmpty() && it.isNotBlank())
+                    ingredientText += "$it \n"
+            }
+        }
+        detailIngredients.text = ingredientText
+
+        detailInstructions.text = drink.strInstructions
     }
 
     override fun showError(error: String) {
@@ -40,11 +50,11 @@ class DetailCocktailActivity : AppCompatActivity(), CocktailDetailsPresentation 
     }
 
     override fun startLoading() {
-       // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        detailProgressbar.visibility = View.VISIBLE
     }
 
     override fun endLoading() {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        detailProgressbar.visibility = View.GONE
     }
 
 }
