@@ -15,6 +15,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object RetrofitSingleton  {
+
+    private val BASE_URL = "http://www.thecocktaildb.com"
     private val okHttpClient = OkHttpClient().newBuilder()
             .addInterceptor(HttpLoggingInterceptor().apply {
                 level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
@@ -23,7 +25,7 @@ object RetrofitSingleton  {
             .build()
 
     private val retrofit:Retrofit= Retrofit.Builder()
-                                  .baseUrl("http://www.thecocktaildb.com")
+                                  .baseUrl(BASE_URL)
                                   .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder()
                                           .add(DrinkDetailJsonAdapter())
                                           .add(KotlinJsonAdapterFactory())
