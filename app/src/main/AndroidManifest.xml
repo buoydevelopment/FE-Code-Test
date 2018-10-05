@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="detailCocktail.DetailCocktailActivityetailCocktail"/>
+            android:name="detailCocktail.DetailCocktailActivity"/>
     </application>
 
 </manifest>

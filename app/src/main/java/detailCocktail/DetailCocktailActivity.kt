@@ -11,7 +11,7 @@ import com.example.devsar.cocktailapp.home.model.DrinkDetail
 import kotlinx.android.synthetic.main.activity_detail_drink.*
 import kotlinx.android.synthetic.main.element_drink_list_info.view.*
 
-class DetailCocktailActivityetailCocktail : AppCompatActivity(), CocktailDetailsPresentation {
+class DetailCocktailActivity : AppCompatActivity(), CocktailDetailsPresentation {
 
     val TAG = "DetailCocktailActivity"
 
@@ -19,10 +19,9 @@ class DetailCocktailActivityetailCocktail : AppCompatActivity(), CocktailDetails
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_drink)
         if(intent.hasExtra(DETAIL_DRINK)){
-            Log.d(TAG, intent.getStringExtra(DETAIL_DRINK))
             DetailPresenter(this).loadDrinkDetail(intent.getStringExtra(DETAIL_DRINK))
         }else{
-            //TODO  show error
+           showError("Something happened, please try again")
         }
     }
 
@@ -36,8 +35,8 @@ class DetailCocktailActivityetailCocktail : AppCompatActivity(), CocktailDetails
         //drinkImageDetail
     }
 
-    override fun showError(s: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun showError(error: String) {
+        Toast.makeText(this,error,Toast.LENGTH_LONG).show()
     }
 
     override fun startLoading() {

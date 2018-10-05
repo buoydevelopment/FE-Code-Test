@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.Toast
 import com.example.devsar.cocktailapp.R
 import com.example.devsar.cocktailapp.home.model.Drink
-import detailCocktail.DetailCocktailActivityetailCocktail
+import detailCocktail.DetailCocktailActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import views.CocktailView
 
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity(), CocktailView {
     }
 
     override fun showMoreInfo(drink: Drink) {
-        intent = Intent(this, DetailCocktailActivityetailCocktail::class.java)
+        intent = Intent(this, DetailCocktailActivity::class.java)
         intent.putExtra(DETAIL_DRINK, drink.idDrink )
         startActivity(intent)
     }
