@@ -1,6 +1,7 @@
 package com.example.devsar.cocktailapp.home
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.element_drink_list_info.view.*
 
 class DrinkAdapter: RecyclerView.Adapter<ViewHolder>() {
 
+    val TAG = "DrinkAdapter"
     var drinkList = mutableListOf<Drink>()
 
 
@@ -35,9 +37,10 @@ class DrinkAdapter: RecyclerView.Adapter<ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindItem(drink: Drink) {
             itemView.drinkName.text = drink.strDrink
+            Log.v(TAG,"${drink.strDrinkThumb}")
             Glide.with(itemView)
                     .applyDefaultRequestOptions(RequestOptions.errorOf(R.drawable.test_drink_image))
-                    .load(drink.thumbUrl)
+                    .load(drink.strDrinkThumb)
                     .into(itemView.drinkImage)
         }
     }
