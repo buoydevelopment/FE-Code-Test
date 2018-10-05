@@ -4,7 +4,12 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools">
 
-
+   <RelativeLayout
+       android:id="@+id/leftHalfCard"
+       android:layout_alignParentStart="true"
+       android:layout_alignParentTop="true"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content">
     <TextView
         android:id="@+id/drinkName"
         android:layout_width="wrap_content"
@@ -34,8 +39,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="and 4 more ingredients"/>
+   </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/rightHalfCard"
+        android:layout_toRightOf="@+id/leftHalfCard"
+        android:layout_alignTop="@+id/leftHalfCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
+    <ImageView
+        android:id="@+id/drinkImage"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="200dp"
+        android:layout_width="200dp"
+        android:layout_alignParentEnd="true"
+        tools:src="@drawable/test_drink_image"/>
+    </RelativeLayout>
 
 
 </RelativeLayout>
