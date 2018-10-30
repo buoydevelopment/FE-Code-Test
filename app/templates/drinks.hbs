@@ -1,0 +1,22 @@
+
+<div class="cocktails-list">
+  <h4>List of Cocktails</h4>
+    {{#each model as |data|}}
+        <div class="card">
+          <div class="text-side">
+        
+            <h3>{{data.name}}</h3>
+            <ul>
+              <li>ingrediente</li>
+              <li>ingrediente</li>
+              <li>ingrediente</li>
+        
+            </ul>
+          </div>
+          <div class="image-side">
+            <img src="{{data.thumb}}">
+          </div>
+        </div>
+    {{/each}}
+</div>
+{{outlet}}

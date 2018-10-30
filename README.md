@@ -75,3 +75,19 @@ B) Explain which library was used for the routing and why. Would you use the sam
 C) Have you used any strategy to optimize the performance of the list generated for the first feature?
 
 D) Would you like to add any further comments or observations?
+
+
+## RESPONSE - README:
+
+**Steps to install**
+
+
+1) clone the repository
+
+2) go to local folder by command and input the following:
+``
+npm install
+ember serve
+``
+
+3) go to http://localhost:4200
