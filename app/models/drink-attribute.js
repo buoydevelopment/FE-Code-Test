@@ -2,6 +2,9 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
 
+    name: DS.attr('string'),
+    thumb: DS.attr('string'),
+
     strInstructions: DS.attr('string'),
     strIngredient1:  DS.attr('string'),
     strIngredient2:  DS.attr('string'),

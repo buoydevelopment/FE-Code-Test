@@ -1,0 +1,64 @@
+<h4>{{model.name}}</h4>
+{{#link-to "drinks"}}
+    <div class="goback">back</div>
+{{/link-to}}
+<div class="card card-detail" onclick="alert('test')">
+    <div class="image-detail">
+        <img src={{model.thumb}} alt="image">
+    </div>
+    <div class="text-detail">
+        {{#if model.strIngredient1}}
+            <div>{{model.strMeasure1}} - {{model.strIngredient1}}</div>
+        {{/if}}
+        {{#if model.strIngredient2}}
+            <div>{{model.strMeasure2}} - {{model.strIngredient2}}</div>
+        {{/if}}
+        {{#if model.strIngredient3}}
+            <div>{{model.strMeasure3}} - {{model.strIngredient3}}</div>
+        {{/if}}
+        {{#if model.strIngredient4}}
+            <div>{{model.strMeasure4}} - {{model.strIngredient4}}</div>
+        {{/if}}
+        {{#if model.strIngredient5}}
+            <div>{{model.strMeasure5}} - {{model.strIngredient5}}</div>
+        {{/if}}
+        {{#if model.strIngredient6}}
+            <div>{{model.strMeasure6}} - {{model.strIngredient6}}</div>
+        {{/if}}
+        {{#if model.strIngredient7}}
+            <div>{{model.strMeasure7}} - {{model.strIngredient7}}</div>
+        {{/if}}
+        {{#if model.strIngredient8}}
+            <div>{{model.strMeasure8}} - {{model.strIngredient8}}</div>
+        {{/if}}
+        {{#if model.strIngredient9}}
+            <div>{{model.strMeasure9}} - {{model.strIngredient9}}</div>
+        {{/if}}
+        {{#if model.strIngredient10}}
+            <div>{{model.strMeasure10}} - {{model.strIngredient10}}</div>
+        {{/if}}
+        {{#if model.strIngredient11}}
+            <div>{{model.strMeasure11}} - {{model.strIngredient11}}</div>
+        {{/if}}
+        {{#if model.strIngredient12}}
+            <div>{{model.strMeasure12}} - {{model.strIngredient12}}</div>
+        {{/if}}
+        {{#if model.strIngredient13}}
+            <div>{{model.strMeasure13}} - {{model.strIngredient13}}</div>
+        {{/if}}
+        {{#if model.strIngredient14}}
+            <div>{{model.strMeasure14}} - {{model.strIngredient14}}</div>
+        {{/if}}
+        {{#if model.strIngredient15}}
+            <div>{{model.strMeasure15}} - {{model.strIngredient15}}</div>
+        {{/if}}
+
+        <ul>
+            <li>How to prepare</li>
+        </ul>
+        <p>
+            {{model.strInstructions}}
+        </p>
+    </div>
+</div>
+{{outlet}}

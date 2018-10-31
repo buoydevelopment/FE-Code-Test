@@ -1,23 +1,4 @@
 
 <div class="cocktails-list">
-  <h4>List of Cocktails</h4>
-  {{#each model as |data|}}
-    <div class="card" onclick="alert('test')">
-      <div class="text-side">
-    
-        <h3>{{data.name}}</h3>
-        <ul>
-          <li>{{data.attributes.strIngredient1}}</li>
-          <li>{{data.attributes.strIngredient2}}</li>
-        </ul>
-          {{#if data.attributes.drinkToShowCounter}}
-            <div>y {{data.attributes.drinkToShowCounter}} ingredientes mas</div>
-          {{/if}}
-      </div>
-      <div class="image-side">
-        <img src={{data.thumb}} alt="image">
-      </div>
-    </div>
-  {{/each}}
+  {{outlet}}
 </div>
-{{outlet}}

@@ -50,6 +50,9 @@ export default DS.RESTAdapter.extend({
                     drink_counter++;
                 }
                 drink.id = d.idDrink;
+                drink.name = d.strDrink;
+                drink.thumb = d.strDrinkThumb;
+                drink.strInstructions = d.strInstructions;
                 drink.drinkCounter = drink_counter;
                 let dataResponse = { 'drink-attribute': drink } 
                 run(null, resolve, dataResponse);
