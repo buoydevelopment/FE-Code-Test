@@ -1,5 +1,7 @@
 # Code Challenge
 
+## Responses at the bottom of the readme (perzequiel)
+
 ## Instructions:
 
 Please clone the repository, complete the exercise, and submit a PR for us to review! If you have any questions, you can reach out directly here or leave comments on your pull request which we will respond to. Remember, all instructions for running the application (including installing relevant libraries, etc.) should be included in the README. Thank you and looking forward to seeing your great work!
@@ -77,7 +79,7 @@ C) Have you used any strategy to optimize the performance of the list generated 
 D) Would you like to add any further comments or observations?
 
 
-## RESPONSE - README:
+## RESPONSE - README: (perzequiel)
 
 **Steps to install**
 
@@ -91,3 +93,13 @@ ember serve
 ``
 
 3) go to http://localhost:4200
+
+**Answering the questions**
+
+A) The strategy was make transformations in the adapter so that ember has no problems in processing the JSON, overloading the findAll and findRecord methods.
+
+B) In this case I used ember routering, but if I had to use React, I would use redux for example.
+
+C) Two models were used and one is the composition of the other, so when the app call to FindAll the main data of the list are loaded and the promises of the composition model are waiting to load the ingredients, so that the list is loaded and visualized first.
+
+D) Transformations were also made in the composition model for the ingredients and measurements, storing that in an array for better handling and rendering in the template.

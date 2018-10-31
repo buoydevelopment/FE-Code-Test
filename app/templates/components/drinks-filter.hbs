@@ -1,0 +1,12 @@
+<div class="row margin-bottom">
+    <div class="col-md-6">
+        <div class="input-group">
+            <span class="input-group-addon">@</span>
+            {{input value=filter class="form-control" placeholder="Filter" }}
+            <span class="input-group-btn">
+                <button class="btn btn-default" {{action 'filter'}}>Go!</button>
+            </span>
+        </div>
+    </div>
+</div>
+{{yield}}

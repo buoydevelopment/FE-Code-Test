@@ -1,4 +1,4 @@
-
+{{drinks-filter doFilter='filterDrinks' model=model}}
 <h4>List of Cocktails</h4>
 {{#each model as |data|}}
     {{#link-to "drinks.show" data.id}}
