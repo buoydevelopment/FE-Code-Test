@@ -7,11 +7,15 @@
 
             <h3>{{data.name}}</h3>
             <ul>
-                <li>{{data.attributes.strIngredient1}}</li>
-                <li>{{data.attributes.strIngredient2}}</li>
+            {{#each data.attributes.ingredients as |ing index|}}
+                {{#if ing.show}}
+                    <li>{{ing.strIngredient}}</li>
+                {{/if}}
+            {{/each}}
             </ul>
-            {{#if data.attributes.drinkToShowCounter}}
-            <div>y {{data.attributes.drinkToShowCounter}} ingredientes mas</div>
+
+            {{#if data.attributes.ingredientToShowCounter}}
+            <div>and {{data.attributes.ingredientToShowCounter}} ingredients more</div>
             {{/if}}
         </div>
         <div class="image-side">

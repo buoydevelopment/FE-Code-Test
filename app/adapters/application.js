@@ -37,24 +37,36 @@ export default DS.RESTAdapter.extend({
                 url: url
             }).then(data => {
                 const d = data.drinks[0];
-                let drink = {};
-                let drink_counter = 0;
+                let ingredients = [];
+                let ingredientCounter = 0;
 
                 for (let i = 1; i <= 15; i++) {
-                    //const element = array[i];
                     const details = `strIngredient${i}`;
                     const measure = `strMeasure${i}`;
-                    drink[details] = d[details];
-                    drink[measure] = d[measure];
-                    if (d[details] != '' && d[details] != null)
-                    drink_counter++;
+
+                    if (d[details] != '' && d[details] != null) {                        
+                        let ing = {
+                            strIngredient: d[details],
+                            strMeasure: d[measure],
+                            show: (ingredientCounter < 2) ? true : false,
+                        };                    
+                        ingredients.push(ing);
+                        ingredientCounter++;
+                    }
                 }
-                drink.id = d.idDrink;
-                drink.name = d.strDrink;
-                drink.thumb = d.strDrinkThumb;
-                drink.strInstructions = d.strInstructions;
-                drink.drinkCounter = drink_counter;
-                let dataResponse = { 'drink-attribute': drink } 
+                
+                let dataResponse = {
+                    'drink-attribute': 
+                        {
+                            id: d.idDrink,
+                            name: d.strDrink,
+                            thumb: d.strDrinkThumb,
+                            strInstructions: d.strInstructions,
+                            ingredients: ingredients,
+                            ingredientCounter: ingredientCounter,
+                        }
+                    
+                };
                 run(null, resolve, dataResponse);
             });
         });
