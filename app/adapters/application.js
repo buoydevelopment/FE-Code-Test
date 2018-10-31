@@ -30,4 +30,30 @@ export default DS.RESTAdapter.extend({
             });
         });
     },
+    findRecord(model, r ,idDrink) {
+        const url = `${this.host}/${this.namespaces}/lookup.php?i=${idDrink}`
+        return new RSVP.Promise(function (resolve) {
+            $.ajax({
+                url: url
+            }).then(data => {
+                const d = data.drinks[0];
+                let drink = {};
+                let drink_counter = 0;
+
+                for (let i = 1; i <= 15; i++) {
+                    //const element = array[i];
+                    const details = `strIngredient${i}`;
+                    const measure = `strMeasure${i}`;
+                    drink[details] = d[details];
+                    drink[measure] = d[measure];
+                    if (d[details] != '' && d[details] != null)
+                    drink_counter++;
+                }
+                drink.id = d.idDrink;
+                drink.drinkCounter = drink_counter;
+                let dataResponse = { 'drink-attribute': drink } 
+                run(null, resolve, dataResponse);
+            });
+        });
+    },
 });

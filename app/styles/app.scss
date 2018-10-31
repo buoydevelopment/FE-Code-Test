@@ -47,13 +47,14 @@ h1 {
         font-size: 18px;
     }
     .card {
+        cursor: pointer;
         padding: 15px;
         margin-bottom: 20px;
         margin-left: 10%;
         margin-right: 10%;
         
         background-color: #fff;
-        border: 1px solid transparent;
+        border: 1px solid #ddd;;
         border-radius: 4px;
         -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
         box-shadow: 0 1px 1px rgba(0,0,0,.05);
