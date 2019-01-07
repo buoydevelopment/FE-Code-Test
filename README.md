@@ -1,91 +1,45 @@
-# Code Challenge
+# LetsMakeThatCocktail! (android code challenge)
 
-## Instructions:
+## Questions
 
-Please clone the repository, complete the exercise, and submit a PR for us to review! If you have any questions, you can reach out directly here or leave comments on your pull request which we will respond to. Remember, all instructions for running the application (including installing relevant libraries, etc.) should be included in the README. Thank you and looking forward to seeing your great work!
+### A) Describe the strategy used to consume the API endpoints and the data management.
 
-## Overview:
+I think the first factor that affects this is the architecture used for the project.
+For some time now I have been using MVVM as my go-to architecture.
+One of the key benefits of this pattern is that it helps separate the way you implement the UI from the logic behind it.
 
-Implement a simple mobile cocktails catalogue (master / detail). The catalogue consists of a table view list of cocktails with their name, toppings and photo. Once the user taps on a specific row it will push a new screen with that drink’s details: Name, Photo, Ingredients and Preparation.
+More related to how the API is consumed though, in this case the ViewModel talks to the CocktailsRepository, who is responsible for delivering the information about the cocktails.
+This repository communicates with the NetworkManager, who is the one that actually knows how to consume the API methods.
+With this approach the repository could fetch the cocktails' information from some other data source and that would not affect the ViewModel. The only component that depends on how the API calls are actually developed is the NetworkManager. The Repository is unaware of changes in the API implementation as long as the overall logic and models are unchanged.
 
-## Features:
+### B) Explain which library was used for the routing and why. Would you use the same for a consumer facing app targeting thousands of users? Why?
 
-**1. Cocktails list:**
+I used Retrofit for Networking. There are several reasons why I use it.
+One of them is simplicity, since it helps abstract some of the HTTP logic and focus basically just on the API logic (methods, params, models, errors, etc.)
 
-For each row of the list it will display the Cocktail name and photo (See wireframe 1).
-The API endpoint that should be consumed for this purpose is:
+It's also very widely used, so there's a lot of community examples, tutorials, answers, etc.
+It doesn't have any performance issues that I know of, so I can't think right now of any reason why I would not use it in a production environment with lots of users.
+It also allows some cache thechniques which might be suitable for an app with so many users (more on this below).
 
-http://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass
+## C) Have you used any strategy to optimize the performance of the list generated for the first feature?
 
-This returns a JSON list of cocktails, and the information needed in order to populate each row of the list.
+Yes, I implemented a simple cache mechanism, and for several reasons.
+First of all, the way it's implemented you can access cached information if you are offline. (for simplicity reasons I am not letting the user know they are offline, which is something that should probably be done in a consumer facing app).
 
-```
-{
- 	strDrink,           → Cocktail name
-     	strDrinkThumb,  → Photo URL
-      	idDrink       → Cocktail ID
-}
-```
+Secondly, given the nature of the API (information that will most likely not vary a lot), it is unnecessary in my opinion to fetch the data remotely every time.
 
-Wireframe 1:
+Also, the API doesn't allow paging from what I saw, so every request brings all the cocktails from the server every time, so it makes even more sense to cache the requests.
 
-![screen shot 2018-02-02 at 12 53 57](https://user-images.githubusercontent.com/263229/35742087-40b1ce26-0818-11e8-91d7-5c2ea0d4a6aa.png)
+And last, if you are calling an API from a third party service and have a certain quota or are charged based on the number of requests it would be a good way to optimize requests to the server.
 
+### D) Would you like to add any further comments or observations?
 
+None that I can think of right now, though I would love to discuss the approach taken and learn from other people's insights and techniques.
 
+Some things to improve that were not done because of time restrictions but would most likely be done for a consumer facing app:
 
-**2. Cocktail detail:**
-
-Once the user taps on a row from the list mentioned in the previous feature it will push a new screen with the selected cocktail’s details, where it will show it’s name, photo, ingredients and instructions (See wireframe 2)
-
-The endpoint to be used for this is the following:
-
-http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink} → Cocktail ID
-I.g.: http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=16108
-
-The endpoint returns a JSON with the cocktails info, the needed properties are:
-```
-{
-	strInstructions,  → instructions
-	strDrink,         → cocktail name
-	strDrinkThumb,    → photo URL
-	strIngredient1,   → ingredient 1
-	...
-	strIngredientN    → ingredient N
-}
-```
-
-Wireframe 2
-
-![screen shot 2018-02-02 at 12 53 37](https://user-images.githubusercontent.com/263229/35742155-63205b1c-0818-11e8-8b4b-608a46eaa718.png)
-
-
-
-
-**3. Bonus Points: (Optional)**
-
-Implement a filter by name functionality on the first screen that automatically filters the results while typing, only showing the rows that satisfy the criteria entered by the user.
-
-
-## Delivery Steps:
-
-1. Create a branch from `master` named `base` and push all the third-party code needed (Libraries, Frameworks, etc.).
-2. Create a branch from `base` named `code-test` and push your own code (Remember to update the Readme file providing any instructions on how to run the project if needed).
-4. Create a Pull Request from `code-test` to `base` for us to review.
-
-Thank you and good luck!
-
-
-## Questions:
-
-A) Describe the strategy used to consume the API endpoints and the data management.
-
-B) Explain which library was used for the routing and why. Would you use the same for a consumer facing app targeting thousands of users? Why?
-
-C) Have you used any strategy to optimize the performance of the list generated for the first feature?
-
-D) Would you like to add any further comments or observations?
-
-
-
-## Add gradle.properties file because it's ignored and it's needed.
+- Add the bonus point feature
+- Add unit tests
+- Add pull to refresh to the list
+- Add a placeholder for the images
+- Show indicator when there is no internet connection and user is viewing cached content
