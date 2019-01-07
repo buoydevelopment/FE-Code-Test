@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">FE Code Test</string>
+
+    <!-- Cocktails List Fragment -->
+    <string name="error_fetching_cocktails">Error trying to fetch cocktails, please try again later!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_cocktail_details_instructions_title">• How to prepare</string>
+
+</resources>
