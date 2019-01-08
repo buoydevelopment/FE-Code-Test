@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#3b5998",
+        "borderRadius": 10,
+        "elevation": 3,
+        "flex": 1,
+        "flexDirection": "row",
+        "height": 120,
+        "justifyContent": "center",
+        "padding": 10,
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "white",
+        "fontFamily": "HelveticaNeue-Italic",
+        "fontSize": 16,
+        "maxWidth": 150,
+        "textAlign": "center",
+      }
+    }
+  >
+    The connection to the server has failed.
+  </Text>
+</View>
+`;
+
+exports[`renders correctly with a default message 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#3b5998",
+        "borderRadius": 10,
+        "elevation": 3,
+        "flex": 1,
+        "flexDirection": "row",
+        "height": 120,
+        "justifyContent": "center",
+        "padding": 10,
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "white",
+        "fontFamily": "HelveticaNeue-Italic",
+        "fontSize": 16,
+        "maxWidth": 150,
+        "textAlign": "center",
+      }
+    }
+  >
+    An error has occurred.
+  </Text>
+</View>
+`;

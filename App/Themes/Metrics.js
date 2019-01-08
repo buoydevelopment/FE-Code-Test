@@ -8,6 +8,7 @@ const metrics = {
   marginVertical: 10,
   section: 25,
   baseMargin: 10,
+  basePadding:10,
   doubleBaseMargin: 20,
   smallMargin: 5,
   doubleSection: 50,
@@ -16,6 +17,7 @@ const metrics = {
   screenHeight: width < height ? height : width,
   navBarHeight: (Platform.OS === 'ios') ? 64 : 54,
   buttonRadius: 4,
+  spinnerSize:'large',
   icons: {
     tiny: 15,
     small: 20,
@@ -28,7 +30,9 @@ const metrics = {
     medium: 40,
     large: 60,
     logo: 200
-  }
-}
+  },
+  listItemWithThumbnailHeight:120,
+  listItemIngredientsHeight:50,
+};
 
 export default metrics

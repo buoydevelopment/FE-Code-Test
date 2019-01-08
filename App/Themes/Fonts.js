@@ -1,5 +1,5 @@
 const type = {
-  base: 'Avenir-Book',
+  base: 'Roboto',
   bold: 'Avenir-Black',
   emphasis: 'HelveticaNeue-Italic'
 }
@@ -10,7 +10,7 @@ const size = {
   h3: 30,
   h4: 26,
   h5: 20,
-  h6: 19,
+  h6: 16,
   input: 18,
   regular: 17,
   medium: 14,
