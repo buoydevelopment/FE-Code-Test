@@ -1,7 +1,7 @@
 # CODE-TEST BRANCH README FILE.
 
  
-<img src="https://raw.githubusercontent.com/martinCouso/FE-Code-Test/tree/code-test/App/Images/cocktails_app.jpg" alt="cocktail hero image" align="center" />
+<img src="https://raw.githubusercontent.com/martinCouso/FE-Code-Test/code-test/App/Images/cocktails_app.jpg" alt="cocktail hero image" align="center" />
 
 
 
