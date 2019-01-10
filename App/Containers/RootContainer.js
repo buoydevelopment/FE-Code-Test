@@ -1,24 +1,23 @@
-import React, { Component } from 'react'
-import { View, StatusBar } from 'react-native'
-import ReduxNavigation from '../Navigation/ReduxNavigation'
-import { connect } from 'react-redux'
+import React, { Component } from "react";
+import { View, StatusBar } from "react-native";
+import { connect } from "react-redux";
 
-// Styles
-import styles from './Styles/RootContainerStyles'
+import ReduxNavigation from "../Navigation/ReduxNavigation";
+import styles from "./Styles/RootContainerStyles";
 
+/* eslint-disable react/prefer-stateless-function */
 class RootContainer extends Component {
-
-
-  render () {
+  render() {
     return (
       <View style={styles.applicationView}>
-        <StatusBar barStyle='light-content' />
+        <StatusBar barStyle="light-content" />
         <ReduxNavigation />
       </View>
-    )
+    );
   }
 }
 
-
-
-export default connect(null, null)(RootContainer)
+export default connect(
+  null,
+  null
+)(RootContainer);

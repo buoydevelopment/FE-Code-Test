@@ -1,39 +1,39 @@
-import { Metrics, Colors, Fonts } from '../../Themes'
+import { Metrics, Colors, Fonts } from "../../Themes";
 
 export default {
-  button:{
-    alignItems:'center',
+  button: {
+    alignItems: "center",
     backgroundColor: Colors.silver,
-    borderRadius:10,
-    elevation:5,
-    flexDirection:'row',
+    borderRadius: 10,
+    elevation: 5,
+    flexDirection: "row",
     height: Metrics.listItemWithThumbnailHeight,
-    justifyContent:'space-between',
+    justifyContent: "space-between",
+    marginRight: 20,
     padding: Metrics.basePadding,
-    marginRight:20,
-    position:'relative'
+    position: "relative"
   },
-  image:{
+  image: {
     height: 60,
     width: 60,
-    borderRadius:20,
+    borderRadius: 20
   },
-  imageContainer:{
-    alignItems:'center',
-    backgroundColor:Colors.silver,
-    borderRadius:20,
-    elevation:8,
+  imageContainer: {
+    alignItems: "center",
+    backgroundColor: Colors.silver,
+    borderRadius: 20,
+    elevation: 8,
     height: 100,
-    justifyContent:'center',
-    position:'absolute',
+    justifyContent: "center",
+    position: "absolute",
     width: 100,
-    top:10,
-    right:-20,
+    top: 10,
+    right: -20
   },
   text: {
     ...Fonts.style.h5,
     color: Colors.text,
-    maxWidth:150,
-    fontWeight:'900'
-  },
-}
+    maxWidth: 150,
+    fontWeight: "900"
+  }
+};

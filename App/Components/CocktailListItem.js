@@ -1,63 +1,64 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import {
-  Image,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native'
-import styles from './Styles/CocktailListItemStyles'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Image, Text, TouchableOpacity, View } from "react-native";
+import CocktailListItemStyles from "./Styles/CocktailListItemStyles";
 
-
+const imageSrcDefault = require("../Images/Icons/cocktail.jpg");
 
 class CocktailListItem extends Component {
+  static defaultProps = {
+    idDrink: "",
+    text: "",
+    onPressItem: null,
+    imageSource: "",
+    styles: null
+  };
+
+  static propTypes = {
+    idDrink: PropTypes.string,
+    text: PropTypes.string,
+    onPressItem: PropTypes.func,
+    imageSource: PropTypes.string,
+    styles: PropTypes.object
+  };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      imageError: false,
+      imageError: false
     };
   }
 
-  _onError = () =>{
-    this.setState({imageError:true})
+  onError = () => {
+    this.setState({ imageError: true });
   };
 
-  _onPress = () => {
-    this.props.onPressItem(this.props.idDrink)
+  onPress = () => {
+    const { idDrink, onPressItem } = this.props;
+    onPressItem(idDrink);
   };
 
-  render () {
-    const {text, imageSource} = this.props;
-    const imageThumbnail = this.state.imageError ? require('../Images/Icons/cocktail.jpg'): {uri: imageSource};
-
+  render() {
+    const { imageSource, styles, text } = this.props;
+    const { imageError } = this.state;
+    const imageThumbnail = imageError ? imageSrcDefault : { uri: imageSource };
     return (
-      <TouchableOpacity
-        onPress={this._onPress}
-      >
-        <View style={[styles.button, this.props.styles]}>
-          <Text style={styles.text}>{text}</Text>
-          <View style={styles.imageContainer}>
+      <TouchableOpacity onPress={this.onPress}>
+        <View style={[CocktailListItemStyles.button, styles]}>
+          <Text style={CocktailListItemStyles.text}>{text}</Text>
+          <View style={CocktailListItemStyles.imageContainer}>
             <Image
-              style={styles.image}
+              style={CocktailListItemStyles.image}
               source={imageThumbnail}
               resizeMethod="resize"
-              onError={this._onError}
+              onError={this.onError}
             />
           </View>
         </View>
       </TouchableOpacity>
-    )
-
+    );
   }
-
-  static propTypes = {
-    text: PropTypes.string,
-    onPressItem: PropTypes.func,
-    imageSource: PropTypes.string
-  };
-
 }
 
-export default CocktailListItem
+export default CocktailListItem;

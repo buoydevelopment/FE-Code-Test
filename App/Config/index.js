@@ -1,5 +1,5 @@
-import DebugConfig from './DebugConfig'
+import DebugConfig from "./DebugConfig";
 
 if (__DEV__) {
-  console.disableYellowBox = !DebugConfig.yellowBox
+  console.disableYellowBox = !DebugConfig.yellowBox;
 }

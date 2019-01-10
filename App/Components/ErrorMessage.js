@@ -1,29 +1,22 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import {
-  Image,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native'
-import styles from './Styles/ErrorMessageStyles'
+import React from "react";
+import PropTypes from "prop-types";
+import { Text, View } from "react-native";
+import ErrorMessageStyles from "./Styles/ErrorMessageStyles";
 
+export const ErrorMessage = ({ message, styles }) => (
+  <View style={[ErrorMessageStyles.messageContainer, styles]}>
+    <Text style={ErrorMessageStyles.text}>{message}</Text>
+  </View>
+);
 
-class ErrorMessage extends Component {
+ErrorMessage.propTypes = {
+  message: PropTypes.string,
+  styles: PropTypes.object
+};
 
-  render () {
-    const {message} = this.props;
-    return (
-      <View style={[styles.messageContainer, this.props.styles]}>
-        <Text style={styles.text}>{message ? message : 'An error has occurred.'}</Text>
-      </View>
-    )
-  }
+ErrorMessage.defaultProps = {
+  message: "An error has occurred.",
+  styles: null
+};
 
-  static propTypes = {
-    message: PropTypes.string,
-  };
-
-}
-
-export default ErrorMessage
+export default ErrorMessage;

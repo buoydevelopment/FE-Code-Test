@@ -1,38 +1,41 @@
-import React, { Component } from 'react';
-import { ScrollView, Text, Image, View } from 'react-native';
-import { Images } from '../Themes';
-import AppConfiguration from '../Config/AppConfig';
-import RoutesConfiguration from '../Config/RoutesConfig';
+import React, { Component } from "react";
+import { Image, Text, View } from "react-native";
+import PropTypes from "prop-types";
 
-// Styles
-import styles from './Styles/LaunchScreenStyles'
+import { Images } from "../Themes";
+import AppConfiguration from "../Config/AppConfig";
+import RoutesConfiguration from "../Config/RoutesConfig";
+import styles from "./Styles/LaunchScreenStyles";
 
 export default class LaunchScreen extends Component {
+  static propTypes = {
+    navigation: PropTypes.object.isRequired
+  };
 
-
-  render () {
-    return (
-      <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='contain' />
-
-          <View style={styles.centered}>
-            <Image source={Images.launchLogo} style={styles.logo} />
-          </View>
-        <Text style={styles.slogan}>
-          COCKTAILS APP
-        </Text>
-      </View>
-    )
-  }
-
-  componentDidMount(){
-    this.timeoutHandle = setTimeout(()=>{
-      this.props.navigation.navigate(RoutesConfiguration.ROUTE_HOME);
+  componentDidMount() {
+    const { navigation } = this.props;
+    this.timeoutHandle = setTimeout(() => {
+      navigation.navigate(RoutesConfiguration.ROUTE_HOME);
     }, AppConfiguration.SPLASH_DURATION);
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     clearTimeout(this.timeoutHandle);
   }
 
+  render() {
+    return (
+      <View style={styles.mainContainer}>
+        <Image
+          source={Images.background}
+          style={styles.backgroundImage}
+          resizeMode="contain"
+        />
+        <View style={styles.centered}>
+          <Image source={Images.launchLogo} style={styles.logo} />
+        </View>
+        <Text style={styles.slogan}>COCKTAILS APP</Text>
+      </View>
+    );
+  }
 }
