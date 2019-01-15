@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Random drinks 0.1</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_cocktail_detail">CocktailDetailActivity</string>
+</resources>
