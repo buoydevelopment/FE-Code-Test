@@ -1,28 +1,34 @@
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import React from "react";
+import { createStackNavigator, createAppContainer } from "react-navigation";
+import DrinksScreen from './screens/Drinks';
+import DrinkScreen from './screens/Drink';
 
-type Props = {};
-export default class App extends Component<Props> {
+
+
+export default class App extends React.Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-      </View>
-    );
+    return <AppContainer />;
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+const AppNavigator = createStackNavigator(
+  {
+    Drinks: DrinksScreen,
+    Drink: DrinkScreen
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-});
+  {
+    initialRouteName: "Drinks",
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#4ebcd1',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    },
+  }
+);
+
+const AppContainer = createAppContainer(AppNavigator);
