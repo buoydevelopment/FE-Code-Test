@@ -17,6 +17,8 @@ $ react-native link ./assets/fonts
 
 `$ react-native run-ios`
 
+`ios && pod install`
+
 ###### If you have an Error at building app iOS (Mac's Xcode 10 users)
 
 Go to Xcode, File -> Project Settings then change the Build System Default to Legacy Build System.
