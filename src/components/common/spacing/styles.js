@@ -1,11 +1,13 @@
+import { responsiveSize } from '../../../utils/dimensions';
+
 export default {
-  xtiny: 0.5,
-  tiny: 4,
-  small: 8,
-  smallPlus: 12,
-  base: 16,
-  medium: 24,
-  large: 32,
-  xLarge: 40,
-  twoXLarge: 50,
+	xtiny: responsiveSize( 0.5 ),
+	tiny: responsiveSize( 4 ),
+	small: responsiveSize( 8 ),
+	smallPlus: responsiveSize( 12 ),
+	base: responsiveSize( 16 ),
+	medium: responsiveSize( 24 ),
+	large: responsiveSize( 32 ),
+	xLarge: responsiveSize( 40 ),
+	twoXLarge: responsiveSize( 50 )
 };
