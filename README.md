@@ -1,6 +1,5 @@
 # Buoy Challenge
 
-Your visibility digit
 
 - React Native version: 0.56.0
 - React Native navigation from Wix 2.0
