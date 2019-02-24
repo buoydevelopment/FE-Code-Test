@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -37,7 +38,6 @@
 		4D4449DE06FB4E0DBFB203AD /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A681E25436B4A5BA9932E18 /* Nunito-Bold.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		69CD749021A4433D00DB9F14 /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69CD748D21A4430700DB9F14 /* libReactNativeNavigation.a */; };
-		69D880BD2219A0BD00917B87 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D880912219A06200917B87 /* libBVLinearGradient.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		BC97CE0510B744CEBDA180AB /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21BCB9837260461B88FF3AEA /* Nunito-Regular.ttf */; };
@@ -400,7 +400,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69D880BD2219A0BD00917B87 /* libBVLinearGradient.a in Frameworks */,
 				69CD749021A4433D00DB9F14 /* libReactNativeNavigation.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,

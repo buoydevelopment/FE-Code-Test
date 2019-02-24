@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 
 const styles = {
   container: {
@@ -10,11 +10,7 @@ const styles = {
 
 class Welcome extends React.Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>React Native Boiler Plate 2019</Text>
-      </View>
-    );
+    return <View style={styles.container} />;
   }
 }
 
