@@ -1,4 +1,4 @@
-# Vigit
+# Buoy Challenge
 
 Your visibility digit
 
