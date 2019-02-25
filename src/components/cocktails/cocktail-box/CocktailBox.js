@@ -7,39 +7,31 @@ import Spacing from '../../common/spacing/Spacing';
 import PlaceHolderImage from '../../common/placeholder-image/PlaceHolderImage';
 import Cocktail from '../../../entities/Cocktail';
 
-
-const ListingBox = ( { item, onCocktailPress } ) => (
-	<TouchableOpacity
-		style={[ styles.cocktail ]}
-		activeOpacity={0.9}
-		onPress={() => onCocktailPress( item )}
-	>
-		<View style={styles.info}>
-			<Typography
-				variant="bodyTitleRegular"
-				color="black"
-				style={styles.textTitle}
-			>
-				{item.strDrink}
-			</Typography>
-			<Spacing size="thin" />
-		</View>
-		<View style={styles.cocktailPhoto}>
-			<PlaceHolderImage
-				style={styles.image}
-				source={{ uri: item.strDrinkThumb }}
-			/>
-		</View>
-	</TouchableOpacity>
+const ListingBox = ({ item, onDrinkPress }) => (
+  <TouchableOpacity
+    style={[styles.cocktail]}
+    activeOpacity={0.9}
+    onPress={() => onDrinkPress(item)}
+  >
+    <View style={styles.info}>
+      <Typography variant="bodyTitleRegular" color="black" style={styles.textTitle}>
+        {item.strDrink}
+      </Typography>
+      <Spacing size="thin" />
+    </View>
+    <View style={styles.cocktailPhoto}>
+      <PlaceHolderImage style={styles.image} source={{ uri: item.strDrinkThumb }} />
+    </View>
+  </TouchableOpacity>
 );
 
 ListingBox.propTypes = {
-	item: PropTypes.instanceOf( Cocktail ).isRequired,
-	onCocktailPress: PropTypes.func
+  item: PropTypes.instanceOf(Cocktail).isRequired,
+  onDrinkPress: PropTypes.func,
 };
 
 ListingBox.defaultProps = {
-	onCocktailPress: () => {}
+  onDrinkPress: () => {},
 };
 
 export default ListingBox;

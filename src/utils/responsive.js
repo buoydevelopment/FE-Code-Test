@@ -5,7 +5,7 @@ export const isIos = Platform.OS === 'ios';
 
 export const isOldAndroid = isAndroid && Platform.Version < 20;
 
-const windowDimensions = Dimensions.get( 'window' );
+const windowDimensions = Dimensions.get('window');
 
 export const WINDOW_HEIGHT = windowDimensions.height;
 export const WINDOW_WIDTH = windowDimensions.width;
@@ -18,5 +18,5 @@ export const REFERENCE_HEIGHT = 667;
 const USE_WIDTH = WINDOW_WIDTH / REFERENCE_WIDTH < WINDOW_HEIGHT / REFERENCE_HEIGHT;
 
 export const REF_RATIO = USE_WIDTH
-	? WINDOW_WIDTH / REFERENCE_WIDTH
-	: WINDOW_HEIGHT / REFERENCE_HEIGHT;
+  ? WINDOW_WIDTH / REFERENCE_WIDTH
+  : WINDOW_HEIGHT / REFERENCE_HEIGHT;
