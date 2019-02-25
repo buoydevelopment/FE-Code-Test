@@ -23,10 +23,7 @@ export default class AppService {
       try {
         let endpoint = ServiceConfig.cocktailsById;
         let endpoinWithParams = `${endpoint}?i=${IdDrink}`;
-        console.log('endpoinWithParams', endpoinWithParams);
         let response = await ServiceConfig.APIConnector.get(endpoinWithParams, {});
-
-        console.log('response-javi', response);
 
         if (response.code) {
           reject(response);
