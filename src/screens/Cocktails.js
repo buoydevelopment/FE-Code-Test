@@ -57,6 +57,15 @@ class Cocktails extends React.Component {
     );
   };
 
+  _renderItem(item) {
+    return (
+      <CocktailBox
+        item={Cocktail.fromJSON(item)}
+        onDrinkPress={drink => this.onDrinkPress(drink)}
+      />
+    );
+  }
+
   render() {
     const { cocktails, isFetching } = this.props;
 
@@ -73,13 +82,12 @@ class Cocktails extends React.Component {
               style={styles.cocktailList}
               keyExtractor={(item, index) => index.toString()}
               data={cocktails}
-              renderItem={({ item }) => (
-                <CocktailBox
-                  item={Cocktail.fromJSON(item)}
-                  onDrinkPress={drink => this.onDrinkPress(drink)}
-                />
-              )}
+              renderItem={({ item }) => this._renderItem(item)}
               showsHorizontalScrollIndicator={false}
+              initialNumToRender={10}
+              maxToRenderPerBatch={20}
+              windowSize={20}
+              removeClippedSubviews
             />
           </View>
         )}
