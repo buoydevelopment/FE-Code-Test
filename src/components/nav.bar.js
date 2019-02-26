@@ -14,9 +14,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import * as Style from '../stylesheet';
 
 type Props = {
-  title: string,
-  showBackButton: bool,
-  onBack: () => any,
+  title: string
 };
 
 type State = void;
@@ -24,17 +22,14 @@ type State = void;
 export default class NavBar extends PureComponent<Props, State> {
 
   goBack = (): void => {
-    if(!this.props.showBackButton) {
-      return;
-    }
-    this.props.onBack()
+  
   }
 
   render() {
     const {
       title,
-      showBackButton,
     } = this.props;
+    let showBackButton = false;
     return (
 <View style={styles.container}>
   {showBackButton &&
@@ -70,13 +65,13 @@ export default class NavBar extends PureComponent<Props, State> {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Style.purpleColor,
+    backgroundColor: Style.blueColor,
     paddingTop: Platform.OS === 'ios' ? 20 : 10,
     paddingBottom: Platform.OS === 'ios' ? 10 : 10,
     paddingHorizontal: 10,
     justifyContent: 'space-between',
     alignItems: 'center',
-    elevation: 2,
+    elevation: 0,
     flexDirection: 'row',
   },
   text: {

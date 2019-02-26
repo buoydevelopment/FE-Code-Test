@@ -25,6 +25,7 @@ export class Index extends PureComponent<Props, State> {
     return (
 <View style={styles.container}>
   <NavBar
+    title="Random drinks 0.1"
   />
 
 </View>
@@ -36,7 +37,7 @@ export class Index extends PureComponent<Props, State> {
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
-    backgroundColor: Style.backgroundColor,
+    backgroundColor: Style.blueColor,
   },
 });
 
