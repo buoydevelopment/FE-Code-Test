@@ -5,6 +5,7 @@ const initialState = {
   cocktails: [],
   isFetching: true,
   cocktail: null,
+  filter: '',
 };
 
 const cocktailData = [];
@@ -20,6 +21,10 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         cocktail: Cocktail.fromJSON(action.payload.drinks[0]),
         isFetching: false,
+      });
+    case 'SET_FILTER':
+      return Object.assign({}, state, {
+        filter: action.payload,
       });
     default:
       return state;

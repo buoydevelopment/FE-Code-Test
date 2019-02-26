@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { View, FlatList, StyleSheet, SafeAreaView, Alert, ActivityIndicator } from 'react-native';
+import { TextField } from 'react-native-material-textfield';
 import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import colors from '../theme/Colors';
@@ -8,8 +9,9 @@ import { responsiveSize } from '../utils/dimensions';
 import CocktailBox from '../components/cocktails/cocktail-box/CocktailBox';
 import Cocktail from '../entities/Cocktail';
 import Typography from '../components/common/typography/Typography';
-import { fetchCocktails, fetchCocktailById } from '../actions/cocktails';
+import { fetchCocktails, fetchCocktailById, setFilter } from '../actions/cocktails';
 import { goToPage } from './index';
+import getCocktailsByWord from '../selectors/cocktails';
 
 const styles = StyleSheet.create({
   container: {
@@ -57,6 +59,11 @@ class Cocktails extends React.Component {
     );
   };
 
+  _onSearch = value => {
+    const { setFilterConnect } = this.props;
+    setFilterConnect(value);
+  };
+
   _renderItem(item) {
     return (
       <CocktailBox
@@ -67,7 +74,7 @@ class Cocktails extends React.Component {
   }
 
   render() {
-    const { cocktails, isFetching } = this.props;
+    const { cocktailsFiltered, isFetching } = this.props;
 
     return (
       <SafeAreaView style={styles.container}>
@@ -78,10 +85,22 @@ class Cocktails extends React.Component {
             <Typography variant="bodyTitle" color="black" style={styles.textTitle}>
               {title}
             </Typography>
+            <TextField
+              label="Buscar"
+              labelTextStyle={styles.inputSearch}
+              textColor={colors.white}
+              containerStyle={styles.containerStyle}
+              tintColor={colors.white}
+              lineWidth={1}
+              activeLineWidth={0}
+              fontSize={15}
+              baseColor={colors.white}
+              onChangeText={text => this._onSearch(text)}
+            />
             <FlatList
               style={styles.cocktailList}
               keyExtractor={(item, index) => index.toString()}
-              data={cocktails}
+              data={cocktailsFiltered}
               renderItem={({ item }) => this._renderItem(item)}
               showsHorizontalScrollIndicator={false}
               initialNumToRender={10}
@@ -96,16 +115,21 @@ class Cocktails extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  cocktails: state.cocktails.cocktails,
-  isFetching: state.cocktails.isFetching,
-});
+function mapStateToProps(state) {
+  return {
+    cocktails: state.cocktails.cocktails,
+    isFetching: state.cocktails.isFetching,
+    filter: state.cocktails.filter,
+    cocktailsFiltered: getCocktailsByWord(state),
+  };
+}
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchCocktailsConnect: fetchCocktails,
       fetchCocktailsByIdConnect: fetchCocktailById,
+      setFilterConnect: setFilter,
     },
     dispatch
   );
