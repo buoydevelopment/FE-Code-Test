@@ -1,5 +1,11 @@
 // @flow
 
-import Navigator from './navigator';
+import {
+  createStore,
+} from './store';
 
-Navigator.init(null);
+import Navigation from './navigation';
+
+const store = createStore();
+
+Navigation.init(store);

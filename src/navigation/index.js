@@ -5,7 +5,7 @@ import {
   Platform,
 } from 'react-native';
 import {
-  Navigation,
+  Navigation as _Navigation,
 } from 'react-native-navigation';
 import {
   Provider,
@@ -15,15 +15,23 @@ import Cocktails from '../screens/cocktails';
 
 type TScreens =
   | 'Buoy.Cocktails'
+  | 'Buoy.Drawer'
 ;
 
 import * as Style from '../stylesheet';
 
-export type navigatorType = Navigation;
+export interface INavigation {
+  pop: () => void;
+  popToRoot: () => void;
+  push: (screenName: string, passProps?: Object) => void;
+  toggleDrawer: () => void;
+  setBackButtonHandler: () => void;
+};
 
-export default class Navigator {
+export default class Navigation {
 
-  static navigator: navigatorType | null = null;
+  // react-native-navigation instance
+  static _navigation: any;
 
   static store: * = null;
 
@@ -36,17 +44,18 @@ export default class Navigator {
     screenBackgroundColor: Style.backgroundColor,
   };
 
-  static set(navigator: navigatorType): void {
-    Navigator.navigator = navigator;
-    Navigator.navigator.setOnNavigatorEvent((e) => {
+  // react-native-navigation
+  static set(_navigation: any): void {
+    Navigation._navigation = _navigation;
+    Navigation._navigation.setOnNavigatorEvent((e) => {
       if(e.id === 'drawer') { // eslint-disable-line
       } else if(e.id === 'backPress') {
         // if I am in the first screen dont do anything
         // backhandler listener will take care of this
-        if(Platform.OS === 'android' && Navigator.isEmpty()) {
+        if(Platform.OS === 'android' && Navigation.isEmpty()) {
           return;
         }
-        Navigator.pop();
+        Navigation.pop();
       } else if(e.id === 'willDisappear') { // eslint-disable-line
       } else if(e.id === 'didDisappear') { // eslint-disable-line
       } else if(e.id === 'didAppear') { // eslint-disable-line
@@ -56,10 +65,10 @@ export default class Navigator {
 
   static register(screens: Array<[TScreens, Function]>): void {
     screens.forEach(([ screenId, funct ]) => {
-      Navigation.registerComponent(
+      _Navigation.registerComponent(
         screenId,
         funct,
-        Navigator.store,
+        Navigation.store,
         Provider
       );
     });
@@ -70,11 +79,11 @@ export default class Navigator {
     drawerScreen: TScreens,
   ): void
   {
-    Navigation.startSingleScreenApp({
+    _Navigation.startSingleScreenApp({
       screen: {
         screen: initialScreen,
         navigatorStyle: {
-          ...Navigator.navigatorStyle,
+          ...Navigation.navigatorStyle,
         },
         navigatorButtons: {},
       },
@@ -93,80 +102,80 @@ export default class Navigator {
   }
 
   static init(store: any): void {
-    Navigator.store = store;
+    Navigation.store = store;
 
-    Navigator.register([
+    Navigation.register([
       [ 'Buoy.Cocktails', () => Cocktails ],
     ]);
 
-    Navigator.start(
+    Navigation.start(
       'Buoy.Cocktails',
       'Buoy.Drawer'
     );
   }
 
   static toggleDrawer() : void {
-    if(Navigator.navigator === null) {
+    if(Navigation._navigation === null) {
       return;
     }
-    Navigator.navigator.toggleDrawer({
+    Navigation._navigation.toggleDrawer({
       side: 'left',
       animated: true,
     });
   }
 
   static isEmpty(): bool {
-    return Navigator.count === 0;
+    return Navigation.count === 0;
   }
 
   static push(screen: TScreens, passProps?: Object): void {
-    if(Navigator.navigator === null) {
+    if(Navigation._navigation === null) {
       return;
     }
-    Navigator.count++;
-    Navigator.navigator.push({
+    Navigation.count++;
+    Navigation._navigation.push({
       screen,
       animationType: 'slide-horizontal',
-      navigatorStyle: { ...Navigator.navigatorStyle },
+      NavigationStyle: { ...Navigation.navigatorStyle },
       overrideBackPress: true,
       passProps,
     });
   }
 
   static pop(): void {
-    if(Navigator.navigator === null) {
+    if(Navigation._navigation === null) {
       return;
     }
-    Navigator.count--;
-    Navigator.navigator.pop();
-    Navigator.onPop && Navigator.onPop();
+    Navigation.count--;
+    Navigation._navigation.pop();
+    Navigation.onPop && Navigation.onPop();
   }
 
   static popToRoot(): void {
-    if(Navigator.navigator === null) {
+    if(Navigation._navigation === null) {
       return;
     }
-    Navigator.count = 0;
-    Navigator.navigator.popToRoot();
-    Navigator.onPop && Navigator.onPop();
+    Navigation.count = 0;
+    Navigation._navigation.popToRoot();
+    Navigation.onPop && Navigation.onPop();
   }
 
   static popAndPush(screen: TScreens, passProps?: Object): void {
-    Navigator.pop();
-    setTimeout(() => Navigator.push(screen, passProps), 10);
+    Navigation.pop();
+    setTimeout(() => Navigation.push(screen, passProps), 10);
   }
 
   static popToRootAndPush(screen: TScreens, passProps?: Object): void {
-    Navigator.popToRoot();
-    setTimeout(() => Navigator.push(screen, passProps), 10);
+    Navigation.popToRoot();
+    setTimeout(() => Navigation.push(screen, passProps), 10);
   }
 
   static popWithDelay(delay: number = 500): void {
-    setTimeout(() => Navigator.pop(), delay);
+    setTimeout(() => Navigation.pop(), delay);
   }
 
   static popToRootWithDelay(delay: number = 500): void {
-    setTimeout(() => Navigator.popToRoot(), delay);
+    setTimeout(() => Navigation.popToRoot(), delay);
   }
 
 }
@@ -174,7 +183,7 @@ export default class Navigator {
 // android only
 BackHandler.addEventListener('hardwareBackPress', (): bool => {
   // exit app
-  if(Navigator.isEmpty()) {
+  if(Navigation.isEmpty()) {
     return false;
   }
   return true;

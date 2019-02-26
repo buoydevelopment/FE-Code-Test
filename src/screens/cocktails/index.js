@@ -6,8 +6,8 @@ import {
   View,
 } from 'react-native';
 
-import Navigator from '../../navigator';
-import { bindComponentToNavigator } from '../../navigator/helpers';
+import Navigation from '../../navigation';
+import { bindComponentToNavigation } from '../../navigation/helpers';
 
 import * as Style from '../../stylesheet';
 
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default bindComponentToNavigator(Index);
+export default bindComponentToNavigation(Index);
