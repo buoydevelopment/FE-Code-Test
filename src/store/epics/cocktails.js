@@ -40,7 +40,7 @@ import {
 export const getAll$ = (
   action$: any,
   state: any,
-  { cocktails }: TDependencies,
+  { cocktails, now }: TDependencies,
 ) => {
   return action$.pipe(
     ofType(getAll.toString()),
@@ -49,10 +49,13 @@ export const getAll$ = (
         of(getAllStart()),
         fromPromise(cocktails.getAll())
           .pipe(
-            switchMap((response: TGetAllResponse) => {
-              return response === null ?
+            switchMap((list: TGetAllResponse) => {
+              return list === null ?
                 _throw() :
-                of(getAllSuccess({ newId: response }))
+                of(getAllSuccess({
+                  list,
+                  timestamp: now(),
+                }))
             }),
             catchError(() => {
               return failures === FAILURE_RETRY_COUNT ?

@@ -14,11 +14,13 @@ import {
 export type TStore = {
   byId: {[string]: TCocktail},
   allIds: Array<string>,
+  getAllTimestamp: number,
 };
 
 export const initialState: TStore = {
   byId: {},
   allIds: [],
+  getAllTimestamp: 0,
 };
 
 export const reducer = handleActions<
@@ -32,6 +34,12 @@ export const reducer = handleActions<
   ): TStore => {
     return {
       ...state,
+      byId: list.reduce((acc, cur) => ({
+        ...acc,
+        [cur.id]: { ...cur },
+      }), {}),
+      allIds: list.map(({ id }) => id),
+      getAllTimestamp: timestamp,
     };
   },
 }, initialState);

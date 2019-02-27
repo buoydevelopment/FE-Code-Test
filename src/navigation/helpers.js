@@ -10,7 +10,6 @@ export const bindComponentToNavigation = (Component) => {
     navigator: any
   }> {
     componentDidMount() {
-      console.log('!!!!!!!!!!!!!!!',this.props.navigator);
       Navigation.set(this.props.navigator);
     }
 

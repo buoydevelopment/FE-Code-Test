@@ -19,6 +19,8 @@ import com.oblador.vectoricons.VectorIconsPackage;
 
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 
+import com.dylanvann.fastimage.FastImageViewPackage;
+
 public class MainApplication extends NavigationApplication {
 
     @Override
@@ -31,6 +33,7 @@ public class MainApplication extends NavigationApplication {
         // Add additional packages you require here
         // No need to add RnnPackage and MainReactPackage
         return Arrays.<ReactPackage>asList(
+            new FastImageViewPackage(),
             new VectorIconsPackage(),
             new ReactNativeConfigPackage()
         );

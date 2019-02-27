@@ -7,7 +7,7 @@ import {
 } from '../../api/cocktails';
 
 export type TDispatchers = {
-  getAll: ({ failures?: number }) => any,
+  getAll: (?{ failures?: number }) => any,
   getAllTryAgain: () => any,
   getAllAbort: () => any,
 };
