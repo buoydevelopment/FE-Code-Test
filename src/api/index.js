@@ -7,7 +7,7 @@ export interface IAPI {
   port: string;
   v1: string;
   +constructor: (host: string, port: string, v1: string) => void;
-  +changeHostAndPort: (host: string, port: string) => void;
+  +change: (host: string, port: string, v1: string) => void;
   +getUrl: (...Array<string>) => string;
   +getPayload: (Object) => TPayload;
   +fetch: (url: string, payloadBody?: Object) => Promise<any>;
@@ -25,9 +25,10 @@ export default class API implements IAPI {
     this.v1 = v1;
   }
 
-  changeHostAndPort(host: string, port: string): void {
+  change(host: string, port: string, v1: string): void {
     this.host = host;
     this.port = port;
+    this.v1 = v1;
   }
 
   getUrl(...segments: Array<string>): string {

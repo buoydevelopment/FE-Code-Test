@@ -14,11 +14,15 @@ export type TPayloads = {
 
 export const {
   config: {
+    changeApi,
+    changedApi,
     loaded,
     loadedSuccess,
   },
 } = createActions({
   CONFIG: {
+    CHANGE_API: undefined,
+    CHANGED_API: undefined,
     LOADED: undefined,
     LOADED_SUCCESS: undefined,
   },

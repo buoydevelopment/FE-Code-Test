@@ -20,9 +20,31 @@ import {
 } from '../index';
 
 import {
+  changeApi,
+  changedApi,
   loaded,
   loadedSuccess,
 } from '../actions/config';
+
+export const changeApi$ = (
+  action$: any,
+  state: any,
+  { api, now }: TDependencies,
+) => {
+  return action$.pipe(
+    ofType(changeApi.toString()),
+    tap(({ payload: { host, port, version } }) => api.change(
+      host,
+      port,
+      version
+    )),
+    switchMap(() => {
+      return of(
+        changedApi({ timestamp: now() })
+      );
+    })
+  );
+};
 
 export const loaded$ = (
   action$: any,
@@ -40,5 +62,6 @@ export const loaded$ = (
 };
 
 export default [
+  changeApi$,
   loaded$,
 ];

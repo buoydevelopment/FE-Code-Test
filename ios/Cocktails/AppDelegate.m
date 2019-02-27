@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 
 #import "../../node_modules/react-native-navigation/ios/RCCManager.h"
+#import "ReactNativeConfig.h"
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>

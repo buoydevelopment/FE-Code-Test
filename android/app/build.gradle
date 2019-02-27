@@ -142,6 +142,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    // need this two implementation for react-native-fast-image module
     implementation("com.android.support:support-media-compat:28.0.0")
     implementation("com.android.support:support-v4:28.0.0")
 }

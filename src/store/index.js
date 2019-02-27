@@ -43,6 +43,7 @@ import Navigation, {
 } from '../navigation';
 
 import {
+  changeApi,
   loaded as configLoaded,
 } from './actions/config';
 
