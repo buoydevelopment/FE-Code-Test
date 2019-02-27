@@ -6,6 +6,10 @@ import {
   View,
 } from 'react-native';
 
+import EventEmitter from 'EventEmitter';
+import { fromEvent } from 'rxjs/observable/fromEvent';
+import { debounceTime, tap } from 'rxjs/operators';
+
 import Navigation from '../../navigation';
 import { bindComponentToNavigation } from '../../navigation/helpers';
 
@@ -36,39 +40,110 @@ type DispatchProps = {
 type Props = StateProps & DispatchProps;
 
 type State = {
+  cocktails: TCocktails,
   didLoad: bool,
+  keyword: string,
+  needToResetCocktails: bool,
 };
 
 export class Index extends PureComponent<Props, State> {
 
+  searchEmitter: EventEmitter = new EventEmitter();
+  onSearch$: any = null;
+
   state = {
+    cocktails: [],
     didLoad: false,
+    keyword: '',
+    needToResetCocktails: false,
   };
+
+  list: any = null;
+
+  onRefList = (elem: any): void => {
+    this.list = elem;
+  }
+
+  componentDidUpdate(props: Props, state: State) {
+    if(
+      this.state.keyword != '' &&
+      this.state.keyword != state.keyword
+    ) {
+      const keyword = this.state.keyword.toLowerCase().trim();
+      this.setState({
+        // use props.cocktails!!
+        cocktails: this.props.cocktails.filter(({ brief }) => brief.toLowerCase().includes(keyword)),
+      });
+    }
+
+    if(
+      this.state.needToResetCocktails &&
+      !state.needToResetCocktails
+    ) {
+      this.setState({
+        keyword: '',
+        cocktails: this.props.cocktails,
+        needToResetCocktails: false,
+      });
+      if(this.list != null) {
+        this.list.scrollToTop();
+      }
+    }
+  }
 
   componentDidMount() {
     this.props.getAllCocktails();
+
+    this.onSearch$ = fromEvent(this.searchEmitter, 'search')
+      .pipe(
+        debounceTime(500),
+        tap((keyword: string) => this.setState({ keyword })),
+      )
+      .subscribe()
+    ;
+  }
+
+  componentWillUnmount() {
+    this.searchEmitter.removeAllListeners();
+    if(this.onSearch$ !== null) {
+      this.onSearch$.unsubscribe();
+    }
   }
 
   componentWillReceiveProps(props: Props) {
     if(props.timestamp > this.props.timestamp) {
-      this.setState({ didLoad: true });
+      this.setState({
+        cocktails: props.cocktails,
+        didLoad: true,
+      });
     }
+  }
+
+  onSearch = (text: string): void => {
+    this.searchEmitter.emit('search', text);
+  }
+
+  onSearchClose = (): void => {
+    this.setState({
+      needToResetCocktails: true,
+    });
   }
 
   render() {
     const {
       cocktails,
-    } = this.props;
-    const {
       didLoad,
     } = this.state;
     return (
 <View style={styles.container}>
   <NavBar
     title="Random drinks 0.1"
+    onSearch={this.onSearch}
+    onSearchClose={this.onSearchClose}
   />
 
   <List
+    ref={this.onRefList}
     items={cocktails}
   />
 
