@@ -12,9 +12,11 @@ import {
 } from 'react-redux';
 
 import Cocktails from '../screens/cocktails';
+import Cocktail from '../screens/cocktail';
 
-type TScreens =
+export type TScreens =
   | 'Buoy.Cocktails'
+  | 'Buoy.Cocktail'
   | 'Buoy.Drawer'
 ;
 
@@ -106,6 +108,7 @@ export default class Navigation {
 
     Navigation.register([
       [ 'Buoy.Cocktails', () => Cocktails ],
+      [ 'Buoy.Cocktail', () => Cocktail ],
     ]);
 
     Navigation.start(
@@ -136,7 +139,7 @@ export default class Navigation {
     Navigation._navigation.push({
       screen,
       animationType: 'slide-horizontal',
-      NavigationStyle: { ...Navigation.navigatorStyle },
+      navigatorStyle: { ...Navigation.navigatorStyle },
       overrideBackPress: true,
       passProps,
     });

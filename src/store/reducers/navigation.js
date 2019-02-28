@@ -31,9 +31,9 @@ export type TStore = {
 
 export const initialState: TStore = {
   action: 'NONE',
-  history: [ { screenName: 'Cocktails' } ],
+  history: [ { screenName: 'Buoy.Cocktails' } ],
   length: 0,
-  screenName: 'Cocktails',
+  screenName: 'Buoy.Cocktails',
 };
 
 export const reducer = handleActions<
@@ -78,7 +78,7 @@ export const reducer = handleActions<
       action: 'POP_TO_ROOT',
       history: [ history[0] ],
       length: 0,
-      screenName: 'Cocktails',
+      screenName: 'Buoy.Cocktails',
     };
   },
 

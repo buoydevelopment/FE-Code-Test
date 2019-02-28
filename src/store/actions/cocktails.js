@@ -4,17 +4,25 @@ import { createActions } from 'redux-actions';
 
 import {
   type TCocktails,
+  type TCocktail,
 } from '../../api/cocktails';
 
 export type TDispatchers = {
   getAll: (?{ failures?: number }) => any,
   getAllTryAgain: () => any,
   getAllAbort: () => any,
+  get: ({ id: string, failures?: number }) => any,
+  getTryAgain: () => any,
+  getAbort: () => any,
 };
 
 export type TPayloads = {
   getAllSuccess: {
     list: TCocktails,
+    timestamp: number,
+  },
+  getSuccess: {
+    item: TCocktail,
     timestamp: number,
   },
 };
@@ -28,6 +36,14 @@ export const {
     getAllAbort,
     getAllTryAgain,
     getAllTryAgainBuffer,
+
+    get,
+    getStart,
+    getSuccess,
+    getFailure,
+    getAbort,
+    getTryAgain,
+    getTryAgainBuffer,   
   },
 } = createActions({
   COCKTAILS: {
@@ -41,5 +57,16 @@ export const {
     GET_ALL_ABORT: undefined,
     GET_ALL_TRY_AGAIN: undefined,
     GET_ALL_TRY_AGAIN_BUFFER: undefined,
+
+    GET: [
+      ({ id }) => ({ id }),
+      ({ failures }) => ({ failures }),
+    ],
+    GET_START: undefined,
+    GET_SUCCESS: undefined,
+    GET_FAILURE: undefined,
+    GET_ABORT: undefined,
+    GET_TRY_AGAIN: undefined,
+    GET_TRY_AGAIN_BUFFER: undefined,
   },
 });

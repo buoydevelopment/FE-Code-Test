@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
     backgroundColor: Style.blueColor,
     ...StyleSheet.absoluteFillObject,
     zIndex: 100,
+    elevation: Style.maxElevation,
     backgroundColor: 'rgba(0,0,0,.6)',
   },
   backButton: {

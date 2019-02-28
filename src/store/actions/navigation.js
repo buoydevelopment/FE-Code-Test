@@ -2,10 +2,9 @@
 
 import { createActions } from 'redux-actions';
 
-export type TScreens =
-  | 'Cocktails'
-  | 'Cocktail'
-;
+import { type TScreens } from '../../navigation';
+
+export * from '../../navigation';
 
 export type TDispatchers = {
   toggleDrawer: () => any,

@@ -1,3 +1,5 @@
+// @flow
+
 import React, { PureComponent } from 'react';
 import {
   StyleSheet,
@@ -15,13 +17,40 @@ import {
   type TCocktail,
 } from '../../api/cocktails';
 
-type Props = {
+import {
+  push,
+  type TDispatchers as TDispatchersNavigation,
+} from '../../store/actions/navigation';
+
+type OwnProps = {
   item: TCocktail,
 };
 
+type DispatchProps = {
+  push: $PropertyType<TDispatchersNavigation, 'push'>,
+};
+
+type Props = OwnProps & DispatchProps;
+
 type State = void;
 
-export default class Row extends PureComponent<Props, State> {
+export class Row extends PureComponent<Props, State> {
+
+  gotoCocktail = (): void => {
+    const {
+      item: {
+        id,
+        brief,
+      },
+    } = this.props;
+    this.props.push(
+      'Buoy.Cocktail',
+      {
+        cocktailId: id,
+        cocktailBrief: brief,
+      }
+    );
+  }
 
   render() {
     const {
@@ -34,6 +63,7 @@ export default class Row extends PureComponent<Props, State> {
 <View style={styles.wrapper}>
   <TouchableOpacity
     style={styles.container}
+    onPress={this.gotoCocktail}
   >
     <View style={styles.descContainer}>
       <Text
@@ -62,12 +92,12 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: Style.whiteColor,
-    paddingHorizontal: 10,
+    paddingHorizontal: Style.cocktails.cardPadding,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     borderRadius: Style.cocktails.borderRadius,
-    elevation: 2,
+    elevation: Style.cocktails.elevation,
     width: Style.cocktails.cardWidth,
     height: Style.cocktails.cardHeight,
   },
@@ -84,3 +114,29 @@ const styles = StyleSheet.create({
     borderRadius: Style.cocktails.borderRadius,
   },
 });
+
+import {
+  bindActionCreators,
+  type Dispatch
+} from 'redux';
+
+import {
+  connect,
+} from 'react-redux';
+
+import {
+  type TStore
+} from '../../store/reducers';
+
+export const mapStateToProps = null;
+
+export const mapDispatchToProps = (dispatch: Dispatch<any>): DispatchProps => bindActionCreators({
+  push,
+}, dispatch);
+
+const connectedComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Row);
+
+export default connectedComponent;

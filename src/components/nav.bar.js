@@ -18,8 +18,9 @@ import * as Style from '../stylesheet';
 
 type Props = {
   title: string,
-  onSearch: (string) => void | void,
-  onSearchClose: () => void | void,
+  onSearch?: (string) => void,
+  onSearchClose?: () => void,
+  onBack?: () => void,
 };
 
 type State = {
@@ -37,14 +38,16 @@ export default class NavBar extends PureComponent<Props, State> {
     if(
       !this.state.showSearchInputText &&
       state.showSearchInputText &&
-      typeof this.props.onSearchClose != 'undefined'
+      typeof this.props.onSearchClose !== 'undefined'
     ) {
       this.props.onSearchClose();
     }
   }
 
   goBack = (): void => {
-  
+    if(typeof this.props.onBack !== 'undefined') {
+      this.props.onBack();
+    }
   }
 
   onSearchPress = (): void => {
@@ -54,7 +57,9 @@ export default class NavBar extends PureComponent<Props, State> {
   }
 
   onSearchChange = (text: string): void => {
-    this.props.onSearch(text);
+    if(typeof this.props.onSearch !== 'undefined') {
+      this.props.onSearch(text);
+    }
   }
 
   onSearchSubmit = (): void => {
@@ -64,14 +69,14 @@ export default class NavBar extends PureComponent<Props, State> {
     const {
       title,
       onSearch,
+      onBack,
     } = this.props;
     const {
       showSearchInputText,
     } = this.state;
-    let showBackButton = false;
     return (
 <View style={styles.container}>
-  {showBackButton &&
+  {typeof onBack !== 'undefined' &&
   <TouchableOpacity
     onPress={this.goBack}
     style={styles.backButton}
@@ -83,7 +88,7 @@ export default class NavBar extends PureComponent<Props, State> {
     />
   </TouchableOpacity>
   }
-  {!showBackButton &&
+  {typeof onBack === 'undefined' &&
   <TouchableOpacity
     style={styles.dummyButton}
   />
@@ -109,12 +114,12 @@ export default class NavBar extends PureComponent<Props, State> {
   </Animatable.View>
   }
 
-  {typeof onSearch == 'undefined' &&
+  {typeof onSearch === 'undefined' &&
   <TouchableOpacity
     style={styles.dummyButton}
   />
   }
-  {typeof onSearch != 'undefined' &&
+  {typeof onSearch !== 'undefined' &&
   <TouchableOpacity
     style={styles.dummyButton}
     onPress={this.onSearchPress}
@@ -161,7 +166,7 @@ const styles = StyleSheet.create({
   },
   searchInputTextContainer: {
     position: 'absolute',
-    top: Platform.OS == 'ios' ? 19 : 5,
+    top: Platform.OS === 'ios' ? 19 : 5,
     right: 35,
     width: 250,
   },
@@ -169,7 +174,7 @@ const styles = StyleSheet.create({
     backgroundColor: Style.whiteColor,
     fontSize: Style.fontSize,
     color: Style.blackColor,
-    paddingVertical: Platform.OS == 'ios' ? 5 : 3,
+    paddingVertical: Platform.OS === 'ios' ? 5 : 3,
     paddingLeft: 3,
     borderRadius: 5,
   },

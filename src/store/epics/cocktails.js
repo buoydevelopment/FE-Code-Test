@@ -26,6 +26,7 @@ import {
 
 import {
   type TGetAllResponse,
+  type TGetResponse,
 } from '../../api/cocktails';
 
 import {
@@ -35,6 +36,13 @@ import {
   getAllFailure,
   getAllTryAgainBuffer,
   getAllTryAgain,
+
+  get,
+  getStart,
+  getSuccess,
+  getFailure,
+  getTryAgainBuffer,
+  getTryAgain,
 } from '../actions/cocktails';
 
 export const getAll$ = (
@@ -91,7 +99,63 @@ export const getAllTryAgainBuffer$ = (
   );
 };
 
+export const get$ = (
+  action$: any,
+  state: any,
+  { cocktails, now }: TDependencies,
+) => {
+  return action$.pipe(
+    ofType(get.toString()),
+    switchMap(({ payload: { id }, meta: { failures }}) => {
+      return merge(
+        of(getStart()),
+        fromPromise(cocktails.get(id))
+          .pipe(
+            switchMap((item: TGetResponse) => {
+              return item === null ?
+                _throw() :
+                of(getSuccess({
+                  item,
+                  timestamp: now(),
+                }))
+            }),
+            catchError(() => {
+              return failures === FAILURE_RETRY_COUNT ?
+                of(
+                  getFailure(),
+                  getTryAgainBuffer({ id })
+                ) :
+                of(get({ id, failures: failures + 1 }))
+                  .pipe(
+                    delay(FAILURE_RETRY_TIME)
+                  )
+            })
+            // TODO: add on abort ??
+          )
+      );
+    })
+  );
+};
+
+export const getTryAgainBuffer$ = (
+  action$: any,
+) => {
+  return action$.pipe(
+    ofType(getTryAgainBuffer.toString()),
+    buffer(
+      action$.pipe(
+        ofType(getTryAgain.toString())
+      )
+    ),
+    map((buffer) => {
+      return get({ id: buffer[buffer.length-1].id });
+    })
+  );
+};
+
 export default [
   getAll$,
   getAllTryAgainBuffer$,
+  get$,
+  getTryAgainBuffer$,
 ];
