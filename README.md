@@ -79,9 +79,19 @@ Thank you and good luck!
 ## Questions:
 
 A) Describe the strategy used to consume the API endpoints and the data management.
+I used axios for grouping all api calls and React contexts to share data across the application.
+For axios I exported the functions for fetching data in the file api\CocktailApi.js, creating a new instance with a baseURL.
+The context file at contexts\CocktailContext.js creates context, provider (and its state) and consumer for sharing the information across the application. Functions 'withCocktailContextProvider' and 'withCocktailContext' are used to decorate components that are going to access the context, like App, Home screen and Detail Screen.
 
 B) Explain which library was used for the routing and why. Would you use the same for a consumer facing app targeting thousands of users? Why?
+I used react-navigation for routing. I don´t have experience working with others React Native routing libraries.
 
 C) Have you used any strategy to optimize the performance of the list generated for the first feature?
+I used the FlatList component for rendering the items. This component renders only a reduced quantity of items, adding and removing elements while scrolling. I also added login in the context to store the list and each cocktail details to avoid fetching the data from the server each time its required.
+
 
 D) Would you like to add any further comments or observations?
+
+## How to run
+I used expo to set up the application. Navigate to folder 'cocktails' and run the command expo-start to see the application running in any device. More instructions here: https://expo.io/learn.
+
