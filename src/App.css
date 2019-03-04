@@ -1,0 +1,41 @@
+.App {
+  text-align: left;
+  margin: 0px 20px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 50px;
+  padding: 5px;
+  color: white;
+  text-align: center;
+}
+
+.App-title {
+  font-size: 1.5em;
+  margin-bottom: 3rem;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.col-list {
+  padding: 15px;
+}
+
+.title-card-list {
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  color: black;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
