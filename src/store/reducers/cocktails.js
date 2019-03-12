@@ -5,6 +5,7 @@ import { handleActions } from 'redux-actions';
 import {
   getAllSuccess,
   getSuccess,
+  toggleFavorite,
   type TPayloads,
 } from '../actions/cocktails';
 
@@ -18,6 +19,7 @@ export type TStore = {
   // store here cocktails id to know it they
   // are fully loaded, needed when display cocktail details
   fullyLoadedItems: Array<string>,
+  itemsAsFavorite: {[string]: bool},
   getAllTimestamp: number,
   getTimestamp: number,
 };
@@ -26,6 +28,7 @@ export const initialState: TStore = {
   byId: {},
   allIds: [],
   fullyLoadedItems: [],
+  itemsAsFavorite: {},
   getAllTimestamp: 0,
   getTimestamp: 0,
 };
@@ -34,6 +37,7 @@ export const reducer = handleActions<
   TStore,
   | getAllSuccess
   | getSuccess
+  | toggleFavorite
 >
 ({
   [getAllSuccess]: (
@@ -47,6 +51,10 @@ export const reducer = handleActions<
         [cur.id]: {
           ...cur,
         },
+      }), {}),
+      itemsAsFavorite: list.reduce((acc, cur) => ({
+        ...acc,
+        [cur.id]: false,
       }), {}),
       allIds: list.map(({ id }) => id),
       getAllTimestamp: timestamp,
@@ -73,6 +81,25 @@ export const reducer = handleActions<
       // dont add it twice
       fullyLoadedItems: fullyLoadedItems.includes(id) ? fullyLoadedItems : [ ...fullyLoadedItems, id ],
       getTimestamp: timestamp,
+    };
+  },
+
+  [toggleFavorite]: (
+    state: TStore,
+    { payload: { id } }: { payload: $PropertyType<TPayloads, 'toggleFavorite'> }
+  ): TStore => {
+    const {
+      itemsAsFavorite,
+    } = state;
+    if(!(id in state.byId) || !(id in itemsAsFavorite)) {
+      return state;
+    }
+    return {
+      ...state,
+      itemsAsFavorite: {
+        ...itemsAsFavorite,
+        [id]: !itemsAsFavorite[id],
+      },
     };
   },
   

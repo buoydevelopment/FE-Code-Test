@@ -14,6 +14,7 @@ export type TDispatchers = {
   get: ({ id: string, failures?: number }) => any,
   getTryAgain: () => any,
   getAbort: () => any,
+  toggleFavorite: ({ id: string }) => any,
 };
 
 export type TPayloads = {
@@ -25,7 +26,11 @@ export type TPayloads = {
     item: TCocktail,
     timestamp: number,
   },
+  toggleFavorite: {
+    id: string
+  },
 };
+
 
 export const {
   cocktails: {
@@ -43,7 +48,9 @@ export const {
     getFailure,
     getAbort,
     getTryAgain,
-    getTryAgainBuffer,   
+    getTryAgainBuffer,
+
+    toggleFavorite,
   },
 } = createActions({
   COCKTAILS: {
@@ -68,5 +75,7 @@ export const {
     GET_ABORT: undefined,
     GET_TRY_AGAIN: undefined,
     GET_TRY_AGAIN_BUFFER: undefined,
+
+    TOGGLE_FAVORITE: undefined,
   },
 });

@@ -3,7 +3,7 @@
 import React, { PureComponent } from 'react';
 import {
   StyleSheet,
-  View,
+  SafeAreaView,
   ScrollView,
 } from 'react-native';
 
@@ -91,20 +91,22 @@ export class Index extends PureComponent<Props, State> {
   style={styles.container}
   contentContainerStyle={styles.contentContainer}
 >
-  <NavBar
-    title={cocktailBrief}
-    onBack={this.onBack}
-  />
+<SafeAreaView style={styles.safeAreaViewContainer}>
+    <NavBar
+      title={cocktailBrief}
+      onBack={this.onBack}
+    />
 
-  {cocktail !== null &&
-  <Card
-    {...cocktail}
-  />
-  }
+    {cocktail !== null &&
+    <Card
+      {...cocktail}
+    />
+    }
 
-  <Preloader
-    show={!didLoad}
-  />
+    <Preloader
+      show={!didLoad}
+    />
+  </SafeAreaView>
 </ScrollView>
     );
   }
@@ -116,6 +118,9 @@ const styles = StyleSheet.create({
     backgroundColor: Style.blueColor,
   },
   contentContainer: {
+    flexGrow: 1,
+  },
+  safeAreaViewContainer: {
     flexGrow: 1,
   },
 });

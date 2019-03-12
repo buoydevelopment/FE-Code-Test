@@ -85,6 +85,8 @@ const styles = StyleSheet.create({
   ingredientContainer: {
 
   },
+  howtoContainer: {
+  },
   text: {
     color: Style.blackColor,
     fontSize: Style.fontSize,

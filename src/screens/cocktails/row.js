@@ -7,7 +7,9 @@ import {
   Text,
 } from 'react-native';
 
-import Image from 'react-native-fast-image'
+import Image from 'react-native-fast-image';
+
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import * as Style from '../../stylesheet';
 
@@ -22,12 +24,19 @@ import {
   type TDispatchers as TDispatchersNavigation,
 } from '../../store/actions/navigation';
 
+import {
+  toggleFavorite as toggleCocktailFavorite,
+  type TDispatchers as TDispatchersCocktails,
+} from '../../store/actions/cocktails';
+
 type OwnProps = {
   item: TCocktail,
+  isFavorite: bool,
 };
 
 type DispatchProps = {
   push: $PropertyType<TDispatchersNavigation, 'push'>,
+  toggleCocktailFavorite: $PropertyType<TDispatchersCocktails, 'toggleFavorite'>, 
 };
 
 type Props = OwnProps & DispatchProps;
@@ -35,6 +44,11 @@ type Props = OwnProps & DispatchProps;
 type State = void;
 
 export class Row extends PureComponent<Props, State> {
+
+  addToFavorite = (): void => {
+    const { id } = this.props.item;
+    this.props.toggleCocktailFavorite({ id });
+  }
 
   gotoCocktail = (): void => {
     const {
@@ -58,6 +72,7 @@ export class Row extends PureComponent<Props, State> {
         image,
         brief,
       },
+      isFavorite,
     } = this.props;
     return (
 <View style={styles.wrapper}>
@@ -65,14 +80,26 @@ export class Row extends PureComponent<Props, State> {
     style={styles.container}
     onPress={this.gotoCocktail}
   >
-    <View style={styles.descContainer}>
-      <Text
-        ellipsizeMode='tail'
-        numberOfLines={1}
-        style={styles.briefText}
+    <View>
+      <View style={styles.descContainer}>
+        <Text
+          ellipsizeMode='tail'
+          numberOfLines={1}
+          style={styles.briefText}
+        >
+          {brief}
+        </Text>
+      </View>
+      <TouchableOpacity
+        style={styles.favoriteButton}
+        onPress={this.addToFavorite}
       >
-        {brief}
-      </Text>
+        <Icon
+          name={isFavorite ? "heart" : "heart-o"}
+          size={Style.fontSize}
+          color={Style.blueColor}
+        />
+      </TouchableOpacity>
     </View>
     <Image
       source={{ uri: image }}
@@ -102,7 +129,6 @@ const styles = StyleSheet.create({
     height: Style.cocktails.cardHeight,
   },
   descContainer: {
-    flex: 1,
   },
   briefText: {
     fontSize: Style.fontSizeBig,
@@ -112,6 +138,9 @@ const styles = StyleSheet.create({
     width: Style.cocktails.cardImageWidth,
     height: Style.cocktails.cardImageHeight,
     borderRadius: Style.cocktails.borderRadius,
+  },
+  favoriteButton: {
+    marginTop: 10,
   },
 });
 
@@ -128,10 +157,17 @@ import {
   type TStore
 } from '../../store/reducers';
 
-export const mapStateToProps = null;
+export const mapStateToProps = (
+  { cocktails: { itemsAsFavorite } }: TStore,
+  { item }: OwnProps,
+): OwnProps => ({
+  item,
+  isFavorite: item.id in itemsAsFavorite ? itemsAsFavorite[item.id] : false,
+});
 
 export const mapDispatchToProps = (dispatch: Dispatch<any>): DispatchProps => bindActionCreators({
   push,
+  toggleCocktailFavorite,
 }, dispatch);
 
 const connectedComponent = connect(

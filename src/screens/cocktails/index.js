@@ -4,6 +4,7 @@ import React, { PureComponent } from 'react';
 import {
   StyleSheet,
   View,
+  SafeAreaView,
 } from 'react-native';
 
 import EventEmitter from 'EventEmitter';
@@ -135,7 +136,7 @@ export class Index extends PureComponent<Props, State> {
       didLoad,
     } = this.state;
     return (
-<View style={styles.container}>
+<SafeAreaView style={styles.container}>
   <NavBar
     title="Random drinks 0.1"
     onSearch={this.onSearch}
@@ -150,7 +151,7 @@ export class Index extends PureComponent<Props, State> {
   <Preloader
     show={!didLoad}
   />
-</View>
+</SafeAreaView>
     );
   }
 

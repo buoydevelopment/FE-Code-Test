@@ -141,7 +141,7 @@ export default class NavBar extends PureComponent<Props, State> {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Style.blueColor,
-    paddingTop: Platform.OS === 'ios' ? 20 : 10,
+    paddingTop: Platform.OS === 'ios' ? 0 : 10,
     paddingBottom: Platform.OS === 'ios' ? 10 : 10,
     paddingHorizontal: 10,
     justifyContent: 'space-between',
