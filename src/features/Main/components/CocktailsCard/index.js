@@ -1,41 +1,56 @@
-import React from "react";
+import React, { Fragment, PureComponent } from "react";
 import PropTypes from "prop-types";
-import { Image, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View
+} from "react-native";
+import Card from "../../../../components/Card";
 
-const CocktailsCard = ({ item }) => (
-  <View style={styles.container}>
-    <View style={styles.flex}>
-      <Text style={styles.title}>{item.strDrink}</Text>
-    </View>
-    <View style={styles.flex}>
-      <Image source={{ uri: item.strDrinkThumb }} style={styles.image} />
-    </View>
-  </View>
-);
+export default class CocktailsCard extends PureComponent {
+  onPress = () => {
+    const { id, title, onPress } = this.props;
+    onPress(id, title);
+  };
+
+  render() {
+    const { title, image } = this.props;
+    return (
+      <Card style={styles.card}>
+        <TouchableHighlight onPress={this.onPress}>
+          <View style={styles.container}>
+            <View style={styles.flex}>
+              <Text style={styles.title}>{title}</Text>
+            </View>
+            <View style={styles.flex}>
+              <Image source={{ uri: image }} style={styles.image} />
+            </View>
+          </View>
+        </TouchableHighlight>
+      </Card>
+    );
+  }
+}
 
 CocktailsCard.propTypes = {
-  item: PropTypes.shape({
-    idDrink: PropTypes.string.isRequired,
-    strDrink: PropTypes.string.isRequired,
-    strDrinkThumb: PropTypes.string.isRequired
-  }).isRequired
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  onPress: PropTypes.func.isRequired
 };
 
-export default CocktailsCard;
-
 const styles = StyleSheet.create({
+  card: {
+    height: 160,
+    marginVertical: 10
+  },
   container: {
     display: "flex",
     flexDirection: "row",
-    backgroundColor: "#fff",
-    height: 160,
     padding: 10,
-    marginVertical: 10,
-    borderRadius: 3,
-    elevation: 5,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.3,
-    shadowRadius: 3
+    backgroundColor: "#fff"
   },
   flex: {
     flex: 1

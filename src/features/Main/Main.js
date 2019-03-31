@@ -26,6 +26,19 @@ export default class Main extends Component {
     return item.idDrink;
   }
 
+  onPress = (id, title) => {
+    this.props.navigation.navigate("CocktailDetails", { id, title });
+  }
+
+  renderItem = ({ item }) => (
+    <CocktailsCard
+      id={item.idDrink}
+      onPress={this.onPress}
+      title={item.strDrink}
+      image={item.strDrinkThumb}
+    />
+  );
+
   render() {
     const { cocktails, isLoading } = this.state;
 
@@ -43,7 +56,7 @@ export default class Main extends Component {
             style={styles.flatList}
             contentContainerStyle={styles.flatListContent}
             data={cocktails}
-            renderItem={CocktailsCard}
+            renderItem={this.renderItem}
             keyExtractor={this.cocktailsKeyExtractor}
           />
         ) : (
