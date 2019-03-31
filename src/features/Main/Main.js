@@ -1,12 +1,56 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
+import { getCocktails } from "../../api/cocktails";
+import Loader from "../../components/Loader";
+import CocktailsCard from "./components/CocktailsCard";
 
-export default class App extends Component {
+export default class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cocktails: [],
+      isLoading: true
+    };
+  }
+
+  async componentDidMount() {
+    try {
+      const cocktails = await getCocktails();
+      this.setState({ cocktails, isLoading: false });
+    } catch (err) {
+      this.setState({ isLoading: false });
+    }
+  }
+
+  cocktailsKeyExtractor(item) {
+    return item.idDrink;
+  }
+
   render() {
+    const { cocktails, isLoading } = this.state;
+
+    if (isLoading)
+      return (
+        <View style={styles.container}>
+          <Loader />
+        </View>
+      );
+
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
+        {cocktails.length ? (
+          <FlatList
+            style={styles.flatList}
+            contentContainerStyle={styles.flatListContent}
+            data={cocktails}
+            renderItem={CocktailsCard}
+            keyExtractor={this.cocktailsKeyExtractor}
+          />
+        ) : (
+          <Text style={styles.text}>
+            {"We couldn't find any cocktails.\nCome back later!"}
+          </Text>
+        )}
       </View>
     );
   }
@@ -17,16 +61,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#F5FCFF"
+    backgroundColor: "#b3ecff"
   },
-  welcome: {
+  flatList: {
+    width: "100%"
+  },
+  flatListContent: {
+    padding: 20
+  },
+  text: {
     fontSize: 20,
     textAlign: "center",
     margin: 10
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
   }
 });
