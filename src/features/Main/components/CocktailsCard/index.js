@@ -25,7 +25,7 @@ export default class CocktailsCard extends PureComponent {
               <Text style={styles.title}>{title}</Text>
             </View>
             <View style={styles.flex}>
-              <Image source={{ uri: image }} style={styles.image} />
+              <Image source={{ uri: image }} style={styles.image} resizeMode="stretch" />
             </View>
           </View>
         </TouchableHighlight>
@@ -43,7 +43,7 @@ CocktailsCard.propTypes = {
 
 const styles = StyleSheet.create({
   card: {
-    height: 160,
+    height: 170,
     marginVertical: 10
   },
   container: {

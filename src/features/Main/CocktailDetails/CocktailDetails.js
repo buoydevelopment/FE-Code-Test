@@ -6,7 +6,7 @@ import Card from "../../../components/Card";
 const CocktailDetails = ({ cocktail }) => (
   <Card style={styles.card}>
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
-      <Image source={{ uri: cocktail.strDrinkThumb }} style={styles.image} />
+      <Image source={{ uri: cocktail.strDrinkThumb }} style={styles.image} resizeMode="stretch" />
       <View style={styles.section}>
         <Text style={styles.title}>Ingredients</Text>
         {cocktail.ingredients.map(([measure, ingredient], index) => (
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: 250,
+    height: 270,
     borderRadius: 3
   },
   section: {
