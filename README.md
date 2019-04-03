@@ -1,3 +1,32 @@
+## Please answer the following questions once you finish codding:
+
+A) Describe the strategy used to consume the API endpoints and the data management.
+
+In order to consume the API I've used node's "fetch".
+To avoid making unnecesary requests I simply added the fetch calls inside componentWillMount functions and saved the responses in the state.
+
+I avoided using more complex data stores such as Redux, given the simplicity, again, of the task at hand.
+
+Writing reducers, actions, etc. For such a simple task would definitely be an overkill.
+
+B) Explain which library was used for the routing and why. Would you use the same for a consumer facing app targeting thousands of users? Why?
+
+I used React Navigation given its simplicity and ease of use.
+
+I would surely use React Native Navigation if the app targeted thousands of users, the main reason of this choice would be to leverage the use of native modules in iOS and Android which provide better performance.
+
+
+C) Have you used any strategy to optimize the performance of the list generated for the first feature?
+
+Yes, I used a FlatList which only renders elements that are currently showing on the screen, not all the elements at once.
+
+
+D) Would you like to add any further comments or observations?
+
+No, only that the written instructions do not match exactly with the images displayed which can lead to a bit of confusion. But other than that all good!
+
+
+
 # Code Challenge
 
 ## Instructions:
@@ -12,15 +41,7 @@ Please clone the repository, complete the exercise, and submit a PR for us to re
 3. Create a Pull Request from `code-test` to `base` for us to review.
 
 
-## Please answer the following questions once you finish codding:
 
-A) Describe the strategy used to consume the API endpoints and the data management.
-
-B) Explain which library was used for the routing and why. Would you use the same for a consumer facing app targeting thousands of users? Why?
-
-C) Have you used any strategy to optimize the performance of the list generated for the first feature?
-
-D) Would you like to add any further comments or observations?
 
 
 ## Overview:
