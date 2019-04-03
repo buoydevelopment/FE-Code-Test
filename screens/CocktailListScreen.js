@@ -4,26 +4,21 @@ import CockatilList from '../components/CocktailList';
 
 export default class CocktailListScreen extends React.Component {
   static navigationOptions = {
-    title: null,
+    title: 'Random Drinks 0.1',
   };
 
   render() {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container}>
-          <Text style={styles.listHeader}>Random Drinks 0.1</Text>
-          <CockatilList>
-          </CockatilList>
+          <CockatilList {...this.props}/>
         </ScrollView>
       </View>
     );
-
-
   }
 }
 
 const styles = StyleSheet.create({
-  
   // Custom Styles
   listHeader: {
     color: 'white',

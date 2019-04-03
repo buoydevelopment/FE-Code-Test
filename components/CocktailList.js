@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
 import CocktailItem from './CocktailItem'
 
 
@@ -20,16 +20,27 @@ class CocktailList extends Component {
 	      console.error(error);
 	    });
 
+
+	    const navigate = this.props.navigation.navigate
+
 	}
 
-	renderCocktails(){
-		return this.state.cocktails.map( cocktail => <CocktailItem cocktail={cocktail} key={cocktail.idDrink} />  )
+	renderCocktail({item}){
+		return <CocktailItem onPress={ () => this.onPress(item) } cocktail={item} key={item.idDrink} />
+	}
+
+	onPress(cocktail){
+		this.props.navigation.navigate('CocktailDetail', {cocktail})
 	}
 
 	render () {
 		return (
 			<View>
-				{ this.renderCocktails() }
+				<FlatList
+          data={ this.state.cocktails }
+          renderItem={ this.renderCocktail.bind(this)}
+          keyExtractor={item => item.idDrink}
+        />
 			</View>
 		)
 	}

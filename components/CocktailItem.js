@@ -9,7 +9,7 @@ class CocktailItem extends Component {
 
 	render() {
 		return (
-			<TouchableOpacity style={styles.containerStyle} onPress={() => navigate('CocktailDetail', {id: this.props.cocktail.id})}>
+			<TouchableOpacity style={styles.containerStyle} onPress={this.props.onPress}>
 			  <View style={{flex:3}} >
 			  	<Text style={styles.drinkName} > {this.props.cocktail.strDrink} </Text>
 			  </View>
