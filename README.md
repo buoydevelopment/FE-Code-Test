@@ -80,8 +80,18 @@ Thank you and good luck!
 
 A) Describe the strategy used to consume the API endpoints and the data management.
 
+To consume the API endpoints, i used redux-saga, which aids on making asynchronous api calls, letting the aplication to continue working while the data is fetched. After that, a new action may be dispatched from the saga to update the store with the new data.
+To manage the data i used redux which helps managing the state because of the "one source of truth" principle and paired with redux dev tools, they give great control over the store and allow to be very aware of the state.
+
 B) Explain which library was used for the routing and why. Would you use the same for a consumer facing app targeting thousands of users? Why?
+
+The library used was React-Navigation because it's a very popular library for routing, it's a very powerful library, but still simple to use, and to configure in comparison to other libraries like React-Native-Navigation.
+In case of an app targeting thousands of users, i would try with React-Native-Navigation, since lots of people claim that the "native" part makes the navigation more performant. This choice wouldn't be actually for the amount of users per se, but because with that amount of users it's more likely to find users with devices that would need a better performance to properly run the app. Also, if the app would have several screens, then it's also a good option to go for a more native navigation.
 
 C) Have you used any strategy to optimize the performance of the list generated for the first feature?
 
+To optimize the performance of the list, i used the react-native's FlatList Component, which can accept some useful properties, for example to limit the amount of items rendered, or to know what to render when the list is empty, to name some. Also, it doesn't preserve the items that are not being displayed when scrolling. And since it's a PureComponent, it helps to the performance by not doing unnecesary re-renders.
+
 D) Would you like to add any further comments or observations?
+
+In a real world situation, i would have asked to the backend if it's possible to make some changes to the endpoints. For example, asking them to add the ingredients in the first feature, or changing the way the ingredients come in the second feature, so the app has to do less computing on the device.
