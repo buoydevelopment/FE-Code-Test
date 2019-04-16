@@ -5,6 +5,11 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-    return { ...state }
+    switch (action.type) {
+        case UPDATE_DRINKS:
+            return { drinks: action.drinks }
+        default:
+            return { ...state }
+    }
 }
 export default reducer;
