@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { getDrinks } from '../../store/actions'
 
@@ -10,17 +10,33 @@ class DrinksScreen extends Component {
     }
 
     render() {
+        console.log(this.props.drinks)
+
         return (
-            <View>
-                <Text>Drinks Here</Text>
-            </View>
+            <FlatList
+                style={styles.listContainer}
+                data={this.props.drinks}
+                renderItem={(info) => {
+                    return (
+                        <Text>{info.item.name}</Text>
+                    )
+                }}
+            />
         );
     }
 }
 
+const styles = StyleSheet.create({
+    listContainer: {
+        width: "100%"
+    }
+});
+
 const mapStateToProps = state => {
     return {
-        drinks: state.drinks
+        drinks: state.drinks.items.map((item) => {
+            return {key:item.idDrink, name:item.strDrink}
+        })
     };
 };
 

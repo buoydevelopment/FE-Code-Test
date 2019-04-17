@@ -1,13 +1,13 @@
 import { UPDATE_DRINKS } from "../actions/actionTypes";
 
 const initialState = {
-    drinks: [],
+    items: [],
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_DRINKS:
-            return { drinks: action.drinks }
+            return { items: action.drinks }
         default:
             return { ...state }
     }
