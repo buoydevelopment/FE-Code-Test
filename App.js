@@ -1,10 +1,16 @@
-import DrinksScreen from "./src/screens/Drinks/drinks";
+import DrinksScreen from "./src/screens/Drinks/Drinks";
+import DrinkDetailScreen from "./src/screens/DrinkDetail/DrinkDetail";
+
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: DrinksScreen
-  }
-});
+const AppNavigator = createStackNavigator(
+    {
+      Home: DrinksScreen,
+      Details: DrinkDetailScreen
+    },
+    {
+      initialRouteName: "Home"
+    }
+);
 
 export default createAppContainer(AppNavigator);

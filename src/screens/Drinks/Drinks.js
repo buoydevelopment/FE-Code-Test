@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
+import DrinkCell from '../../components/DrinkCell/DrinkCell';
 import { connect } from 'react-redux';
-import { getDrinks } from '../../store/actions'
+import { getDrinks } from '../../store/actions';
 
 class DrinksScreen extends Component {
 
     componentDidMount() {
-        this.props.onComponentLoad();
+        this.props.onComponentLoad()
+    }
+
+    didSelectDrink(drinkId) {
+        this.props.navigation.navigate('Details', {drinkId: drinkId})
     }
 
     render() {
-        console.log(this.props.drinks)
-
         return (
             <FlatList
                 style={styles.listContainer}
                 data={this.props.drinks}
                 renderItem={(info) => {
                     return (
-                        <Text>{info.item.name}</Text>
+                        <DrinkCell title={info.item.name} onPress={() => {this.didSelectDrink(info.item.key)}}/>
                     )
                 }}
             />
