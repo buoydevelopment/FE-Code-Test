@@ -2,9 +2,7 @@ import React from 'react';
 import { AppRegistry } from 'react-native';
 import { Provider } from 'react-redux';
 import AppContainer from './App';
-import configureStore from './src/store/configureStore';
-
-const store = configureStore();
+import store from './src/store/store';
 
 const RNRedux = () => (
     <Provider store={store}>

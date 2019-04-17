@@ -6,12 +6,21 @@ import { getDrinks } from '../../store/actions';
 
 class DrinksScreen extends Component {
 
+    static navigationOptions = ({ navigation }) => ({
+        title: "Random Drinks 0.1",
+        headerBackTitle: "Back"
+    });
+
     componentDidMount() {
         this.props.onComponentLoad()
     }
 
     didSelectDrink(drinkId) {
-        this.props.navigation.navigate('Details', {drinkId: drinkId})
+        let drink = this.props.drinks.find((item) => {
+            return item.key == drinkId
+        })
+    
+        this.props.navigation.navigate('Details', {drinkId: drinkId, drink: drink})
     }
 
     render() {
@@ -39,7 +48,8 @@ const mapStateToProps = state => {
     return {
         drinks: state.drinks.items.map((item) => {
             return {key:item.idDrink, name:item.strDrink}
-        })
+        }),
+        selected: state.selected
     };
 };
 

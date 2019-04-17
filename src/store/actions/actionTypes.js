@@ -1,1 +1,2 @@
 export const UPDATE_DRINKS = 'UPDATE_DRINKS';
+export const SELECT_DRINK = 'SELECT_DRINK';

@@ -1,1 +1,1 @@
-export { getDrinks } from "./drinks";
+export { getDrinks, getDrinkDetail } from "./drinks";
