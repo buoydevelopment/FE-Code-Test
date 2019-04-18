@@ -17,9 +17,9 @@ class DrinksScreen extends Component {
 
     didSelectDrink(drinkId) {
         let item = this.props.drinks.find((item) => {
-            return item.key == drinkId
+            return item.idDrink == drinkId
         })
-        this.props.navigation.navigate('Details', {drinkId: drinkId, drink: item.drink})
+        this.props.navigation.navigate('Details', {drinkId: drinkId, drink: item})
     }
 
     render() {
@@ -29,9 +29,10 @@ class DrinksScreen extends Component {
                 data={this.props.drinks}
                 onRefresh={() => this.props.onComponentLoad()}
                 refreshing={this.props.isLoading}
+                keyExtractor={(item) => item.idDrink}
                 renderItem={(info) => {
                     return (
-                        <DrinkCell drink={info.item.drink} onPress={() => {this.didSelectDrink(info.item.key)}}/>
+                        <DrinkCell drink={info.item} onPress={() => {this.didSelectDrink(info.item.idDrink)}}/>
                     )
                 }}
             />
@@ -48,9 +49,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
     return {
-        drinks: state.drinks.items.map((item) => {
-            return {key: item.idDrink, drink: item}
-        }),
+        drinks: state.drinks.items,
         isLoading: state.drinks.isLoadingDrinks
     };
 };
