@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import {Text, View, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import IngredientsList from '../../components/IngredientsList'
 
 class DrinkCell extends Component {
-
-    ingredientList() {
-        let ingredients = this.props.drink.ingredients.slice(0,2)
-        let list = ingredients.map((ingredient, index) => {
-            return <Text key={index} style={styles.ingredient}>{"\u2022"} {ingredient}</Text>
-        });
-        return list
-    }
 
     moreIngredients() {
         let totalIngredients = this.props.drink.ingredients.length
@@ -26,7 +19,7 @@ class DrinkCell extends Component {
                  <View style={styles.cellContainer}>
                     <View style={styles.labels}>
                         <Text style={styles.header}>{this.props.drink.strDrink}</Text>
-                        { this.ingredientList() } 
+                        <IngredientsList style={styles.ingredient} drink={this.props.drink} limit="2" displayDots/>
                         { this.moreIngredients() }
                     </View>
                     <View style={styles.imageContainer}>

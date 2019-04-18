@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, ScrollView, Text, StyleSheet, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { getDrinkDetail } from '../../store/actions';
+import IngredientsList from '../../components/IngredientsList'
 
 class DrinkDetailScreen extends Component {
 
@@ -16,18 +17,6 @@ class DrinkDetailScreen extends Component {
         this.props.onComponentLoad(drinkId)
     }
 
-    ingredientList() {
-        let list = this.props.drink.ingredients.map((ingredient, index) => {
-            measureText = ""
-            let measure = this.props.drink.measures[index]
-            if (measure) {
-                measureText = measure + " - "
-            }
-            return <Text key={index} style={styles.ingredient}>{measureText}{ingredient}</Text>
-        });
-        return list
-    }
-
     render() {
         if (this.props.drink) {
             return (
@@ -37,7 +26,7 @@ class DrinkDetailScreen extends Component {
                         <View style={styles.imageContainer}>
                            <Image style={styles.image} source={{uri: this.props.drink.strDrinkThumb}} />
                         </View>
-                        { this.ingredientList() } 
+                        <IngredientsList style={styles.ingredient} drink={this.props.drink} displayMeasures />
                         <Text style={styles.instructionsTitle}>{"\u2022"} How to prepare</Text>
                         <Text style={styles.instructions}>{this.props.drink.strInstructions}</Text>
                     </View>

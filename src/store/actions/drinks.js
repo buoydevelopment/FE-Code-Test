@@ -84,7 +84,7 @@ export const getDrinkDetail = (drinkId) => {
         return item.idDrink == drinkId
     })
     
-    // TODO: If doen't exist in the state I should call API
+    // TODO: If doesn't exist in the state I should call API
 
     return {
         type: SELECT_DRINK,
