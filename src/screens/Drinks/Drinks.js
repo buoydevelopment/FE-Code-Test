@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
-import DrinkCell from '../../components/DrinkCell/DrinkCell';
+import { StyleSheet, FlatList } from 'react-native';
+import DrinkCell from './DrinkCell';
 import { connect } from 'react-redux';
 import { getDrinks } from '../../store/actions';
 
@@ -8,7 +8,7 @@ class DrinksScreen extends Component {
 
     static navigationOptions = ({ navigation }) => ({
         title: "Random Drinks 0.1",
-        headerBackTitle: "Back",
+        headerBackTitle: null,
     });
 
     componentDidMount() {
@@ -16,11 +16,10 @@ class DrinksScreen extends Component {
     }
 
     didSelectDrink(drinkId) {
-        let drink = this.props.drinks.find((item) => {
+        let item = this.props.drinks.find((item) => {
             return item.key == drinkId
         })
-    
-        this.props.navigation.navigate('Details', {drinkId: drinkId, drink: drink})
+        this.props.navigation.navigate('Details', {drinkId: drinkId, drink: item.drink})
     }
 
     render() {

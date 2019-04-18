@@ -7,7 +7,7 @@ class DrinkDetailScreen extends Component {
 
     static navigationOptions = ({ navigation }) => {
         return {
-            title: navigation.getParam('drink').strDrink || 'Loading Drink'    
+            title: navigation.getParam('drink', {strDrink: 'Loading Drinks...'} ).strDrink
         };
     };
 
@@ -88,15 +88,13 @@ const styles = StyleSheet.create({
     imageContainer: {
         flex: 1, 
         flexDirection: 'column',
-        alignItems: 'flex-end',
         width: "100%",
         height: 250,
-        borderRadius: 5,
         marginBottom: 15,
     },
     image: {
         width: "100%",
-        height: 250,
+        height: "100%",
         borderRadius: 5
     },
     ingredient: {

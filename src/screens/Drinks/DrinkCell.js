@@ -65,9 +65,9 @@ const styles = StyleSheet.create({
     imageContainer: {
         flex: 1, 
         flexDirection: 'column',
-        alignItems: 'flex-end',
-        width: 120,
-        height: 120,
+        alignItems: 'flex-end', 
+        width: 110,
+        height: 130,
         padding: 15
     },
     image: {
