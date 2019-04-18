@@ -1,39 +1,21 @@
 import { UPDATE_DRINKS, SELECT_DRINK } from './actionTypes';
 import store from '../store';
 
-export const getDrinks = () => {
-
-    return dispatch => {
-        let url = "http://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass"
-
-        fetch(url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(res => res.json()
-        ).then(parsedRes => {
-            if (parsedRes.drinks) {
-                updateDetailFor(parsedRes.drinks, dispatch)                
-            } else {
-                console.log("There are no drinks");
-                dispatch(updateDrinks([]))
-            }
-        }).catch(err => {
-            console.log(err);
-            // TODO: maybe dispatch(errorLoadingDrinks()) ??
-        });
-    }
-};
-
 const promiseForDrinkDetail = (drinkId) => {
-    let url = "http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+drinkId
+    return promiseFor("http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+drinkId)
+}
+
+const promiseFor = (url) => {
     return fetch(url, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
         }
-    }).then(res => res.json())
+    }).then(res => res.json()
+    ).catch(err => {
+        console.log(err);
+    });
+
 }
 
 const buildIngredientsFor = drink => {
@@ -76,6 +58,22 @@ const updateDetailFor = (drinks, dispatch) => {
         dispatch(updateDrinks(dinks))
       });
 }
+
+export const getDrinks = () => {
+
+    return dispatch => {
+        promiseFor("http://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass")
+        .then(parsedRes => {
+            if (parsedRes.drinks) {
+                updateDetailFor(parsedRes.drinks, dispatch)                
+            } else {
+                console.log("There are no drinks");
+                dispatch(updateDrinks([]))
+            }
+        })
+    }
+
+};
 
 export const getDrinkDetail = (drinkId) => {
     // TODO: I should not access the state here, Drinks should be stored in a global cache, something like realm
