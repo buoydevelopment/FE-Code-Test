@@ -8,7 +8,7 @@ class DrinksScreen extends Component {
 
     static navigationOptions = ({ navigation }) => ({
         title: "Random Drinks 0.1",
-        headerBackTitle: "Back"
+        headerBackTitle: "Back",
     });
 
     componentDidMount() {
@@ -30,7 +30,7 @@ class DrinksScreen extends Component {
                 data={this.props.drinks}
                 renderItem={(info) => {
                     return (
-                        <DrinkCell title={info.item.name} onPress={() => {this.didSelectDrink(info.item.key)}}/>
+                        <DrinkCell drink={info.item.drink} onPress={() => {this.didSelectDrink(info.item.key)}}/>
                     )
                 }}
             />
@@ -40,16 +40,16 @@ class DrinksScreen extends Component {
 
 const styles = StyleSheet.create({
     listContainer: {
-        width: "100%"
+        width: "100%",
+        backgroundColor: '#53BCD0',
     }
 });
 
 const mapStateToProps = state => {
     return {
         drinks: state.drinks.items.map((item) => {
-            return {key:item.idDrink, name:item.strDrink}
-        }),
-        selected: state.selected
+            return {key:item.idDrink, drink:item}
+        })
     };
 };
 

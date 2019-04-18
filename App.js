@@ -9,7 +9,13 @@ const AppNavigator = createStackNavigator(
       Details: DrinkDetailScreen
     },
     {
-      initialRouteName: "Home"
+      initialRouteName: "Home",
+      defaultNavigationOptions: {
+        headerStyle: {
+          backgroundColor: '#53BCD0',
+        },
+        headerTintColor: '#fff',
+      },
     }
 );
 
