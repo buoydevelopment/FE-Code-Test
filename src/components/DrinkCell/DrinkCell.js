@@ -6,7 +6,7 @@ class DrinkCell extends Component {
     ingredientList() {
         let ingredients = this.props.drink.ingredients.slice(0,2)
         let list = ingredients.map((ingredient, index) => {
-            return <Text key={index} style={styles.ingredients}>{"\u2022 "}{ingredient}</Text>
+            return <Text key={index} style={styles.ingredient}>{"\u2022"} {ingredient}</Text>
         });
         return list
     }
@@ -81,10 +81,9 @@ const styles = StyleSheet.create({
         color: "#6F6F6F",
         marginBottom: 10,
     },
-    ingredients: {
+    ingredient: {
         fontSize: 14,
         color: "#6F6F6F",
-        
     },
     moreIngredients: {
         fontSize: 13,

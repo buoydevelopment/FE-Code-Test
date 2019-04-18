@@ -48,6 +48,18 @@ const buildIngredientsFor = drink => {
         }
     }
 }
+const buildMeasuresFor = drink => {
+    drink.measures = []
+
+    for (let index = 1; index <= 15; index++) {
+        let key = "strMeasure"+index
+        if (drink[key] !== undefined && 
+            drink[key] !== "" &&
+            drink[key] !== null) {
+            drink.measures.push(drink[key])
+        }
+    }
+}
 
 const updateDetailFor = (drinks, dispatch) => {
     let  promises = drinks.map((drink) => {
@@ -58,6 +70,7 @@ const updateDetailFor = (drinks, dispatch) => {
         let dinks = values.map((item) => {
             let drink = item.drinks[0]
             buildIngredientsFor(drink)
+            buildMeasuresFor(drink)
             return drink
         })
         dispatch(updateDrinks(dinks))

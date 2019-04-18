@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
     return {
         drinks: state.drinks.items.map((item) => {
-            return {key:item.idDrink, drink:item}
+            return {key: item.idDrink, drink: item}
         })
     };
 };
