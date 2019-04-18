@@ -27,6 +27,8 @@ class DrinksScreen extends Component {
             <FlatList
                 style={styles.listContainer}
                 data={this.props.drinks}
+                onRefresh={() => this.props.onComponentLoad()}
+                refreshing={this.props.isLoading}
                 renderItem={(info) => {
                     return (
                         <DrinkCell drink={info.item.drink} onPress={() => {this.didSelectDrink(info.item.key)}}/>
@@ -48,7 +50,8 @@ const mapStateToProps = state => {
     return {
         drinks: state.drinks.items.map((item) => {
             return {key: item.idDrink, drink: item}
-        })
+        }),
+        isLoading: state.drinks.isLoadingDrinks
     };
 };
 

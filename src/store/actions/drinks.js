@@ -1,4 +1,4 @@
-import { UPDATE_DRINKS, SELECT_DRINK } from './actionTypes';
+import { UPDATE_DRINKS, SELECT_DRINK, LOADING_DRINKS } from './actionTypes';
 import store from '../store';
 
 const promiseForDrinkDetail = (drinkId) => {
@@ -62,6 +62,8 @@ const updateDetailFor = (drinks, dispatch) => {
 export const getDrinks = () => {
 
     return dispatch => {
+        dispatch(loadingDrinks(true))
+        
         promiseFor("http://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass")
         .then(parsedRes => {
             if (parsedRes.drinks) {
@@ -94,5 +96,12 @@ export const updateDrinks = (drinks) => {
     return {
         type: UPDATE_DRINKS,
         drinks: drinks
+    };
+};
+
+export const loadingDrinks = (isLoading) => {
+    return {
+        type: LOADING_DRINKS,
+        isLoading: isLoading
     };
 };
