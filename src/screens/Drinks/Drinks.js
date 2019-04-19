@@ -26,21 +26,27 @@ class DrinksScreen extends Component {
         navigation.navigate('Details', {drinkId: drinkId, drink: item});
     }
 
+    onRefresh = () => this.props.onComponentLoad();
+
+    keyExtractor = (drink) => drink.idDrink;
+
+    renderItem = (info) => {
+        return (
+            <DrinkCell drink={info.item} onPress={() => {this.didSelectDrink(info.item.idDrink)}}/>
+        )
+    };
+
     render() {
-        const { drinks, isLoading, onComponentLoad } = this.props;
+        const { drinks, isLoading } = this.props;
 
         return (
             <FlatList
                 style={styles.listContainer}
                 data={drinks}
-                onRefresh={() => onComponentLoad()}
+                onRefresh={this.onRefresh}
                 refreshing={isLoading}
-                keyExtractor={(drink) => drink.idDrink}
-                renderItem={(info) => {
-                    return (
-                        <DrinkCell drink={info.item} onPress={() => {this.didSelectDrink(info.item.idDrink)}}/>
-                    )
-                }}
+                keyExtractor={this.keyExtractor}
+                renderItem={this.renderItem}
             />
         );
     }

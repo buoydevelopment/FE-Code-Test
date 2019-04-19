@@ -19,7 +19,7 @@ class IngredientsList extends Component {
             ingredients = ingredients.slice(0,limit);
         }
 
-        let list = ingredients.map((ingredient, index) => {
+        const list = ingredients.map((ingredient, index) => {
             finalText = "";
             
             if (displayDots) {
@@ -27,7 +27,7 @@ class IngredientsList extends Component {
             }
 
             if (displayMeasures) {
-                let measure = drink.measures[index];
+                const measure = drink.measures[index];
                 if (measure) {
                     finalText = measure + " - ";
                 }

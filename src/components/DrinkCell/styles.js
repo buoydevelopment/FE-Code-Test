@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import colors from '../../Utils/colors';
 
 const styles = StyleSheet.create({
     cellContainer: {
@@ -40,16 +41,16 @@ const styles = StyleSheet.create({
     header: {
         fontSize: 22,
         fontWeight: 'bold',
-        color: "#6F6F6F",
+        color: colors.defaultTextColor,
         marginBottom: 10,
     },
     ingredient: {
         fontSize: 14,
-        color: "#6F6F6F",
+        color: colors.defaultTextColor,
     },
     moreIngredients: {
         fontSize: 13,
-        color: "#6F6F6F",
+        color: colors.defaultTextColor,
         marginTop: 5,
     }
 });

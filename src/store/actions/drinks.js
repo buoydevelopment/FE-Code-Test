@@ -23,9 +23,7 @@ const buildIngredientsFor = drink => {
 
     for (let index = 1; index <= 15; index++) {
         let key = "strIngredient"+index
-        if (drink[key] !== undefined && 
-            drink[key] !== "" &&
-            drink[key] !== null) {
+        if (drink[key]) {
             drink.ingredients.push(drink[key])
         }
     }
@@ -35,9 +33,7 @@ const buildMeasuresFor = drink => {
 
     for (let index = 1; index <= 15; index++) {
         let key = "strMeasure"+index
-        if (drink[key] !== undefined && 
-            drink[key] !== "" &&
-            drink[key] !== null) {
+        if (drink[key]) {
             drink.measures.push(drink[key])
         }
     }
