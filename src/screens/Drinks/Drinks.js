@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, FlatList } from 'react-native';
+import { FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import DrinkCell from './DrinkCell';
 import { getDrinks } from '../../store/actions';
+import styles from './styles';
+import DrinkCell from '../../components/DrinkCell/DrinkCell';
 
 class DrinksScreen extends Component {
 
@@ -39,13 +40,6 @@ class DrinksScreen extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    listContainer: {
-        width: "100%",
-        backgroundColor: '#53BCD0',
-    }
-});
 
 const mapStateToProps = state => {
     return {

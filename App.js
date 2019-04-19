@@ -1,19 +1,10 @@
 import React from 'react';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import { Image, StyleSheet } from 'react-native';
+import { Image } from 'react-native';
+import { styles, backImage } from './src/Utils/navigation';
+import colors from './src/Utils/colors';
 import DrinksScreen from './src/screens/Drinks/Drinks';
 import DrinkDetailScreen from './src/screens/DrinkDetail/DrinkDetail';
-import backImage from './src/assets/back-arrow.png';
-
-
-const styles = StyleSheet.create({
-  myCustomHeaderBackImage: {
-    height: 21,
-    width: 27,
-    marginLeft: 12,
-    resizeMode: 'contain',
-  },
-});
 
 const AppNavigator = createStackNavigator(
     {
@@ -24,10 +15,10 @@ const AppNavigator = createStackNavigator(
       initialRouteName: "Home",
       defaultNavigationOptions: {
         headerStyle: {
-          backgroundColor: '#53BCD0',
+          backgroundColor: colors.mainAppColor,
           borderBottomWidth: 0,
         },
-        headerTintColor: '#FFF',
+        headerTintColor: colors.headerTintColor,
         headerBackImage: (<Image style={styles.myCustomHeaderBackImage} source={backImage}/>)
       },
     }
