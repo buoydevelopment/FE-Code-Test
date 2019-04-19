@@ -14,6 +14,9 @@ export const getDrinks = () => {
                 console.log("There are no drinks");
                 dispatch(updateDrinks([]))
             }
+        }).catch(err => {
+            console.log(err)
+            dispatch(updateDrinks([]))
         });
     };
 };

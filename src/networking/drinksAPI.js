@@ -1,6 +1,22 @@
-class DrinksAPI {
+class BaseAPI {
+    constructor(base){
+        this.base = base;
+    }
+
+    getURL(url) {
+        return fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(res => res.json());
+    }
+
+}
+
+class DrinksAPI extends BaseAPI {
     constructor(){
-        this.base = "http://www.thecocktaildb.com/api/json/v1/1/"
+        super("http://www.thecocktaildb.com/api/json/v1/1/");
     }
 
     getDrinks() {
@@ -28,15 +44,6 @@ class DrinksAPI {
         return this.getURL(this.base + "lookup.php?i=" + drinkId)
     }
 
-    getURL(url) {
-        return fetch(url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(res => res.json());
-    }
-    
     updateDetailFor(drinks) {
         return new Promise((resolve, reject) => {
     
