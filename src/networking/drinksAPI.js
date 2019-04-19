@@ -3,8 +3,8 @@ class BaseAPI {
         this.base = base;
     }
 
-    getURL(url) {
-        return fetch(url, {
+    getURL(endPoint) {
+        return fetch(this.base + endPoint.urlString(), {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -14,14 +14,41 @@ class BaseAPI {
 
 }
 
+class EndPoint {
+    constructor(path, params) {
+        this.path = path;
+        this.params = params;
+    }
+
+    urlString() {
+        const params = [];
+        for (let key in this.params) {
+            params.push(encodeURIComponent(key) + '=' + encodeURIComponent(this.params[key]));
+        }
+        return this.path + "?" + params.join('&');
+    }
+}
+
+class DrinksEndpoint extends EndPoint {
+    constructor() {
+        super("filter.php", {"g": "Cocktail_glass"})
+    }
+}
+
+class DrinkEndpoint extends EndPoint {
+    constructor(drinkId) {
+        super("lookup.php", {"i": drinkId})
+    }
+}
+
 class DrinksAPI extends BaseAPI {
-    constructor(){
+    constructor() {
         super("http://www.thecocktaildb.com/api/json/v1/1/");
     }
 
     getDrinks() {
         return new Promise((resolve, reject) => {
-            return this.getURL(this.base + "filter.php?g=Cocktail_glass")
+            return this.getURL(new DrinksEndpoint())
             .then(response => {
                 if (response.drinks) {
                     this.updateDetailFor(response.drinks)
@@ -41,7 +68,7 @@ class DrinksAPI extends BaseAPI {
     }
 
     getDrinkDetail(drinkId) {
-        return this.getURL(this.base + "lookup.php?i=" + drinkId)
+        return this.getURL(new DrinkEndpoint(drinkId))
     }
 
     updateDetailFor(drinks) {
