@@ -18,37 +18,28 @@ const promiseFor = (url) => {
 
 }
 
-const buildIngredientsFor = drink => {
-    drink.ingredients = []
+const buildArrayFor = (drink, fieldPrefix) => {
+    let array = []
 
     for (let index = 1; index <= 15; index++) {
-        let key = "strIngredient"+index
+        const key = fieldPrefix+index
         if (drink[key]) {
-            drink.ingredients.push(drink[key])
+            array.push(drink[key])
         }
     }
-}
-const buildMeasuresFor = drink => {
-    drink.measures = []
-
-    for (let index = 1; index <= 15; index++) {
-        let key = "strMeasure"+index
-        if (drink[key]) {
-            drink.measures.push(drink[key])
-        }
-    }
+    return array;
 }
 
 const updateDetailFor = (drinks, dispatch) => {
-    let  promises = drinks.map((drink) => {
+    let promises = drinks.map((drink) => {
         return promiseForDrinkDetail(drink.idDrink) 
     })
 
     Promise.all(promises).then(function(values) {
         let dinks = values.map((item) => {
             let drink = item.drinks[0]
-            buildIngredientsFor(drink)
-            buildMeasuresFor(drink)
+            drink.ingredients = buildArrayFor(drink, "strIngredient")
+            drink.measures = buildArrayFor(drink, "strMeasure")
             return drink
         })
         dispatch(updateDrinks(dinks))
