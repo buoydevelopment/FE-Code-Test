@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, ScrollView, Text, StyleSheet, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { getDrinkDetail } from '../../store/actions';
-import IngredientsList from '../../components/IngredientsList'
+import IngredientsList from '../../components/IngredientsList';
 
 class DrinkDetailScreen extends Component {
 

@@ -85,4 +85,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default DrinkCell
+export default DrinkCell;
