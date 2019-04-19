@@ -5,28 +5,31 @@ import IngredientsList from '../IngredientsList/IngredientsList';
 
 class DrinkCell extends Component {
 
-    static itemsLimit = 2
+    static itemsLimit = 2;
 
     moreIngredients() {
-        let totalIngredients = this.props.drink.ingredients.length
-        if (totalIngredients > DrinkCell.itemsLimit) {
+        const { drink } = this.props;
+        const ingredientsCount = drink.ingredients.length;
+        if (ingredientsCount > DrinkCell.itemsLimit) {
             return (
-                <Text style={styles.moreIngredients}>y {totalIngredients - DrinkCell.itemsLimit} ingredientes mas</Text>
+                <Text style={styles.moreIngredients}>y {ingredientsCount - DrinkCell.itemsLimit} ingredientes mas</Text>
             )    
         }
     }
 
     render() {
+        const { drink, onPress } = this.props;
+
         return (
-            <TouchableOpacity onPress={this.props.onPress}>
+            <TouchableOpacity onPress={onPress}>
                  <View style={styles.cellContainer}>
                     <View style={styles.labels}>
-                        <Text style={styles.header}>{this.props.drink.strDrink}</Text>
-                        <IngredientsList style={styles.ingredient} drink={this.props.drink} limit={DrinkCell.itemsLimit} displayDots/>
+                        <Text style={styles.header}>{drink.strDrink}</Text>
+                        <IngredientsList style={styles.ingredient} drink={drink} limit={DrinkCell.itemsLimit} displayDots/>
                         { this.moreIngredients() }
                     </View>
                     <View style={styles.imageContainer}>
-                       <Image style={styles.image} source={{uri: this.props.drink.strDrinkThumb}} />
+                       <Image style={styles.image} source={{uri: drink.strDrinkThumb}} />
                     </View>
                 </View>
             </TouchableOpacity>

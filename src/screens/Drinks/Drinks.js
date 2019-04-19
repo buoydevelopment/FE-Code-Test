@@ -13,23 +13,28 @@ class DrinksScreen extends Component {
     });
 
     componentDidMount() {
-        this.props.onComponentLoad()
+        const { onComponentLoad } = this.props;
+        onComponentLoad()
     }
 
     didSelectDrink(drinkId) {
-        let item = this.props.drinks.find((item) => {
-            return item.idDrink == drinkId
+        const { drinks, navigation } = this.props;
+
+        let item = drinks.find((item) => {
+            return item.idDrink == drinkId;
         })
-        this.props.navigation.navigate('Details', {drinkId: drinkId, drink: item})
+        navigation.navigate('Details', {drinkId: drinkId, drink: item});
     }
 
     render() {
+        const { drinks, isLoading, onComponentLoad } = this.props;
+
         return (
             <FlatList
                 style={styles.listContainer}
-                data={this.props.drinks}
-                onRefresh={() => this.props.onComponentLoad()}
-                refreshing={this.props.isLoading}
+                data={drinks}
+                onRefresh={() => onComponentLoad()}
+                refreshing={isLoading}
                 keyExtractor={(drink) => drink.idDrink}
                 renderItem={(info) => {
                     return (
@@ -44,7 +49,7 @@ class DrinksScreen extends Component {
 const mapStateToProps = state => {
     return {
         drinks: state.drinks.items,
-        isLoading: state.drinks.isLoadingDrinks
+        isLoading: state.drinks.isLoadingDrinks,
     };
 };
 

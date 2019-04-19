@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         shadowOffset: {
           height: 1,
-          width: 1
+          width: 1,
         }
     },
     imageContainer: {
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     image: {
         width: "100%",
         height: "100%",
-        borderRadius: 5
+        borderRadius: 5,
     },
     ingredient: {
         fontSize: 15,

@@ -9,27 +9,30 @@ class DrinkDetailScreen extends Component {
 
     static navigationOptions = ({ navigation }) => {
         return {
-            title: navigation.getParam('drink', {strDrink: 'Loading Drinks...'} ).strDrink
+            title: navigation.getParam('drink', {strDrink: 'Loading Drinks...'} ).strDrink,
         };
     };
 
     componentWillMount() {
-        const drinkId = this.props.navigation.getParam('drinkId', '')
-        this.props.onComponentLoad(drinkId)
+        const { navigation, onComponentLoad } = this.props;
+        const drinkId = navigation.getParam('drinkId', '');
+        onComponentLoad(drinkId);
     }
 
     render() {
-        if (this.props.drink) {
+        const { drink } = this.props;
+
+        if (drink) {
             return (
                 <ScrollView style={styles.scrollView}>
                 <View style={styles.detailContainer}>
                     <View style={styles.cardContainer}>
                         <View style={styles.imageContainer}>
-                           <Image style={styles.image} source={{uri: this.props.drink.strDrinkThumb}} />
+                           <Image style={styles.image} source={{uri: drink.strDrinkThumb}} />
                         </View>
-                        <IngredientsList style={styles.ingredient} drink={this.props.drink} displayMeasures />
+                        <IngredientsList style={styles.ingredient} drink={drink} displayMeasures />
                         <Text style={styles.instructionsTitle}>{"\u2022"} How to prepare</Text>
-                        <Text style={styles.instructions}>{this.props.drink.strInstructions}</Text>
+                        <Text style={styles.instructions}>{drink.strInstructions}</Text>
                     </View>
                 </View>
                 </ScrollView>
@@ -50,7 +53,7 @@ class DrinkDetailScreen extends Component {
 
 const mapStateToProps = state => {
     return {
-        drink: state.drinks.selected
+        drink: state.drinks.selected,
     };
 };
 
