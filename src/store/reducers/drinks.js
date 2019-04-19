@@ -1,4 +1,4 @@
-import { UPDATE_DRINKS, SELECT_DRINK, LOADING_DRINKS } from "../actions/actionTypes";
+import { UPDATE_DRINKS, SELECT_DRINK, LOADING_DRINKS } from '../actions/actionTypes';
 
 const initialState = {
     items: [],

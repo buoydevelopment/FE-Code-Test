@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, FlatList } from 'react-native';
-import DrinkCell from './DrinkCell';
 import { connect } from 'react-redux';
+import DrinkCell from './DrinkCell';
 import { getDrinks } from '../../store/actions';
 
 class DrinksScreen extends Component {
@@ -29,7 +29,7 @@ class DrinksScreen extends Component {
                 data={this.props.drinks}
                 onRefresh={() => this.props.onComponentLoad()}
                 refreshing={this.props.isLoading}
-                keyExtractor={(item) => item.idDrink}
+                keyExtractor={(drink) => drink.idDrink}
                 renderItem={(info) => {
                     return (
                         <DrinkCell drink={info.item} onPress={() => {this.didSelectDrink(info.item.idDrink)}}/>

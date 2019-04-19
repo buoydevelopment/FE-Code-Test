@@ -1,7 +1,5 @@
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import thunk from "redux-thunk";
-
-
 import drinksReducer from './reducers/drinks';
 
 const rootReducer = combineReducers({

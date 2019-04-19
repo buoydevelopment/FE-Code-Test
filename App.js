@@ -1,10 +1,9 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native'
-import DrinksScreen from "./src/screens/Drinks/Drinks";
-import DrinkDetailScreen from "./src/screens/DrinkDetail/DrinkDetail";
-import backImage from './src/assets/back-arrow.png'
-
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { Image, StyleSheet } from 'react-native';
+import DrinksScreen from './src/screens/Drinks/Drinks';
+import DrinkDetailScreen from './src/screens/DrinkDetail/DrinkDetail';
+import backImage from './src/assets/back-arrow.png';
 
 
 const styles = StyleSheet.create({
