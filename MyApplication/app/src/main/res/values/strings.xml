@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Code Test</string>
+    <string name="general_error">Oops something went wrong!</string>
+    <string name="retry">Retry</string>
+    <string name="search">Search</string>
+    <string name="cocktailTransitionName">cocktailTransitionName</string>
+    <string name="how_to_prepare">How to prepare</string>
+
+
+</resources>
