@@ -16,11 +16,25 @@ Please clone the repository, complete the exercise, and submit a PR for us to re
 
 A) Describe the strategy used to consume the API endpoints and the data management.
 
+I used retrofit to consume the API and ROOM for save the responses locally. Also I used mappers to manage the data
+between cloud, database and domain.
+
 B) Explain which library was used for the routing and why. Would you use the same for a consumer facing app targeting thousands of users? Why?
+
+I used activities and Intents for routing, but I will use fragments if a more flexible UI that could support tablets is needed. Also,
+The navigation library from Jetpack is pretty interesting applications.
+Anyway, the three options are viable for apps with thousands of users.
 
 C) Have you used any strategy to optimize the performance of the list generated for the first feature?
 
+I used the paging library for improve the performance of the list rendered in the first feature.
+
 D) Would you like to add any further comments or observations?
+
+* Tested with mockk
+* With Clean Architecture in mind
+* MVVM for the presentation layer
+* Clean Code
 
 
 ## Overview:

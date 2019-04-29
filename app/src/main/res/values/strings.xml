@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Cocktails</string>
+    <string name="how_to_prepare">How To Prepare</string>
+    <string name="ingredientswithmeasures">ingredientsWithMeasures</string>
+    <string name="drink_name">Drink Name</string>
+    <string name="instructions">instructions</string>
+    <string name="drinks_by_mati_lev">Drinks By Mati Lev</string>
+    <string name="search_cocktail_by_name">Search Cocktail By Name</string>
+</resources>

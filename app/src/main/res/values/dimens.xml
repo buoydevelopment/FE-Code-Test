@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="toolbar_title_margin_considering_back_arrow">28dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="elevation_5">5dp</dimen>
+    <dimen name="radius_10">10dp</dimen>
+    <dimen name="height_200">200dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="zero">0dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="height_15">15dp</dimen>
+    <dimen name="margin_24">24dp</dimen>
+    <dimen name="width_20">20dp</dimen>
+    <dimen name="margin_32">32dp</dimen>
+    <dimen name="elevation_1">1dp</dimen>
+    <dimen name="width_325">325dp</dimen>
+    <dimen name="padding_20">20dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+</resources>
