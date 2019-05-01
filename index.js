@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import store from './src/store/store';
 import AppContainer from './App';
 
+
 const RNRedux = () => (
     <Provider store={store}>
         <AppContainer />
