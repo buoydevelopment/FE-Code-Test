@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Guard /> Should NOT render the component when NOT authenticated 1`] = `ShallowWrapper {}`;
+
+exports[`<Guard /> Should render the component when authenticated 1`] = `ShallowWrapper {}`;

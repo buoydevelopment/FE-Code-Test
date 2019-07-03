@@ -1,0 +1,19 @@
+.level-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.ingredients {
+  margin-right: auto;
+}
+
+.how-to {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: auto;
+
+  p {
+    margin-top: 15px;
+  }
+}
