@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { getObjProps } from '../../utils/utils';
+import { FaLongArrowAltLeft } from 'react-icons/fa';
 import './DetailSection.scss'
 import Spinner from '../Spinner/Spinner';
 
@@ -10,8 +11,9 @@ export const DetailSection = (props) => {
   const getObjPropsCount = () => Object.keys(props.cocktail).length;
 
   React.useEffect(() => {
-    if (props.match.params.id &&
-      (!props.cocktail.idDrink || !(getObjPropsCount() > 3))) props.getDetail(props.match.params.id);
+    if (!(props.cocktail.idDrink) && props.match.params.id && !props.fetching) {
+      props.getDetail(props.match.params.id);
+    }
   }, []);
 
   React.useEffect(() => {
@@ -33,7 +35,7 @@ export const DetailSection = (props) => {
 
   const goBack = () => {
     props.cleanDetail();
-    props.history.goBack();
+    props.history.push('/');
   };
 
   return (
@@ -44,7 +46,7 @@ export const DetailSection = (props) => {
         <div>
           <div className='level is-mobile'>
             <div className='level-left' onClick={goBack}>
-              {'Back'}
+              <FaLongArrowAltLeft />
             </div>
             <div className='level-right' style={{ margin: 'auto' }}>
               <p className='title is-4 has-text-centered has-text-white has-text-weight-light'>

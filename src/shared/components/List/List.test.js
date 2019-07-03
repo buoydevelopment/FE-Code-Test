@@ -40,7 +40,6 @@ describe('List', () => {
   );
 
   it('Should render properly', () => {
-    console.log(list.debug());
     const expected = {
       strDrinkThumb: "imageUrl",
       strDrink: "Cocktail Name",
