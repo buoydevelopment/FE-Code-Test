@@ -1,0 +1,38 @@
+.spinner-container {
+	position: absolute;
+	left: 35%;
+	top: 30%;
+}
+
+.spinning-circle {
+  $width: 6px;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  margin: 4rem auto;
+  border: $width solid rgba(255, 255, 255, 0);
+  border-top-color: $width solid #f01e14;
+  border-right-color: $width solid #f01e14;
+  animation: spinningCircleAnimation 4s infinite linear;
+}
+
+@keyframes spinningCircleAnimation {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    border-top-color: #f01e14;
+    border-right-color: #f01e14;
+  }
+
+  50% {
+    border-top-color: rgb(82, 82, 83);;
+    border-right-color: rgb(82, 82, 83);;
+  }
+
+  100% {
+    -webkit-transform: rotate(720deg);
+    transform: rotate(720deg);
+    border-top-color: #f01e14;
+    border-right-color: #f01e14;
+  }
+}

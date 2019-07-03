@@ -1,0 +1,41 @@
+.box {
+  .level-left {
+    display: flex;
+    margin: auto;
+
+    img {
+      max-height: 350px;
+      margin: auto;
+    }
+  }
+}
+
+.level-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.ingredients {
+  margin-right: auto !important;
+  padding-bottom: 20px;
+}
+
+.level {
+  margin-top: 45px;
+
+  .level-left {
+    font-size: 35px;
+    margin: 0px 0px 0px 15px;
+  }
+}
+
+.how-to {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: auto;
+
+  p {
+    margin-top: 15px;
+  }
+}
