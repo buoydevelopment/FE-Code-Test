@@ -10,5 +10,4 @@ export const CLEAN_DETAIL = "CLEAN_DETAIL";
 export const SELECT_DRINK = "SELECT_DRINK";
 export const SHOULD_FETCH_DETAIL = "SHOULD_FETCH_DETAIL";
 
-export const FILTER_CHANGE = 'FILTER CHANGE';
 export const RAISE_ERROR = 'RAISE_ERROR';

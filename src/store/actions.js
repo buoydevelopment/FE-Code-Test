@@ -23,11 +23,6 @@ export const raiseError = (error) => ({
 });
 
 // OTHER ACTIONS
-export const changeFilter = (filter) => ({
-	type: types.FILTER_CHANGE,
-	payload: filter,
-});
-
 export const selectDrink = (drink) => ({
 	type: types.SELECT_DRINK,
 	payload: drink,

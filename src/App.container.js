@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { getList,
-  changeFilter,
   raiseError,
   getDetail,
   cleanDetail,
@@ -16,7 +15,6 @@ const mapStateToProps = (state) => {
     selectedCocktail: state.app.selectedCocktail,
     error: state.app.error,
     fetching: state.app.fetching,
-    filter: state.app.filter,
   });
 };
 
@@ -24,7 +22,6 @@ const dispatchActionsToProps = (dispatch) => {
   return bindActionCreators(
     {
       getList,
-      changeFilter,
       raiseError,
       getDetail,
       cleanDetail,
